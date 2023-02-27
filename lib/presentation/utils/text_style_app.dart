@@ -16,37 +16,37 @@ class TextStyleApp {
       largeTextDefault.copyWith(fontSize: 20, height: 28);
 
   //Title
-  TextStyle get titleDefault => const TextStyle(
+  static TextStyle get titleDefault => const TextStyle(
         fontFamily: 'SF Pro Display',
         fontSize: 20,
         fontWeight: FontWeight.w600,
         height: 28,
         letterSpacing: 0,
       );
-  TextStyle get titleDefault20 => titleDefault;
-  TextStyle get titleDefault18 =>
+  static TextStyle get titleDefault20 => titleDefault;
+  static TextStyle get titleDefault18 =>
       titleDefault.copyWith(fontSize: 18, height: 25.2);
-  TextStyle get titleDefault16 =>
+  static TextStyle get titleDefault16 =>
       titleDefault.copyWith(fontSize: 16, height: 22.4);
-  TextStyle get titleDefault14 =>
+  static TextStyle get titleDefault14 =>
       titleDefault.copyWith(fontSize: 14, height: 19.6);
-  TextStyle get titleDefault13 =>
+  static TextStyle get titleDefault13 =>
       titleDefault.copyWith(fontSize: 13, height: 18.2);
-  TextStyle get titleDefault10 =>
+  static TextStyle get titleDefault10 =>
       titleDefault.copyWith(fontSize: 10, height: 14);
-  TextStyle get titleDefault8 =>
+  static TextStyle get titleDefault8 =>
       titleDefault.copyWith(fontSize: 8, height: 11.2);
 
   //Subtitle
-  TextStyle get subtitleDefault => titleDefault.copyWith(
+  static TextStyle get subtitleDefault => titleDefault.copyWith(
       fontSize: 16, fontWeight: FontWeight.w500, height: 22.4);
-  TextStyle get subtitle16 => subtitleDefault;
-  TextStyle get subtitle14 =>
+  static TextStyle get subtitle16 => subtitleDefault;
+  static TextStyle get subtitle14 =>
       subtitleDefault.copyWith(fontSize: 14, height: 19.6);
-  TextStyle get subtitle12 =>
+  static TextStyle get subtitle12 =>
       subtitleDefault.copyWith(fontSize: 12, height: 16.8);
-  TextStyle get subtitle10 =>
+  static TextStyle get subtitle10 =>
       subtitleDefault.copyWith(fontSize: 10, height: 14);
-  TextStyle get subtitle8 =>
+  static TextStyle get subtitle8 =>
       subtitleDefault.copyWith(fontSize: 8, height: 11.2);
 }

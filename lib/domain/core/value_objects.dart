@@ -14,8 +14,6 @@ class UniqueId implements ValueObject<int?, String> {
 
   factory UniqueId(String value) => UniqueId._(int.tryParse(value));
 
-  factory UniqueId.fromString(String value) => UniqueId._(int.tryParse(value));
-
   @override
   List<ValueFailures<String>> failures() => <ValueValidators<String, int?>>[
         ValidateUniqueIdIsNotNull(),

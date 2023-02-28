@@ -23,6 +23,8 @@ class TextStyleApp {
         height: 28,
         letterSpacing: 0,
       );
+  static TextStyle get titleDefault22 =>
+      titleDefault.copyWith(fontSize: 22, height: 33);
   static TextStyle get titleDefault20 => titleDefault;
   static TextStyle get titleDefault18 =>
       titleDefault.copyWith(fontSize: 18, height: 25.2);

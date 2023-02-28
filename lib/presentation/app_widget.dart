@@ -31,7 +31,7 @@ class AppWidget extends StatelessWidget {
           secondary: ColorsApp.secondary,
         ),
       ),
-      initialRoute: RouterApp.loginPage,
+      initialRoute: RouterApp.registerPage,
       onGenerateRoute: RouterApp.onGenerateRoute,
     );
   }

@@ -42,12 +42,14 @@ class FormFieldWidget extends StatelessWidget {
               color: ColorsApp.placeholder,
               fontWeight: FontWeight.w500,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: ColorsApp.titleActive, width: 1.0),
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: ColorsApp.line, width: 1.0),
-            ),
+            focusedBorder:
+                Theme.of(context).inputDecorationTheme.border!.copyWith(
+                      borderSide: BorderSide(
+                        color: ColorsApp.titleActive,
+                        width: 1.0,
+                      ),
+                    ),
+            enabledBorder: Theme.of(context).inputDecorationTheme.border,
           ),
         ),
       ],

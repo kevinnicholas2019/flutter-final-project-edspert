@@ -23,8 +23,11 @@ class AppWidget extends StatelessWidget {
           foregroundColor: ColorsApp.offWhite,
         ),
         inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: ColorsApp.offWhite,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide(color: ColorsApp.line, width: 1.0),
           ),
         ),
         colorScheme: ColorScheme.fromSwatch().copyWith(

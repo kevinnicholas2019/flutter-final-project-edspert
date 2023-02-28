@@ -1,6 +1,5 @@
 import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_apple_widget.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_google_widget.dart';
-import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 

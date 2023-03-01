@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ToggleWidget extends StatelessWidget {
-  final Map<String, bool> values;
-
-  const ToggleWidget({super.key, required this.values});
+  final ToggleBloc bloc;
+  const ToggleWidget({
+    super.key,
+    required this.bloc,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final ToggleBloc bloc = ToggleBloc(values);
-
     return BlocBuilder<ToggleBloc, ToggleState>(
       bloc: bloc,
       builder: (context, state) {

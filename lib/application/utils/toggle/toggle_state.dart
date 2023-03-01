@@ -2,22 +2,20 @@ part of 'toggle_bloc.dart';
 
 @immutable
 abstract class ToggleState {
-  final Map<String, bool> values;
+  final Map<String, bool> _values;
+  final String value;
 
-  const ToggleState(this.values);
+  Map<String, bool> get values => _values;
+
+  const ToggleState(Map<String, bool> values, this.value) : _values = values;
 }
 
 class ToggleInitial extends ToggleState {
-  const ToggleInitial(super.values);
-}
-
-class ToggleChange extends ToggleState {
-  final String keyPressed;
-
-  ToggleChange(Map<String, bool> values, this.keyPressed)
+  ToggleInitial(Map<String, bool> values, String keyValue)
       : super(
           values.map(
-            (key, value) => MapEntry(key, key == keyPressed),
+            (key, value) => MapEntry(key, key == keyValue),
           ),
+          keyValue,
         );
 }

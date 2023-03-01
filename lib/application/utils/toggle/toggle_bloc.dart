@@ -5,10 +5,10 @@ part 'toggle_event.dart';
 part 'toggle_state.dart';
 
 class ToggleBloc extends Bloc<ToggleEvent, ToggleState> {
-  ToggleBloc(Map<String, bool> values) : super(ToggleInitial(values)) {
+  ToggleBloc(Map<String, bool> values, [String value = ""])
+      : super(ToggleInitial(values, value)) {
     on<ToggleEventOnPressed>((event, emit) {
-      emit(ToggleChange(state.values, event.keyPressed));
-      emit(ToggleInitial(state.values));
+      emit(ToggleInitial(state.values, event.keyPressed));
     });
   }
 }

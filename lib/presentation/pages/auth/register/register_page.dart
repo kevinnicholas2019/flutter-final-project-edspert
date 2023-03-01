@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/application/utils/toggle/toggle_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/dropdown_form_field_widget.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/text_form_field_widget.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/text_button_app.dart';
@@ -7,6 +8,11 @@ import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
+  static final ToggleBloc _jenisKelaminToggleBloc = ToggleBloc(const {
+    'Laki-laki': false,
+    'Perempuan': false,
+  });
+
   const RegisterPage({super.key});
 
   @override
@@ -71,12 +77,11 @@ class RegisterPage extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 45,
-                    child: ToggleWidget(values: {
-                      'Laki-laki': false,
-                      'Perempuan': false,
-                    }),
+                    child: ToggleWidget(
+                      bloc: _jenisKelaminToggleBloc,
+                    ),
                   ),
                   const SizedBox(
                     height: 24,
@@ -85,14 +90,20 @@ class RegisterPage extends StatelessWidget {
                     nameField: 'Kelas',
                     hintText: 'pilih kelas',
                     items: const [
-                      'SMP 1',
-                      'SMP 2',
-                      'SMP 3',
-                      'SMA 1',
-                      'SMA 2 IPA',
-                      'SMA 2 IPS',
-                      'SMA 3 IPA',
-                      'SMA 3 IPS',
+                      'I',
+                      'II',
+                      'III',
+                      'IV',
+                      'V',
+                      'VI',
+                      'VII',
+                      'VIII',
+                      'IX',
+                      'X',
+                      'XI-IPA',
+                      'XI-IPS',
+                      'XII-IPA',
+                      'XII-IPS',
                     ],
                     value: '',
                     onChanged: (String? value) {},

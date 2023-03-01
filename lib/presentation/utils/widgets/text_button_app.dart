@@ -2,25 +2,10 @@ import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
-class SignInGoogleWidget extends StatelessWidget {
-  const SignInGoogleWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.0),
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black.withOpacity(0.2),
-            blurRadius: 20,
-            spreadRadius: 1,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: TextButton(
-        onPressed: () {},
+class TextButtonApp {
+  static Widget textButtonCustom1(String text, {Function()? onPressed}) =>
+      TextButton(
+        onPressed: onPressed ?? () {},
         style: ButtonStyle(
           padding: const MaterialStatePropertyAll(
             EdgeInsets.symmetric(
@@ -53,42 +38,27 @@ class SignInGoogleWidget extends StatelessWidget {
               return Colors.black.withOpacity(0.5);
             },
           ),
-          backgroundColor: MaterialStatePropertyAll(ColorsApp.background),
+          backgroundColor: MaterialStatePropertyAll(ColorsApp.primary),
           foregroundColor: MaterialStateColor.resolveWith(
             (states) {
               const Set<MaterialState> interactiveStates = <MaterialState>{
                 MaterialState.pressed,
               };
               if (states.any(interactiveStates.contains)) {
-                return ColorsApp.offWhite;
+                return ColorsApp.offWhite.withOpacity(0.75);
               }
-              return ColorsApp.titleActive;
+              return ColorsApp.offWhite;
             },
           ),
           textStyle: MaterialStatePropertyAll(
-            TextStyleApp.titleDefault18.copyWith(
-              fontSize: 17,
+            TextStyleApp.largeTextDefault.copyWith(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
             ),
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              "assets/icons/google.png",
-              width: 34,
-              height: 34,
-              fit: BoxFit.fill,
-            ),
-            const SizedBox(width: 8),
-            const Flexible(
-              child: Text(
-                'Masuk dengan Google',
-              ),
-            ),
-          ],
+        child: Flexible(
+          child: Text(text),
         ),
-      ),
-    );
-  }
+      );
 }

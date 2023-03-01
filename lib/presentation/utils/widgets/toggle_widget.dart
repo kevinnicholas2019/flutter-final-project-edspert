@@ -54,7 +54,7 @@ class ToggleWidget extends StatelessWidget {
                                 : ColorsApp.secondary;
 
                             if (states.any(interactiveStates.contains)) {
-                              return coloring.withOpacity(0.375);
+                              return coloring.withOpacity(0.3);
                             }
                             return coloring.withOpacity(0.25);
                           },
@@ -69,9 +69,28 @@ class ToggleWidget extends StatelessWidget {
                               ? ColorsApp.secondary
                               : ColorsApp.background,
                         ),
+                        foregroundColor: MaterialStateColor.resolveWith(
+                          (states) {
+                            const Set<MaterialState> interactiveStates =
+                                <MaterialState>{
+                              MaterialState.pressed,
+                            };
+                            if (states.any(interactiveStates.contains)) {
+                              return entry.value
+                                  ? ColorsApp.titleActive
+                                  : ColorsApp.offWhite;
+                            }
+                            return !entry.value
+                                ? ColorsApp.titleActive
+                                : ColorsApp.offWhite;
+                          },
+                        ),
                         textStyle: MaterialStatePropertyAll(
-                          TextStyleApp.titleDefault18.copyWith(
-                            fontSize: 17,
+                          TextStyleApp.largeTextDefault.copyWith(
+                            fontSize: 14,
+                            color: !entry.value
+                                ? ColorsApp.titleActive
+                                : ColorsApp.offWhite,
                           ),
                         ),
                       ),
@@ -79,12 +98,6 @@ class ToggleWidget extends StatelessWidget {
                         entry.key,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
-                        style: TextStyleApp.largeTextDefault.copyWith(
-                          fontSize: 14,
-                          color: !entry.value
-                              ? ColorsApp.titleActive
-                              : ColorsApp.offWhite,
-                        ),
                       ),
                     ),
                   ),

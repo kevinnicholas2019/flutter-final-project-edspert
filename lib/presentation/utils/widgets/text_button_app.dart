@@ -57,8 +57,6 @@ class TextButtonApp {
             ),
           ),
         ),
-        child: Flexible(
-          child: Text(text),
-        ),
+        child: Text(text),
       );
 }

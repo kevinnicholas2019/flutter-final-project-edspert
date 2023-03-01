@@ -1,5 +1,6 @@
 import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_apple_widget.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_google_widget.dart';
+import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
@@ -10,59 +11,62 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.symmetric(
-            horizontal: 20.0,
-            vertical: 20.0,
-          ),
-          children: [
-            Text(
-              'Login',
-              style: TextStyleApp.largeText20,
+        child: Container(
+          color: ColorsApp.backgroundPage,
+          child: ListView(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20.0,
+              vertical: 20.0,
             ),
-            const SizedBox(
-              height: 30,
-            ),
-            const Center(
-              child: Image(
-                image: AssetImage('assets/illustrations/login_page.png'),
+            children: [
+              Text(
+                'Login',
+                style: TextStyleApp.largeText20,
               ),
-            ),
-            const SizedBox(
-              height: 56,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  'Selamat Datang',
-                  style: TextStyleApp.titleDefault22,
-                  textAlign: TextAlign.center,
+              const SizedBox(
+                height: 30,
+              ),
+              const Center(
+                child: Image(
+                  image: AssetImage('assets/illustrations/login_page.png'),
                 ),
-                const SizedBox(
-                  height: 3.5,
-                ),
-                Text(
-                  'Selamat Datang di Aplikasi Widya Edu\nAplikasi Latihan dan Konsultasi Soal',
-                  style: TextStyleApp.subtitle14,
-                  textAlign: TextAlign.center,
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 100,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: const [
-                SignInGoogleWidget(),
-                SizedBox(
-                  height: 25,
-                ),
-                SignInAppleWidget(),
-              ],
-            ),
-          ],
+              ),
+              const SizedBox(
+                height: 56,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    'Selamat Datang',
+                    style: TextStyleApp.titleDefault22,
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 3.5,
+                  ),
+                  Text(
+                    'Selamat Datang di Aplikasi Widya Edu\nAplikasi Latihan dan Konsultasi Soal',
+                    style: TextStyleApp.subtitle14,
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 100,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: const [
+                  SignInGoogleWidget(),
+                  SizedBox(
+                    height: 25,
+                  ),
+                  SignInAppleWidget(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

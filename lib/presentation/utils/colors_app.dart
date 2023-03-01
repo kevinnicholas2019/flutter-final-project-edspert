@@ -34,5 +34,6 @@ class ColorsApp {
   static Color get line => const Color(0xFFE4E4E5);
   static Color get inputBackground => const Color(0xFFF6F6F6);
   static Color get background => const Color(0xFFF9F9F9);
+  static Color get backgroundPage => const Color(0xFFF0F3F5);
   static Color get offWhite => const Color(0xFFFCFCFC);
 }

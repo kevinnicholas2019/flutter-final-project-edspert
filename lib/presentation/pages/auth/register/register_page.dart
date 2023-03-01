@@ -44,7 +44,7 @@ class RegisterPage extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              color: const Color(0xFFF0F3F5),
+              color: ColorsApp.backgroundPage,
               child: ListView(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 20,

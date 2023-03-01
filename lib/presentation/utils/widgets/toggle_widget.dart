@@ -66,7 +66,7 @@ class ToggleWidget extends StatelessWidget {
                         ),
                         backgroundColor: MaterialStatePropertyAll(
                           entry.value
-                              ? ColorsApp.secondary
+                              ? ColorsApp.primary
                               : ColorsApp.background,
                         ),
                         foregroundColor: MaterialStateColor.resolveWith(

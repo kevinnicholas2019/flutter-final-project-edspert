@@ -11,7 +11,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: ListView(
         padding: const EdgeInsets.symmetric(
-          horizontal: 32.0,
+          horizontal: 20.0,
           vertical: 20.0,
         ),
         children: [

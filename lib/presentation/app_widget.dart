@@ -1,4 +1,5 @@
 import 'package:final_project_edspert/presentation/router/router_app.dart';
+import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,7 +27,7 @@ class AppWidget extends StatelessWidget {
           filled: true,
           fillColor: ColorsApp.offWhite,
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
+            borderRadius: BorderApp.radius,
             borderSide: BorderSide(color: ColorsApp.line, width: 1.0),
           ),
         ),

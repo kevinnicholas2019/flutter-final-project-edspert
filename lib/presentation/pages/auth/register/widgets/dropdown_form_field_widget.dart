@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class DropdownFormFieldWidget extends StatelessWidget {
             enabledBorder: Theme.of(context).inputDecorationTheme.border,
           ),
           icon: const Icon(Icons.keyboard_arrow_down),
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderApp.radius,
           items: items.map((String items) {
             return DropdownMenuItem(
               value: items,

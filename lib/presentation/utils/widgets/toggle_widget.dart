@@ -94,10 +94,11 @@ class ToggleWidget extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: Text(
-                        entry.key,
-                        overflow: TextOverflow.ellipsis,
-                        textAlign: TextAlign.center,
+                      child: Flexible(
+                        child: Text(
+                          entry.key,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ),
                   ),

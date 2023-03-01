@@ -9,59 +9,61 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 20.0,
-          vertical: 20.0,
-        ),
-        children: [
-          Text(
-            'Login',
-            style: TextStyleApp.largeText20,
+      body: SafeArea(
+        child: ListView(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20.0,
+            vertical: 20.0,
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          const Center(
-            child: Image(
-              image: AssetImage('assets/illustrations/login_page.png'),
+          children: [
+            Text(
+              'Login',
+              style: TextStyleApp.largeText20,
             ),
-          ),
-          const SizedBox(
-            height: 56,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Selamat Datang',
-                style: TextStyleApp.titleDefault22,
-                textAlign: TextAlign.center,
+            const SizedBox(
+              height: 30,
+            ),
+            const Center(
+              child: Image(
+                image: AssetImage('assets/illustrations/login_page.png'),
               ),
-              const SizedBox(
-                height: 3.5,
-              ),
-              Text(
-                'Selamat Datang di Aplikasi Widya Edu\nAplikasi Latihan dan Konsultasi Soal',
-                style: TextStyleApp.subtitle14,
-                textAlign: TextAlign.center,
-              )
-            ],
-          ),
-          const SizedBox(
-            height: 100,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const [
-              SignInGoogleWidget(),
-              SizedBox(
-                height: 25,
-              ),
-              SignInAppleWidget(),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(
+              height: 56,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Selamat Datang',
+                  style: TextStyleApp.titleDefault22,
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 3.5,
+                ),
+                Text(
+                  'Selamat Datang di Aplikasi Widya Edu\nAplikasi Latihan dan Konsultasi Soal',
+                  style: TextStyleApp.subtitle14,
+                  textAlign: TextAlign.center,
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 100,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: const [
+                SignInGoogleWidget(),
+                SizedBox(
+                  height: 25,
+                ),
+                SignInAppleWidget(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

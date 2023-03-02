@@ -22,7 +22,7 @@ class BottonNavigationBarApp extends StatelessWidget {
       ),
       child: ClipPath(
         clipper: _clipper,
-        child: Container(
+        child: SizedBox(
           height: 80,
           child: Stack(
             children: [

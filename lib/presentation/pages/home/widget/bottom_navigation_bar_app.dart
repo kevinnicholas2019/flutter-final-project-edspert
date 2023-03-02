@@ -100,6 +100,7 @@ class BottonNavigationBarApp extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _ClipShadowShadowPainter extends CustomPainter {
   final Shadow shadow;
   final CustomClipper<Path> clipper;

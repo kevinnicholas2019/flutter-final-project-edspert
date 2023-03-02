@@ -40,16 +40,16 @@ class HomeWidget extends StatelessWidget {
                     ],
                   ),
                 ),
-                Container(
-                  width: 35,
-                  height: 35,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: ColorsApp.placeholder,
-                    image: DecorationImage(
-                      image: AssetImage(
-                        "assets/icons/kevin_nicholas_profile.jpg",
-                      ),
+                ClipOval(
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "https://pps.whatsapp.net/v/t61.24694-24/321243037_1518504015337246_465266283058870689_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdR1Xz4VZiPJzWU56RttXR94AbGfl26yo8q-CQVorc2Xng&oe=640DCC7C",
+                    width: 35,
+                    height: 35,
+                    placeholder: (_, __) => Container(
+                      width: 35,
+                      height: 35,
+                      color: ColorsApp.placeholder,
                     ),
                   ),
                 ),

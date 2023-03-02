@@ -5,96 +5,94 @@ import 'package:flutter/material.dart';
 const _radius = 20.0;
 
 class BottonNavigationBarApp extends StatelessWidget {
-  static final _clipper = _CustomClipPath();
+  // static final _clipper = _CustomClipPath();
 
   const BottonNavigationBarApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ClipPath(
-      clipper: _clipper,
-      child: SizedBox(
-        height: 80,
-        child: Stack(
-          children: [
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Container(
-                height: 55,
-                decoration: BoxDecoration(
-                  color: ColorsApp.offWhite,
-                  boxShadow: <BoxShadow>[
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.15),
-                      blurRadius: 20,
-                      spreadRadius: 1,
-                      offset: const Offset(0, 2),
-                    ),
-                  ],
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(_radius),
-                    topRight: Radius.circular(_radius),
+    return SizedBox(
+      height: 80,
+      child: Stack(
+        children: [
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              height: 55,
+              decoration: BoxDecoration(
+                color: ColorsApp.offWhite,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.15),
+                    blurRadius: 20,
+                    spreadRadius: 1,
+                    offset: const Offset(0, 2),
                   ),
+                ],
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(_radius),
+                  topRight: Radius.circular(_radius),
                 ),
-                child: Row(
-                  children: [
-                    for (var entry in {
-                      "Home": "assets/icons/nav_toggle_on/home.png",
-                      "Diskusi Soal":
-                          "assets/icons/nav_toggle_off/diskusi_soal.png",
-                      "Profile": "assets/icons/nav_toggle_off/profile.png",
-                    }.entries)
-                      Expanded(
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              if (entry.key != "Diskusi Soal")
-                                Image.asset(
-                                  entry.value,
-                                  width: 20,
-                                  height: 20,
-                                ),
-                              if (entry.key == "Diskusi Soal")
-                                const SizedBox(
-                                  height: 20,
-                                ),
-                              Text(
-                                entry.key,
-                                style: TextStyleApp.largeTextDefault.copyWith(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w600,
-                                ),
+              ),
+              child: Row(
+                children: [
+                  for (var entry in {
+                    "Home": "assets/icons/nav_toggle_on/home.png",
+                    "Diskusi Soal":
+                        "assets/icons/nav_toggle_off/diskusi_soal.png",
+                    "Profile": "assets/icons/nav_toggle_off/profile.png",
+                  }.entries)
+                    Expanded(
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            if (entry.key != "Diskusi Soal")
+                              Image.asset(
+                                entry.value,
+                                width: 20,
+                                height: 20,
                               ),
-                            ],
-                          ),
+                            if (entry.key == "Diskusi Soal")
+                              const SizedBox(
+                                height: 20,
+                              ),
+                            Text(
+                              entry.key,
+                              style: TextStyleApp.largeTextDefault.copyWith(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
                         ),
                       ),
-                  ],
-                ),
+                    ),
+                ],
               ),
             ),
-            Align(
-              alignment: Alignment.topCenter,
-              child: SizedBox(
-                width: 50,
-                height: 50,
-                child: FloatingActionButton.large(
-                  onPressed: () {},
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: ImageIcon(
-                      AssetImage("assets/icons/Quiz icon.png"),
-                      color: ColorsApp.offWhite,
-                    ),
+          ),
+          Align(
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: FloatingActionButton.large(
+                onPressed: () {},
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: ImageIcon(
+                    AssetImage("assets/icons/Quiz icon.png"),
+                    color: ColorsApp.offWhite,
                   ),
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -120,6 +118,7 @@ class _ClipShadowShadowPainter extends CustomPainter {
   }
 }
 
+// ignore: unused_element
 class _CustomClipPath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {

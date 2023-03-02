@@ -6,40 +6,42 @@ import 'package:flutter/material.dart';
 class DiskusiSoalPage extends StatelessWidget {
   const DiskusiSoalPage({super.key});
 
-  static final _isiChats = {
-    {
-      "nama": "Tutor Arin",
-      "pesan":
-          "Halo, Perkenalkan saya Arin yang akan menjadi pembimbing kalian di grub ini.",
-      "waktu": "29m",
-    },
-    {
-      "nama": "Saya",
-      "pesan": "Baik Kak, terima kasih",
-      "waktu": "29m",
-      "isDiriSendiri": true,
-    },
-    {
-      "nama": "Andy",
-      "pesan": "Halo semua saya Andika dari SMAN 3 Yogyakarta.",
-      "waktu": "30m",
-    },
-    {
-      "nama": "Karina",
-      "pesan": "Halo semua saya Karina dari SMAN 1 Surabaya.",
-      "waktu": "30m",
-    },
-    {
-      "nama": "Bayu",
-      "pesan": "Halo semua saya Bayu dari SMAN 3 Yogyakarta.",
-      "waktu": "30m",
-    },
-    {
-      "nama": "Naufal",
-      "pesan": "Halo semua saya Naufal dari SMAN 1 Yogyakarta.",
-      "waktu": "30m",
-    },
-  };
+  static final _isiChats = [
+    for (var i = 0; i < 3; i++) ...[
+      {
+        "nama": "Tutor Arin",
+        "pesan":
+            "Halo, Perkenalkan saya Arin yang akan menjadi pembimbing kalian di grub ini.",
+        "waktu": "29m",
+      },
+      {
+        "nama": "Saya",
+        "pesan": "Baik Kak, terima kasih",
+        "waktu": "29m",
+        "isDiriSendiri": true,
+      },
+      {
+        "nama": "Andy",
+        "pesan": "Halo semua saya Andika dari SMAN 3 Yogyakarta.",
+        "waktu": "30m",
+      },
+      {
+        "nama": "Karina",
+        "pesan": "Halo semua saya Karina dari SMAN 1 Surabaya.",
+        "waktu": "30m",
+      },
+      {
+        "nama": "Bayu",
+        "pesan": "Halo semua saya Bayu dari SMAN 3 Yogyakarta.",
+        "waktu": "30m",
+      },
+      {
+        "nama": "Naufal",
+        "pesan": "Halo semua saya Naufal dari SMAN 1 Yogyakarta.",
+        "waktu": "30m",
+      },
+    ],
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +88,6 @@ class DiskusiSoalPage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: Container(
-        // height: 54,
         constraints: const BoxConstraints(minHeight: 54, maxHeight: 54 * 8),
         padding: const EdgeInsets.symmetric(
           horizontal: 15,
@@ -111,10 +112,10 @@ class DiskusiSoalPage extends StatelessWidget {
               height: 32,
               child: TextButton(
                 onPressed: () {},
-                style: ButtonStyle(
-                  padding: const MaterialStatePropertyAll(EdgeInsets.zero),
-                  fixedSize: const MaterialStatePropertyAll(Size.fromWidth(32)),
-                  iconSize: const MaterialStatePropertyAll(32),
+                style: const ButtonStyle(
+                  padding: MaterialStatePropertyAll(EdgeInsets.zero),
+                  fixedSize: MaterialStatePropertyAll(Size.fromWidth(32)),
+                  iconSize: MaterialStatePropertyAll(32),
                   iconColor: MaterialStatePropertyAll(ColorsApp.primary),
                 ),
                 child: const Icon(Icons.add),
@@ -135,11 +136,10 @@ class DiskusiSoalPage extends StatelessWidget {
                 decoration: InputDecoration(
                   suffixIcon: TextButton(
                     onPressed: () {},
-                    style: ButtonStyle(
-                      padding: const MaterialStatePropertyAll(EdgeInsets.zero),
-                      fixedSize:
-                          const MaterialStatePropertyAll(Size.fromWidth(32)),
-                      iconSize: const MaterialStatePropertyAll(32),
+                    style: const ButtonStyle(
+                      padding: MaterialStatePropertyAll(EdgeInsets.zero),
+                      fixedSize: MaterialStatePropertyAll(Size.fromWidth(32)),
+                      iconSize: MaterialStatePropertyAll(32),
                       iconColor: MaterialStatePropertyAll(ColorsApp.primary),
                     ),
                     child: const Icon(Icons.camera_alt_rounded),
@@ -156,7 +156,7 @@ class DiskusiSoalPage extends StatelessWidget {
                   ),
                   focusedBorder:
                       Theme.of(context).inputDecorationTheme.border!.copyWith(
-                            borderSide: BorderSide(
+                            borderSide: const BorderSide(
                               color: ColorsApp.titleActive,
                               width: 0.2,
                             ),
@@ -173,10 +173,10 @@ class DiskusiSoalPage extends StatelessWidget {
               height: 32,
               child: TextButton(
                 onPressed: () {},
-                style: ButtonStyle(
-                  padding: const MaterialStatePropertyAll(EdgeInsets.zero),
-                  fixedSize: const MaterialStatePropertyAll(Size.fromWidth(32)),
-                  iconSize: const MaterialStatePropertyAll(32),
+                style: const ButtonStyle(
+                  padding: MaterialStatePropertyAll(EdgeInsets.zero),
+                  fixedSize: MaterialStatePropertyAll(Size.fromWidth(32)),
+                  iconSize: MaterialStatePropertyAll(32),
                   iconColor: MaterialStatePropertyAll(ColorsApp.primary),
                 ),
                 child: const Icon(Icons.send_rounded),

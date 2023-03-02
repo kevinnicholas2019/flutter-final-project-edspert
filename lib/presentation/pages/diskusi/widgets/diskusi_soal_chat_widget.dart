@@ -3,6 +3,12 @@ import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
 class DiskusiSoalChatWidget extends StatelessWidget {
+  final Color _penggunaColorTextNama = ColorsApp.secondary;
+  final Color _penggunaColorBgChat = ColorsApp.primary;
+  final Color _penggunaColorTextChat = ColorsApp.offWhite;
+
+  final Radius _borderRadiusChat = const Radius.circular(12);
+
   final String nama;
   final String pesan;
   final String waktu;
@@ -41,7 +47,7 @@ class DiskusiSoalChatWidget extends StatelessWidget {
           style: TextStyleApp.largeTextDefault.copyWith(
             fontWeight: FontWeight.w400,
             fontSize: 10,
-            color: const Color(0xFF00C4FF),
+            color: isDirisendiri ? _penggunaColorTextNama : colorTextNama,
           ),
         ),
         const SizedBox(height: 7),
@@ -49,19 +55,22 @@ class DiskusiSoalChatWidget extends StatelessWidget {
           constraints: BoxConstraints(
             maxWidth: widthOffsetText,
           ),
-          padding: const EdgeInsets.only(
-            left: 14,
-            top: 14,
-            bottom: 14,
-            right: 14,
+          padding: const EdgeInsets.all(14),
+          decoration: BoxDecoration(
+            color: isDirisendiri ? _penggunaColorBgChat : colorBgChat,
+            borderRadius: BorderRadius.only(
+              topLeft: isDirisendiri ? _borderRadiusChat : Radius.zero,
+              topRight: isDirisendiri ? Radius.zero : Radius.zero,
+              bottomRight: _borderRadiusChat,
+              bottomLeft: _borderRadiusChat,
+            ),
           ),
-          color: const Color(0xFFE0F8FF),
           child: Text(
             pesan,
             style: TextStyleApp.largeTextDefault.copyWith(
               fontWeight: FontWeight.w400,
               fontSize: 13,
-              color: ColorsApp.titleActive,
+              color: isDirisendiri ? _penggunaColorTextChat : colorTextChat,
             ),
           ),
         ),

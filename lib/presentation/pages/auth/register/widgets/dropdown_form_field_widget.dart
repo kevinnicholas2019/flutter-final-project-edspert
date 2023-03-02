@@ -48,8 +48,8 @@ class DropdownFormFieldWidget extends StatelessWidget {
             ),
             focusedBorder:
                 Theme.of(context).inputDecorationTheme.border!.copyWith(
-                      borderSide:
-                          BorderSide(color: ColorsApp.titleActive, width: 1.0),
+                      borderSide: const BorderSide(
+                          color: ColorsApp.titleActive, width: 1.0),
                     ),
             enabledBorder: Theme.of(context).inputDecorationTheme.border,
           ),

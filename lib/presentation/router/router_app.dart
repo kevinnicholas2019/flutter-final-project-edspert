@@ -1,5 +1,6 @@
 import 'package:final_project_edspert/presentation/pages/auth/login/login_page.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/register_page.dart';
+import 'package:final_project_edspert/presentation/pages/diskusi/diskusi_soal_page.dart';
 import 'package:final_project_edspert/presentation/pages/home/home_page.dart';
 import 'package:final_project_edspert/presentation/pages/splash_screen/splash_screen_page.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class RouterApp {
   static const String loginPage = '/login';
   static const String registerPage = '/register';
   static const String homePage = '/';
+  static const String diskusiSoalPage = '/diskusi-soal';
 
   static const navigator = Navigator();
 
@@ -33,6 +35,11 @@ class RouterApp {
       case RouterApp.homePage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const HomePage(),
+          settings: settings,
+        );
+      case RouterApp.diskusiSoalPage:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const DiskusiSoalPage(),
           settings: settings,
         );
       default:

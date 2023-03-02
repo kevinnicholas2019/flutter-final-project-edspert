@@ -15,7 +15,7 @@ class TextButtonApp {
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              side: BorderSide(
+              side: const BorderSide(
                 width: 1,
                 color: ColorsApp.secondary,
               ),
@@ -38,7 +38,7 @@ class TextButtonApp {
               return Colors.black.withOpacity(0.5);
             },
           ),
-          backgroundColor: MaterialStatePropertyAll(ColorsApp.primary),
+          backgroundColor: const MaterialStatePropertyAll(ColorsApp.primary),
           foregroundColor: MaterialStateColor.resolveWith(
             (states) {
               const Set<MaterialState> interactiveStates = <MaterialState>{

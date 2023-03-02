@@ -30,7 +30,7 @@ class SignInAppleWidget extends StatelessWidget {
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              side: BorderSide(
+              side: const BorderSide(
                 width: 1,
                 color: ColorsApp.titleActive,
               ),
@@ -69,7 +69,7 @@ class SignInAppleWidget extends StatelessWidget {
             }
             return ColorsApp.body;
           }),
-          backgroundColor: MaterialStatePropertyAll(
+          backgroundColor: const MaterialStatePropertyAll(
             ColorsApp.titleActive,
           ),
         ),

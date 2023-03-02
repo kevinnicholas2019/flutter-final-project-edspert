@@ -11,7 +11,7 @@ class ThemeApp {
           iconTheme: ThemeData.dark().iconTheme,
           systemOverlayStyle: SystemUiOverlayStyle.light,
         ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: ColorsApp.primary,
       foregroundColor: ColorsApp.offWhite,
     ),
@@ -20,7 +20,7 @@ class ThemeApp {
       fillColor: ColorsApp.offWhite,
       border: OutlineInputBorder(
         borderRadius: BorderApp.radius,
-        borderSide: BorderSide(color: ColorsApp.line, width: 1.0),
+        borderSide: const BorderSide(color: ColorsApp.line, width: 1.0),
       ),
     ),
     colorScheme: ColorScheme.fromSwatch().copyWith(

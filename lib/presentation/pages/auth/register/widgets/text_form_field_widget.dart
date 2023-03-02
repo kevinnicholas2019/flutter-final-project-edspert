@@ -44,7 +44,7 @@ class FormFieldWidget extends StatelessWidget {
             ),
             focusedBorder:
                 Theme.of(context).inputDecorationTheme.border!.copyWith(
-                      borderSide: BorderSide(
+                      borderSide: const BorderSide(
                         color: ColorsApp.titleActive,
                         width: 1.0,
                       ),

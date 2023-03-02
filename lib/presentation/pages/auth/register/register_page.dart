@@ -22,7 +22,7 @@ class RegisterPage extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(85.0),
         child: AppBar(
-          iconTheme: IconThemeData(
+          iconTheme: const IconThemeData(
             color: ColorsApp.titleActive,
             size: 24,
           ),

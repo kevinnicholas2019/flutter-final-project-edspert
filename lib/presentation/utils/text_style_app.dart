@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class TextStyleApp {
   //Large text
-  static TextStyle get largeTextDefault => TextStyle(
+  static TextStyle get largeTextDefault => const TextStyle(
         fontFamily: 'Poppins',
         fontSize: 30,
         fontWeight: FontWeight.w700,
@@ -15,7 +15,7 @@ class TextStyleApp {
   static TextStyle get largeText20 => largeTextDefault.copyWith(fontSize: 20);
 
   //Title
-  static TextStyle get titleDefault => TextStyle(
+  static TextStyle get titleDefault => const TextStyle(
         fontFamily: 'SF Pro Display',
         fontSize: 20,
         fontWeight: FontWeight.w600,

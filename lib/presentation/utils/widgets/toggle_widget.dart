@@ -35,7 +35,7 @@ class ToggleWidget extends StatelessWidget {
                         ),
                         shape: MaterialStatePropertyAll(
                           RoundedRectangleBorder(
-                            side: BorderSide(
+                            side: const BorderSide(
                               width: 1,
                               color: ColorsApp.line,
                             ),

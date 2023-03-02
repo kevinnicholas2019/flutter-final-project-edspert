@@ -46,10 +46,10 @@ class HomePage extends StatelessWidget {
                     Container(
                       width: 35,
                       height: 35,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: ColorsApp.placeholder,
-                        image: const DecorationImage(
+                        image: DecorationImage(
                           image: AssetImage(
                             "assets/icons/kevin_nicholas_profile.jpg",
                           ),
@@ -210,7 +210,7 @@ class HomePage extends StatelessWidget {
                                   ),
                                   ClipRRect(
                                     borderRadius: BorderApp.radius,
-                                    child: LinearProgressIndicator(
+                                    child: const LinearProgressIndicator(
                                       value: 0.25,
                                       color: ColorsApp.primary,
                                     ),
@@ -374,10 +374,10 @@ class HomePage extends StatelessWidget {
                 height: 50,
                 child: FloatingActionButton.large(
                   onPressed: () {},
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: ImageIcon(
-                      const AssetImage("assets/icons/Quiz icon.png"),
+                      AssetImage("assets/icons/Quiz icon.png"),
                       color: ColorsApp.offWhite,
                     ),
                   ),

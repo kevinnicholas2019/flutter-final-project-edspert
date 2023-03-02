@@ -30,7 +30,7 @@ class SignInGoogleWidget extends StatelessWidget {
           ),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              side: BorderSide(
+              side: const BorderSide(
                 width: 1,
                 color: ColorsApp.secondary,
               ),
@@ -53,7 +53,7 @@ class SignInGoogleWidget extends StatelessWidget {
               return Colors.black.withOpacity(0.5);
             },
           ),
-          backgroundColor: MaterialStatePropertyAll(ColorsApp.background),
+          backgroundColor: const MaterialStatePropertyAll(ColorsApp.background),
           foregroundColor: MaterialStateColor.resolveWith(
             (states) {
               const Set<MaterialState> interactiveStates = <MaterialState>{

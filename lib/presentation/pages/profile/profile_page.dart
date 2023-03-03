@@ -19,7 +19,40 @@ class ProfilePage extends StatelessWidget {
               Expanded(
                 child: ListView(
                   padding: const EdgeInsets.all(20.0),
-                  children: [],
+                  children: [
+                    Container(
+                      height: 330,
+                      decoration: BoxDecoration(
+                        color: ColorsApp.offWhite,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 5,
+                            spreadRadius: 1,
+                            offset: const Offset(0, 0),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                    Container(
+                      height: 49,
+                      decoration: BoxDecoration(
+                        color: ColorsApp.offWhite,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.2),
+                            blurRadius: 5,
+                            spreadRadius: 1,
+                            offset: const Offset(0, 0),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: 24),
+                  ],
                 ),
               ),
             ],

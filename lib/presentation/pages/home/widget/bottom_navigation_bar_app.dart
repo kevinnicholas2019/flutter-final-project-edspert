@@ -4,10 +4,29 @@ import 'package:flutter/material.dart';
 
 const _radius = 20.0;
 
-class BottonNavigationBarApp extends StatelessWidget {
+class BottomNavigationBarItemApp {
+  final String title;
+  final String? icon;
+  final Function() navigationTo;
+
+  const BottomNavigationBarItemApp({
+    required this.title,
+    this.icon,
+    required this.navigationTo,
+  });
+}
+
+class BottomNavigationBarApp extends StatelessWidget {
   // static final _clipper = _CustomClipPath();
 
-  const BottonNavigationBarApp({super.key});
+  final List<BottomNavigationBarItemApp> listBottomNavigationBarItemApp;
+  final FloatingActionButton? floatingActionButton;
+
+  const BottomNavigationBarApp({
+    super.key,
+    required this.listBottomNavigationBarItemApp,
+    this.floatingActionButton,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,31 +55,26 @@ class BottonNavigationBarApp extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  for (var entry in {
-                    "Home": "assets/icons/nav_toggle_on/home.png",
-                    "Diskusi Soal":
-                        "assets/icons/nav_toggle_off/diskusi_soal.png",
-                    "Profile": "assets/icons/nav_toggle_off/profile.png",
-                  }.entries)
+                  for (var baritem in listBottomNavigationBarItemApp)
                     Expanded(
                       child: TextButton(
-                        onPressed: () {},
+                        onPressed: baritem.navigationTo,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            if (entry.key != "Diskusi Soal")
+                            if (baritem.icon != null)
                               Image.asset(
-                                entry.value,
+                                baritem.icon!,
                                 width: 20,
                                 height: 20,
                               ),
-                            if (entry.key == "Diskusi Soal")
+                            if (baritem.icon == null)
                               const SizedBox(
                                 height: 20,
                               ),
                             Text(
-                              entry.key,
+                              baritem.title,
                               style: TextStyleApp.largeTextDefault.copyWith(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
@@ -75,23 +89,15 @@ class BottonNavigationBarApp extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment.topCenter,
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: FloatingActionButton.large(
-                onPressed: () {},
-                child: const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: ImageIcon(
-                    AssetImage("assets/icons/Quiz icon.png"),
-                    color: ColorsApp.offWhite,
-                  ),
-                ),
+          if (floatingActionButton != null)
+            Align(
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                width: 50,
+                height: 50,
+                child: floatingActionButton,
               ),
             ),
-          ),
         ],
       ),
     );

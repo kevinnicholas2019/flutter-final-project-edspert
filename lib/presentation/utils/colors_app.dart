@@ -28,6 +28,7 @@ class ColorsApp {
   );
   //Grayscale
   static const Color titleActive = Color(0xFF14142B);
+  static const Color titleDisable = Color(0xFFA9A9A9);
   static const Color body = Color(0xFF4E4B66);
   static const Color label = Color(0xFF85868B);
   static const Color placeholder = Color(0xFFBFC0C2);

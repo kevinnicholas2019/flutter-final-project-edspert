@@ -9,8 +9,18 @@ class HomePage extends StatefulWidget {
   static const _homePage = HomeWidget();
   static const _profilePage = ProfilePage();
 
+  static bool _isCurrentPage(Widget path) {
+    return _pageNow == path;
+  }
+
   static String _iconNavTogglePath(Widget path) {
-    return "assets/icons/nav_toggle_${_pageNow == path ? "on" : "off"}";
+    return "assets/icons/nav_toggle_${_isCurrentPage(path) ? "on" : "off"}";
+  }
+
+  static Color _titleColoring(Widget path) {
+    return _isCurrentPage(path)
+        ? ColorsApp.titleActive
+        : ColorsApp.titleDisable;
   }
 
   static Widget _pageNow = _homePage;
@@ -58,6 +68,7 @@ class _HomePageState extends State<HomePage> {
                       HomePage._pageNow = HomePage._homePage;
                       setState(() {});
                     },
+                    titleColor: HomePage._titleColoring(HomePage._homePage),
                   ),
                   BottomNavigationBarItemApp(
                     title: "Diskusi Soal",
@@ -65,6 +76,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       RouterApp.diskusiSoalPage,
                     ),
+                    titleColor: ColorsApp.titleDisable,
                   ),
                   BottomNavigationBarItemApp(
                     title: "Profile",
@@ -74,6 +86,7 @@ class _HomePageState extends State<HomePage> {
                       HomePage._pageNow = HomePage._profilePage;
                       setState(() {});
                     },
+                    titleColor: HomePage._titleColoring(HomePage._profilePage),
                   ),
                 ],
               ),

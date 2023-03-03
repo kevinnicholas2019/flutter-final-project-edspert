@@ -1,6 +1,7 @@
 import 'package:final_project_edspert/application/utils/toggle/toggle_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/dropdown_form_field_widget.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/text_form_field_widget.dart';
+import 'package:final_project_edspert/presentation/utils/utlis_app.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/text_button_app.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/toggle_widget.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
@@ -8,10 +9,9 @@ import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
 class RegisterPage extends StatelessWidget {
-  static final ToggleBloc _jenisKelaminToggleBloc = ToggleBloc(const {
-    'Laki-laki': false,
-    'Perempuan': false,
-  });
+  static final ToggleBloc _jenisKelaminToggleBloc = ToggleBloc(
+    {for (var gender in UtilsApp.genders) gender: false},
+  );
 
   const RegisterPage({super.key});
 
@@ -89,22 +89,7 @@ class RegisterPage extends StatelessWidget {
                   DropdownFormFieldWidget(
                     nameField: 'Kelas',
                     hintText: 'pilih kelas',
-                    items: const [
-                      'I',
-                      'II',
-                      'III',
-                      'IV',
-                      'V',
-                      'VI',
-                      'VII',
-                      'VIII',
-                      'IX',
-                      'X',
-                      'XI-IPA',
-                      'XI-IPS',
-                      'XII-IPA',
-                      'XII-IPS',
-                    ],
+                    items: UtilsApp.classes,
                     value: '',
                     onChanged: (String? value) {},
                   ),

@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
       title: 'Edspert E-Learning',
       debugShowCheckedModeBanner: false,
       theme: ThemeApp.light,
-      initialRoute: RouterApp.homePage,
+      initialRoute: RouterApp.editProfilePage,
       onGenerateRoute: RouterApp.onGenerateRoute,
     );
   }

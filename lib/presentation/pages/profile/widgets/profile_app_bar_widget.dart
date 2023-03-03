@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:flutter/material.dart';
 
 import 'package:final_project_edspert/presentation/utils/border_app.dart';
@@ -43,7 +44,10 @@ class ProfileAppBarWidget extends StatelessWidget {
                   child: SizedBox(
                     width: 27,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () => Navigator.pushNamed(
+                        context,
+                        RouterApp.editProfilePage,
+                      ),
                       style: ButtonStyle(
                         padding: const MaterialStatePropertyAll(
                           EdgeInsets.all(0),

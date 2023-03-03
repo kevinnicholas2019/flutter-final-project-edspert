@@ -6,11 +6,13 @@ const _radius = 20.0;
 
 class BottomNavigationBarItemApp {
   final String title;
+  final Color titleColor;
   final String? icon;
   final Function() navigationTo;
 
   const BottomNavigationBarItemApp({
     required this.title,
+    required this.titleColor,
     this.icon,
     required this.navigationTo,
   });
@@ -78,6 +80,7 @@ class BottomNavigationBarApp extends StatelessWidget {
                               style: TextStyleApp.largeTextDefault.copyWith(
                                 fontSize: 13,
                                 fontWeight: FontWeight.w600,
+                                color: baritem.titleColor,
                               ),
                               textAlign: TextAlign.center,
                             ),

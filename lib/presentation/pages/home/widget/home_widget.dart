@@ -66,7 +66,7 @@ class HomeWidget extends StatelessWidget {
             width: double.infinity,
             decoration: BoxDecoration(
               color: ColorsApp.primary,
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderApp.radius2,
             ),
             child: Stack(
               children: [
@@ -152,7 +152,7 @@ class HomeWidget extends StatelessWidget {
               for (var i = 0; i < 3; i++) ...[
                 const MapelButton(
                   namaMapel: 'Matematika',
-                  totalLatihanSoal: 50,
+                  totalPaketLatihanSoal: 50,
                 ),
                 if (i < 2)
                   const SizedBox(
@@ -193,7 +193,7 @@ class HomeWidget extends StatelessWidget {
                       "https://widyaedu.com/blog/wp-content/uploads/2021/09/eduquiz-banner-app.jpg",
                     ]) ...[
                       ClipRRect(
-                        borderRadius: BorderApp.radius,
+                        borderRadius: BorderApp.radius0,
                         child: TextButton(
                           onPressed: () {},
                           onLongPress: () {},

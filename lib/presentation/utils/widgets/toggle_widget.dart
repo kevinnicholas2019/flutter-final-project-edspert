@@ -39,7 +39,7 @@ class ToggleWidget extends StatelessWidget {
                               width: 1,
                               color: ColorsApp.line,
                             ),
-                            borderRadius: BorderApp.radius,
+                            borderRadius: BorderApp.radius0,
                           ),
                         ),
                         overlayColor: MaterialStateColor.resolveWith(

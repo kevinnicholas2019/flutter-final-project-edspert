@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class TextButtonApp {
                 width: 1,
                 color: ColorsApp.secondary,
               ),
-              borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderApp.radius3,
             ),
           ),
           overlayColor: MaterialStateColor.resolveWith(
@@ -76,7 +77,7 @@ class TextButtonApp {
                 width: 1,
                 color: ColorsApp.secondary,
               ),
-              borderRadius: BorderRadius.circular(8.0),
+              borderRadius: BorderApp.radius0,
             ),
           ),
           overlayColor: MaterialStateColor.resolveWith(

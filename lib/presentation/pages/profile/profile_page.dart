@@ -31,7 +31,7 @@ class ProfilePage extends StatelessWidget {
                       constraints: const BoxConstraints(minHeight: 330),
                       decoration: BoxDecoration(
                         color: ColorsApp.offWhite,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderApp.radius1,
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                             color: Colors.black.withOpacity(0.2),
@@ -77,7 +77,7 @@ class ProfilePage extends StatelessWidget {
                       height: 49,
                       decoration: BoxDecoration(
                         color: ColorsApp.offWhite,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderApp.radius1,
                         boxShadow: <BoxShadow>[
                           BoxShadow(
                             color: Colors.black.withOpacity(0.2),
@@ -106,7 +106,7 @@ class ProfilePage extends StatelessWidget {
                                 width: 1,
                                 color: ColorsApp.line,
                               ),
-                              borderRadius: BorderApp.radius,
+                              borderRadius: BorderApp.radius0,
                             ),
                           ),
                           overlayColor: MaterialStateColor.resolveWith(

@@ -19,7 +19,7 @@ class ThemeApp {
       filled: true,
       fillColor: ColorsApp.offWhite,
       border: OutlineInputBorder(
-        borderRadius: BorderApp.radius,
+        borderRadius: BorderApp.radius0,
         borderSide: const BorderSide(color: ColorsApp.line, width: 1.0),
       ),
     ),

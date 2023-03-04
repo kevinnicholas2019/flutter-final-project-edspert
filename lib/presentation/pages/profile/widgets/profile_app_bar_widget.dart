@@ -16,7 +16,7 @@ class ProfileAppBarWidget extends StatelessWidget {
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: ColorsApp.primary,
-        borderRadius: BorderApp.radius.copyWith(
+        borderRadius: BorderApp.radius0.copyWith(
           topLeft: Radius.zero,
           topRight: Radius.zero,
         ),

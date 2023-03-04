@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +10,7 @@ class SignInAppleWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30.0),
+        borderRadius: BorderApp.radius3,
         boxShadow: <BoxShadow>[
           BoxShadow(
             color: Colors.black.withOpacity(0.2),
@@ -34,7 +35,7 @@ class SignInAppleWidget extends StatelessWidget {
                 width: 1,
                 color: ColorsApp.titleActive,
               ),
-              borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderApp.radius3,
             ),
           ),
           iconColor: MaterialStateColor.resolveWith((states) {

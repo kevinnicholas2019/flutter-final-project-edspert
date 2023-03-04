@@ -52,7 +52,7 @@ class EditDropdownFormFieldWidget extends StatelessWidget {
             fillColor: ColorsApp.backgroundPage,
           ),
           icon: const Icon(Icons.keyboard_arrow_down),
-          borderRadius: BorderApp.radius,
+          borderRadius: BorderApp.radius0,
           items: items.map((String items) {
             return DropdownMenuItem(
               value: items,

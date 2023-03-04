@@ -35,7 +35,7 @@ class TextStyleApp {
   static TextStyle get subtitleDefault => titleDefault.copyWith(
         fontSize: 16,
         fontWeight: FontWeight.w500,
-        color: ColorsApp.label,
+        color: ColorsApp.titleDisable,
       );
   static TextStyle get subtitle16 => subtitleDefault;
   static TextStyle get subtitle14 => subtitleDefault.copyWith(fontSize: 14);

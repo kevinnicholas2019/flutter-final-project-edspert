@@ -17,14 +17,14 @@ class MapelButton extends StatelessWidget {
       };
 
   final String namaMapel;
-  final int totalLatihanSoal;
+  final int totalPaketLatihanSoal;
   final double progressIndicatorValue;
   final Function()? onPressed;
 
   const MapelButton({
     super.key,
     required this.namaMapel,
-    this.totalLatihanSoal = 0,
+    this.totalPaketLatihanSoal = 0,
     this.progressIndicatorValue = 0.0,
     this.onPressed,
   });
@@ -35,12 +35,15 @@ class MapelButton extends StatelessWidget {
       color: ColorsApp.offWhite,
       height: 96,
       child: TextButton(
-        onPressed: totalLatihanSoal > 0
+        onPressed: totalPaketLatihanSoal > 0
             ? onPressed ?? _defaultOnPressed(context, namaMapel)
             : null,
-        style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(
-            EdgeInsets.all(20.0),
+        style: ButtonStyle(
+          padding: const MaterialStatePropertyAll(EdgeInsets.all(12.0)),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderApp.radius1,
+            ),
           ),
         ),
         child: Row(
@@ -52,7 +55,7 @@ class MapelButton extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               decoration: BoxDecoration(
                 color: ColorsApp.placeholder.withOpacity(0.175),
-                borderRadius: BorderApp.radius,
+                borderRadius: BorderApp.radius1,
               ),
               child: CachedNetworkImage(
                 imageUrl:
@@ -78,9 +81,9 @@ class MapelButton extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    totalLatihanSoal == 0
+                    totalPaketLatihanSoal == 0
                         ? 'latihan soal kosong'
-                        : '0/$totalLatihanSoal Paket latihan soal',
+                        : '0/$totalPaketLatihanSoal Paket latihan soal',
                     style: TextStyleApp.largeTextDefault.copyWith(
                       fontSize: 12,
                       fontWeight: FontWeight.w500,
@@ -91,7 +94,7 @@ class MapelButton extends StatelessWidget {
                     height: 11,
                   ),
                   ClipRRect(
-                    borderRadius: BorderApp.radius,
+                    borderRadius: BorderApp.radius0,
                     child: const LinearProgressIndicator(
                       value: 0.25,
                       color: ColorsApp.primary,

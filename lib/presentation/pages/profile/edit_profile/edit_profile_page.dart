@@ -3,6 +3,7 @@ import 'package:final_project_edspert/presentation/pages/profile/edit_profile/wi
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:final_project_edspert/presentation/utils/utlis_app.dart';
+import 'package:final_project_edspert/presentation/utils/widgets/app_bar_default.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/text_button_app.dart';
 import 'package:flutter/material.dart';
 
@@ -13,18 +14,13 @@ class EditProfilePage extends StatelessWidget {
   Widget build(BuildContext context) {
     const double bottomCalc = 40 + 10 * 2;
     return Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 70,
-          elevation: 0,
+        appBar: AppBarDefault.make(
+          title: 'Edit Akun',
           titleTextStyle: TextStyleApp.largeTextDefault.copyWith(
             fontWeight: FontWeight.w400,
             fontSize: 20,
             color: ColorsApp.offWhite,
           ),
-          title: const Text(
-            'Edit Akun',
-          ),
-          centerTitle: true,
         ),
         body: SafeArea(
           child: Stack(

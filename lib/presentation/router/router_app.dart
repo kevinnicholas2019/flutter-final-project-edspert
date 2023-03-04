@@ -2,6 +2,8 @@ import 'package:final_project_edspert/presentation/pages/auth/login/login_page.d
 import 'package:final_project_edspert/presentation/pages/auth/register/register_page.dart';
 import 'package:final_project_edspert/presentation/pages/diskusi/diskusi_soal_page.dart';
 import 'package:final_project_edspert/presentation/pages/home/home_page.dart';
+import 'package:final_project_edspert/presentation/pages/mapel/paket_soal/pilih_paket_soal_page.dart';
+import 'package:final_project_edspert/presentation/pages/mapel/pilih_mapel_page.dart';
 import 'package:final_project_edspert/presentation/pages/profile/edit_profile/edit_profile_page.dart';
 import 'package:final_project_edspert/presentation/pages/profile/profile_page.dart';
 import 'package:final_project_edspert/presentation/pages/splash_screen/splash_screen_page.dart';
@@ -15,6 +17,8 @@ class RouterApp {
   static const String diskusiSoalPage = '/diskusi-soal';
   static const String profilePage = '/akun';
   static const String editProfilePage = '/edit-akun';
+  static const String chooseSubjectsPage = '/pilih-mapel';
+  static const String chooseQuestionPackagePage = '/pilih-paket-soal';
 
   static const navigator = Navigator();
 
@@ -54,6 +58,19 @@ class RouterApp {
       case RouterApp.editProfilePage:
         return MaterialPageRoute<dynamic>(
           builder: (_) => const EditProfilePage(),
+          settings: settings,
+        );
+      case RouterApp.chooseSubjectsPage:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const PilihMapelPage(),
+          settings: settings,
+        );
+      case RouterApp.chooseQuestionPackagePage:
+        final String namaPelajaran = settings.arguments as String;
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => PilihPaketSoalPage(
+            namaPelajaran: namaPelajaran,
+          ),
           settings: settings,
         );
       default:

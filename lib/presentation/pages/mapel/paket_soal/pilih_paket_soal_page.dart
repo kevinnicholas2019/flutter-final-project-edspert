@@ -21,34 +21,33 @@ class PilihPaketSoalPage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           color: ColorsApp.backgroundPage,
-          child: Stack(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Align(
-                alignment: Alignment.topLeft,
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0,
-                    vertical: 12.0,
-                  ),
-                  child: Text(
-                    'Pilih Paket Soal',
-                    style: TextStyleApp.largeTextDefault.copyWith(
-                      fontSize: 12,
-                    ),
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 20.0,
+                  vertical: 12.0,
+                ),
+                child: Text(
+                  'Pilih Paket Soal',
+                  style: TextStyleApp.largeTextDefault.copyWith(
+                    fontSize: 12,
                   ),
                 ),
               ),
-              Positioned.fill(
-                top: 40,
+              Expanded(
                 child: true
                     ? GridView.count(
-                        childAspectRatio: (153 + 12 * 2) / (96 + 12 * 2),
+                        childAspectRatio: math.max(
+                          (153 - 12 * 2) / (96 + 12 * 2),
+                          1.0,
+                        ),
                         shrinkWrap: true,
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         crossAxisCount: math.max(
                             (MediaQuery.of(context).size.width ~/
-                                    (153 + 12 * 2))
+                                    (153 - 12 * 2))
                                 .toInt(),
                             1),
                         crossAxisSpacing: 14.0,

@@ -1,7 +1,7 @@
 import 'package:final_project_edspert/application/utils/toggle/toggle_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/dropdown_form_field_widget.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/text_form_field_widget.dart';
-import 'package:final_project_edspert/presentation/utils/utlis_app.dart';
+import 'package:final_project_edspert/presentation/utils/utils_app.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/text_button_app.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/toggle_widget.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';

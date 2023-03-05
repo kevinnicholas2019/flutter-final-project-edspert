@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class ThemeApp {
+  const ThemeApp._();
+
   static final ThemeData light = ThemeData.light().copyWith(
     primaryColor: ColorsApp.primary,
     appBarTheme: ThemeData.light().appBarTheme.copyWith(

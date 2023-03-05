@@ -2,7 +2,7 @@ import 'package:final_project_edspert/presentation/pages/profile/edit_profile/wi
 import 'package:final_project_edspert/presentation/pages/profile/edit_profile/widgets/text_form_field_widget.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
-import 'package:final_project_edspert/presentation/utils/utlis_app.dart';
+import 'package:final_project_edspert/presentation/utils/utils_app.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/app_bar_default.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/text_button_app.dart';
 import 'package:flutter/material.dart';

@@ -2,6 +2,8 @@ import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:flutter/material.dart';
 
 class TextStyleApp {
+  const TextStyleApp._();
+
   //Large text
   static TextStyle get largeTextDefault => const TextStyle(
         fontFamily: 'Poppins',

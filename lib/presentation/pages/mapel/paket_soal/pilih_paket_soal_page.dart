@@ -54,10 +54,9 @@ class PilihPaketSoalPage extends StatelessWidget {
                         mainAxisSpacing: 12.0,
                         children: [
                           for (var i = 0; i < 3; i++)
-                            PaketSoalButton(
+                            const PaketSoalButton(
                               namaPaketSoal: 'Trigonometri',
                               totalSoal: 10,
-                              onPressed: () {},
                             ),
                         ],
                       )

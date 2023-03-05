@@ -1,4 +1,6 @@
 class UtilsApp {
+  const UtilsApp._();
+
   static const List<String> classes = [
     'I',
     'II',
@@ -19,6 +21,4 @@ class UtilsApp {
     'Laki-laki',
     'Perempuan',
   ];
-
-  UtilsApp._();
 }

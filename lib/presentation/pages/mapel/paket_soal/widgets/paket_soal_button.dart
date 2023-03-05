@@ -11,7 +11,7 @@ class PaketSoalButton extends StatelessWidget {
       () {
         Navigator.pushNamed(
           context,
-          RouterApp.chooseQuestionPackagePage,
+          RouterApp.kerjakanSoalPage,
           arguments: namaPaketSoal,
         );
       };

@@ -2,6 +2,7 @@ import 'package:final_project_edspert/presentation/pages/auth/login/login_page.d
 import 'package:final_project_edspert/presentation/pages/auth/register/register_page.dart';
 import 'package:final_project_edspert/presentation/pages/diskusi/diskusi_soal_page.dart';
 import 'package:final_project_edspert/presentation/pages/home/home_page.dart';
+import 'package:final_project_edspert/presentation/pages/mapel/hasil/hasil_page.dart';
 import 'package:final_project_edspert/presentation/pages/mapel/kerjakan_soal/kerjakan_soal_page.dart';
 import 'package:final_project_edspert/presentation/pages/mapel/paket_soal/pilih_paket_soal_page.dart';
 import 'package:final_project_edspert/presentation/pages/mapel/pilih_mapel_page.dart';
@@ -21,6 +22,7 @@ class RouterApp {
   static const String chooseSubjectsPage = '/pilih-mapel';
   static const String chooseQuestionPackagePage = '/pilih-paket-soal';
   static const String kerjakanSoalPage = '/kerjakan-soal';
+  static const String hasilPage = '/hasil-page';
 
   static const navigator = Navigator();
 
@@ -80,12 +82,17 @@ class RouterApp {
         // final String namaPelajaran = args[0];
         // final String namaPaketSoal = args[1];
         return MaterialPageRoute<dynamic>(
-          builder: (_) => KerjakanSoalPage(
+          builder: (_) => const KerjakanSoalPage(
             // namaPelajaran: namaPelajaran,
             // namaPaketSoal: namaPaketSoal,
             namaPelajaran: "Matematika",
             namaPaketSoal: "Trigonometri",
           ),
+          settings: settings,
+        );
+      case RouterApp.hasilPage:
+        return MaterialPageRoute<dynamic>(
+          builder: (_) => const HasilPage(),
           settings: settings,
         );
       default:

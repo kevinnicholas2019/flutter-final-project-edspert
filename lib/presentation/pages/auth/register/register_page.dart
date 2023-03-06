@@ -109,7 +109,8 @@ class RegisterPage extends StatelessWidget {
             ),
             Align(
               alignment: Alignment.bottomCenter,
-              child: SizedBox(
+              child: Container(
+                color: ColorsApp.backgroundPage,
                 width: double.infinity,
                 height: bottomCalc,
                 child: Padding(

@@ -625,10 +625,10 @@ packages:
     dependency: transitive
     description:
       name: video_player
-      sha256: "58dc3d6ceb199b82e652ec27f16485e33167ef021fe4221a954ff1aa12b1a5c0"
+      sha256: "6cec15c21974282994577ffcfb5b42e64a699d38583138ec8dcb3d0a6902a41c"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.3"
+    version: "2.5.2"
   video_player_android:
     dependency: transitive
     description:

@@ -12,7 +12,7 @@ class ProfileAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 191,
+      // height: 191,
       padding: const EdgeInsets.all(20.0),
       decoration: BoxDecoration(
         color: ColorsApp.primary,

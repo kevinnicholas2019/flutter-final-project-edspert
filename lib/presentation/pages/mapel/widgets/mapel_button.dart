@@ -32,7 +32,18 @@ class MapelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: ColorsApp.offWhite,
+      decoration: BoxDecoration(
+        color: ColorsApp.offWhite,
+        borderRadius: BorderApp.radius1,
+        // boxShadow: <BoxShadow>[
+        //   BoxShadow(
+        //     color: Colors.black.withOpacity(0.1),
+        //     blurRadius: 5,
+        //     spreadRadius: 1,
+        //     offset: const Offset(0, 0),
+        //   ),
+        // ],
+      ),
       height: 96,
       child: TextButton(
         onPressed: totalPaketLatihanSoal > 0

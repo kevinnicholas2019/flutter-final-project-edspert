@@ -29,20 +29,20 @@ class PaketSoalButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: 96,
-      // decoration: BoxDecoration(
-      //   color: ColorsApp.offWhite,
-      //   borderRadius: BorderApp.radius1,
-      //   boxShadow: <BoxShadow>[
-      //     BoxShadow(
-      //       color: Colors.black.withOpacity(0.1),
-      //       blurRadius: 5,
-      //       spreadRadius: 1,
-      //       offset: const Offset(0, 0),
-      //     ),
-      //   ],
-      // ),
+      decoration: BoxDecoration(
+        color: ColorsApp.offWhite,
+        borderRadius: BorderApp.radius1,
+        // boxShadow: <BoxShadow>[
+        //   BoxShadow(
+        //     color: Colors.black.withOpacity(0.1),
+        //     blurRadius: 5,
+        //     spreadRadius: 1,
+        //     offset: const Offset(0, 0),
+        //   ),
+        // ],
+      ),
       child: TextButton(
         onPressed: totalSoal > 0
             ? onPressed ?? _defaultOnPressed(context, namaPaketSoal)

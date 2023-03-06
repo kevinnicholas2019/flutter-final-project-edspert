@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_project_edspert/presentation/utils/widgets/unsafe_color_widget.dart';
 import 'package:final_project_edspert/presentation/pages/mapel/widgets/mapel_button.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/border_app.dart';
@@ -6,8 +7,8 @@ import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
-class HomeWidget extends StatelessWidget {
-  const HomeWidget({super.key});
+class HomeWidget extends UnsafeColorWidget {
+  const HomeWidget({super.key}) : super(unsafeColor: ColorsApp.backgroundPage);
 
   @override
   Widget build(BuildContext context) {

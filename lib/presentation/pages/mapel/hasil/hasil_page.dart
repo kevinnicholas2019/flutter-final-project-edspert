@@ -49,103 +49,106 @@ class _HasilPageState extends State<HasilPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      body: SafeArea(
-        child: AnimatedContainer(
-          decoration: BoxDecoration(
-            gradient: _gradientBody,
-          ),
-          duration: const Duration(seconds: 1),
-          child: ListView(
-            padding: const EdgeInsets.all(20.0),
-            children: [
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    style: ButtonStyle(
-                      foregroundColor:
-                          const MaterialStatePropertyAll(ColorsApp.offWhite),
-                      iconSize: const MaterialStatePropertyAll(24),
-                      textStyle: MaterialStatePropertyAll(
-                        TextStyleApp.largeTextDefault.copyWith(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 13,
+      body: Container(
+        color: ColorsApp.primary,
+        child: SafeArea(
+          child: AnimatedContainer(
+            decoration: BoxDecoration(
+              gradient: _gradientBody,
+            ),
+            duration: const Duration(seconds: 1),
+            child: ListView(
+              padding: const EdgeInsets.all(20.0),
+              children: [
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      style: ButtonStyle(
+                        foregroundColor:
+                            const MaterialStatePropertyAll(ColorsApp.offWhite),
+                        iconSize: const MaterialStatePropertyAll(24),
+                        textStyle: MaterialStatePropertyAll(
+                          TextStyleApp.largeTextDefault.copyWith(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 13,
+                          ),
+                        ),
+                        overlayColor: MaterialStatePropertyAll(
+                          ColorsApp.offWhite.withOpacity(0.5),
                         ),
                       ),
-                      overlayColor: MaterialStatePropertyAll(
-                        ColorsApp.offWhite.withOpacity(0.5),
+                      child: Row(
+                        children: const [
+                          Icon(Icons.close_rounded),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text('Tutup'),
+                        ],
                       ),
                     ),
-                    child: Row(
-                      children: const [
-                        Icon(Icons.close_rounded),
-                        SizedBox(
-                          width: 12,
-                        ),
-                        Text('Tutup'),
-                      ],
-                    ),
+                    const Spacer(flex: 1),
+                  ],
+                ),
+                const SizedBox(height: 67),
+                Text(
+                  'Selamat',
+                  style: TextStyleApp.largeText24.copyWith(
+                    fontWeight: FontWeight.w400,
+                    color: ColorsApp.offWhite,
                   ),
-                  const Spacer(flex: 1),
-                ],
-              ),
-              const SizedBox(height: 67),
-              Text(
-                'Selamat',
-                style: TextStyleApp.largeText24.copyWith(
-                  fontWeight: FontWeight.w400,
-                  color: ColorsApp.offWhite,
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 5),
-              Text(
-                'Kamu telah menyelesaikan Kuiz ini',
-                style: TextStyleApp.largeTextDefault.copyWith(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 14,
-                  color: ColorsApp.offWhite,
+                const SizedBox(height: 5),
+                Text(
+                  'Kamu telah menyelesaikan Kuiz ini',
+                  style: TextStyleApp.largeTextDefault.copyWith(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 14,
+                    color: ColorsApp.offWhite,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 36),
-              AnimatedOpacity(
-                duration: const Duration(seconds: 1),
-                opacity: _opacityPiala,
-                child: Image.asset(
-                  'assets/illustrations/piala.png',
-                  width: 180,
-                  height: 180,
-                ),
-              ),
-              const SizedBox(height: 25),
-              Text(
-                'Nilai kamu:',
-                style: TextStyleApp.largeTextDefault.copyWith(
-                  fontWeight: FontWeight.w400,
-                  fontSize: 13,
-                  color: ColorsApp.offWhite,
-                ),
-                textAlign: TextAlign.center,
-              ),
-              const SizedBox(height: 4),
-              AnimatedScale(
-                duration: const Duration(seconds: 1),
-                scale: _scaleText,
-                child: AnimatedBuilder(
-                  animation: _nilaiController,
-                  builder: (_, __) => Text(
-                    '${(nilai * _nilaiController.value).toInt()}',
-                    style: TextStyleApp.largeTextDefault.copyWith(
-                      fontWeight: FontWeight.w400,
-                      fontSize: 96,
-                      color: ColorsApp.offWhite,
-                    ),
-                    textAlign: TextAlign.center,
+                const SizedBox(height: 36),
+                AnimatedOpacity(
+                  duration: const Duration(seconds: 1),
+                  opacity: _opacityPiala,
+                  child: Image.asset(
+                    'assets/illustrations/piala.png',
+                    width: 180,
+                    height: 180,
                   ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 25),
+                Text(
+                  'Nilai kamu:',
+                  style: TextStyleApp.largeTextDefault.copyWith(
+                    fontWeight: FontWeight.w400,
+                    fontSize: 13,
+                    color: ColorsApp.offWhite,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 4),
+                AnimatedScale(
+                  duration: const Duration(seconds: 1),
+                  scale: _scaleText,
+                  child: AnimatedBuilder(
+                    animation: _nilaiController,
+                    builder: (_, __) => Text(
+                      '${(nilai * _nilaiController.value).toInt()}',
+                      style: TextStyleApp.largeTextDefault.copyWith(
+                        fontWeight: FontWeight.w400,
+                        fontSize: 96,
+                        color: ColorsApp.offWhite,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'package:final_project_edspert/presentation/pages/home/widget/bottom_navigation_bar_app.dart';
 import 'package:final_project_edspert/presentation/pages/home/widget/home_widget.dart';
+import 'package:final_project_edspert/presentation/utils/widgets/unsafe_color_widget.dart';
 import 'package:final_project_edspert/presentation/pages/profile/profile_page.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
@@ -23,7 +24,7 @@ class HomePage extends StatefulWidget {
         : ColorsApp.titleDisable;
   }
 
-  static Widget _pageNow = _homePage;
+  static UnsafeColorWidget _pageNow = _homePage;
 
   const HomePage({super.key});
 
@@ -36,6 +37,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
+      backgroundColor: HomePage._pageNow.unsafeColor,
       body: SafeArea(
         child: Stack(
           children: [

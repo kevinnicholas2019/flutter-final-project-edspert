@@ -12,7 +12,7 @@ class EditProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const double bottomCalc = 40 + 10 * 2;
+    const double bottomCalc = 40 + 12.5 * 2;
     return Scaffold(
         appBar: AppBarDefault.make(
           title: 'Edit Akun',
@@ -23,83 +23,80 @@ class EditProfilePage extends StatelessWidget {
           ),
         ),
         body: SafeArea(
-          child: Stack(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Container(
-                color: ColorsApp.backgroundPage,
-                child: ListView(
-                  padding: const EdgeInsets.all(20),
-                  children: [
-                    Text(
-                      'Data Diri',
-                      style: TextStyleApp.largeTextDefault.copyWith(
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20,
+              Expanded(
+                child: Container(
+                  color: ColorsApp.backgroundPage,
+                  child: ListView(
+                    padding: const EdgeInsets.all(20),
+                    children: [
+                      Text(
+                        'Data Diri',
+                        style: TextStyleApp.largeTextDefault.copyWith(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20,
+                        ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    const EditFormFieldWidget(
-                      nameField: 'Nama Lengkap',
-                      hintText: 'ubah nama anda',
-                      initValue: 'Kevin Nicholas',
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const EditFormFieldWidget(
-                      nameField: 'Email',
-                      hintText: 'ubah email anda',
-                      initValue: 'kevinnicholas2019@gmail.com',
-                      keyboardType: TextInputType.emailAddress,
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    EditDropdownFormFieldWidget(
-                      nameField: 'Jenis Kelamin',
-                      hintText: 'pilih jenis kelamin',
-                      items: UtilsApp.genders,
-                      initValue: 'Laki-laki',
-                      onChanged: (String? value) {},
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    EditDropdownFormFieldWidget(
-                      nameField: 'Kelas',
-                      hintText: 'pilih kelas',
-                      items: UtilsApp.classes,
-                      initValue: 'XII-IPA',
-                      onChanged: (String? value) {},
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const EditFormFieldWidget(
-                      nameField: 'Sekolah',
-                      hintText: 'ubah nama sekolah anda',
-                      initValue: 'SMAK 2 Penabur',
-                    ),
-                    const SizedBox(
-                      height: bottomCalc,
-                    ),
-                  ],
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      const EditFormFieldWidget(
+                        nameField: 'Nama Lengkap',
+                        hintText: 'ubah nama anda',
+                        initValue: 'Kevin Nicholas',
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const EditFormFieldWidget(
+                        nameField: 'Email',
+                        hintText: 'ubah email anda',
+                        initValue: 'kevinnicholas2019@gmail.com',
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      EditDropdownFormFieldWidget(
+                        nameField: 'Jenis Kelamin',
+                        hintText: 'pilih jenis kelamin',
+                        items: UtilsApp.genders,
+                        initValue: 'Laki-laki',
+                        onChanged: (String? value) {},
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      EditDropdownFormFieldWidget(
+                        nameField: 'Kelas',
+                        hintText: 'pilih kelas',
+                        items: UtilsApp.classes,
+                        initValue: 'XII-IPA',
+                        onChanged: (String? value) {},
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const EditFormFieldWidget(
+                        nameField: 'Sekolah',
+                        hintText: 'ubah nama sekolah anda',
+                        initValue: 'SMAK 2 Penabur',
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  width: double.infinity,
-                  height: bottomCalc,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 10,
-                    ),
-                    child: TextButtonApp.textButtonCustom2('Perbarui Data'),
+              Container(
+                color: ColorsApp.backgroundPage,
+                height: bottomCalc,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 10,
                   ),
+                  child: TextButtonApp.textButtonCustom2('Perbarui Data'),
                 ),
               ),
             ],

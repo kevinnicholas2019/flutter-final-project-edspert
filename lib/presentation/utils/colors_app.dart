@@ -14,7 +14,7 @@ class ColorsApp {
   static const GradientRotation _gradientRotation =
       GradientRotation(math.pi / 4);
   static const LinearGradient gradientDisabled = LinearGradient(
-    colors: [background, backgroundPage],
+    colors: [backgroundPage, background],
     stops: [0.0, 1.0],
     transform: _gradientRotation,
   );

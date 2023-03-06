@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "516417498596",
+    "firebase_url": "https://dek-belajar-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "dek-belajar",
+    "storage_bucket": "dek-belajar.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516417498596:android:abedeaf82f6a40e5506bf1",
+        "android_client_info": {
+          "package_name": "com.example.final_project_edspert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516417498596-mfqnv7pdtd40t4f3gkpfrn7066dg66eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCwtR09Zwl7RFezdgNeLChwk8a2UlGIMg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516417498596-mfqnv7pdtd40t4f3gkpfrn7066dg66eq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

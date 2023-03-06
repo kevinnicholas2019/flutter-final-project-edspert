@@ -41,6 +41,7 @@ class SignInAppleWidget extends StatelessWidget {
           iconColor: MaterialStateColor.resolveWith((states) {
             const Set<MaterialState> interactiveStates = <MaterialState>{
               MaterialState.pressed,
+              MaterialState.hovered,
             };
             if (states.any(interactiveStates.contains)) {
               return ColorsApp.titleActive;
@@ -50,6 +51,7 @@ class SignInAppleWidget extends StatelessWidget {
           foregroundColor: MaterialStateColor.resolveWith((states) {
             const Set<MaterialState> interactiveStates = <MaterialState>{
               MaterialState.pressed,
+              MaterialState.hovered,
             };
             if (states.any(interactiveStates.contains)) {
               return ColorsApp.titleActive;
@@ -68,7 +70,7 @@ class SignInAppleWidget extends StatelessWidget {
             if (states.any(interactiveStates.contains)) {
               return ColorsApp.background;
             }
-            return ColorsApp.body;
+            return ColorsApp.background.withOpacity(0.85);
           }),
           backgroundColor: const MaterialStatePropertyAll(
             ColorsApp.titleActive,

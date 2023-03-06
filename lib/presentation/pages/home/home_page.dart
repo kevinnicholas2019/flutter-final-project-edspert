@@ -47,6 +47,13 @@ class _HomePageState extends State<HomePage> {
             ),
             Align(
               alignment: Alignment.bottomCenter,
+              child: Container(
+                height: 53,
+                color: ColorsApp.backgroundPage,
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
               child: BottomNavigationBarApp(
                 floatingActionButton: FloatingActionButton.large(
                   onPressed: () => Navigator.pushNamed(

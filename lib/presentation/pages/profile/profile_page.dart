@@ -114,7 +114,7 @@ class ProfilePage extends UnsafeColorWidget {
                             MaterialState.pressed,
                           };
                           if (states.any(interactiveStates.contains)) {
-                            return ColorsApp.error;
+                            return ColorsApp.error.withOpacity(0.75);
                           }
                           return ColorsApp.error.withOpacity(0.25);
                         },
@@ -125,6 +125,7 @@ class ProfilePage extends UnsafeColorWidget {
                           const Set<MaterialState> interactiveStates =
                               <MaterialState>{
                             MaterialState.pressed,
+                            MaterialState.focused,
                           };
                           if (states.any(interactiveStates.contains)) {
                             return ColorsApp.offWhite;

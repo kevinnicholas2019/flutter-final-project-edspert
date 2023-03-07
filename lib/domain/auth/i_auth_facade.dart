@@ -1,5 +1,5 @@
 import 'package:final_project_edspert/domain/auth/auth_failures.dart';
-import 'package:final_project_edspert/infrastructure/core/auth/firebase_auth_facade.dart';
+import 'package:final_project_edspert/infrastructure/auth/firebase_auth_facade.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 
 abstract class IAuthFacade {
@@ -8,5 +8,5 @@ abstract class IAuthFacade {
 
   Future<AuthFail?> signInWithGoogle();
   Future<AuthFail?> signInWithApple();
-  auth.User? getSignedInUser();
+  Future<auth.User?> getSignedInUser();
 }

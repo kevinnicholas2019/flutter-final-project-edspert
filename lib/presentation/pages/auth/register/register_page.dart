@@ -2,6 +2,7 @@ import 'package:final_project_edspert/application/auth/register_page/register_pa
 import 'package:final_project_edspert/application/utils/toggle/toggle_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/dropdown_form_field_widget.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/text_form_field_widget.dart';
+import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/utils_app.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/text_button_app.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/toggle_widget.dart';
@@ -67,7 +68,14 @@ class _RegisterPageState extends State<RegisterPage> {
       ),
       body: BlocConsumer<RegisterPageBloc, RegisterPageState>(
         bloc: _bloc,
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state.isSubmited) {
+            while (Navigator.canPop(context)) {
+              Navigator.pop(context);
+            }
+            Navigator.pushReplacementNamed(context, RouterApp.homePage);
+          }
+        },
         builder: (context, state) {
           return SafeArea(
             child: Stack(
@@ -207,7 +215,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       ),
                       child: TextButtonApp.textButtonCustom1(
                         'DAFTAR',
-                        onPressed: () {},
+                        onPressed: () => _bloc.add(OnDaftarPressed()),
                       ),
                     ),
                   ),

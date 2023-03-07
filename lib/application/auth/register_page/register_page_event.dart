@@ -4,6 +4,8 @@ abstract class RegisterPageEvent {}
 
 class OnLoad implements RegisterPageEvent {}
 
+class OnDaftarPressed implements RegisterPageEvent {}
+
 class OnEmailChanged implements RegisterPageEvent {
   final String value;
 
@@ -33,5 +35,3 @@ class OnNamaSekolahChanged implements RegisterPageEvent {
 
   OnNamaSekolahChanged(this.value);
 }
-
-class OnDaftarPressed implements RegisterPageEvent {}

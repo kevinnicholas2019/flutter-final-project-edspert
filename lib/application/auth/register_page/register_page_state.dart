@@ -6,6 +6,7 @@ class RegisterPageState {
   final JenisKelamin jenisKelamin;
   final Kelas kelas;
   final NamaSekolah namaSekolah;
+  final bool isSubmited;
 
   const RegisterPageState._({
     required this.emailAddress,
@@ -13,6 +14,7 @@ class RegisterPageState {
     required this.jenisKelamin,
     required this.kelas,
     required this.namaSekolah,
+    this.isSubmited = false,
   });
 
   const factory RegisterPageState({
@@ -21,6 +23,7 @@ class RegisterPageState {
     required JenisKelamin jenisKelamin,
     required Kelas kelas,
     required NamaSekolah namaSekolah,
+    bool isSubmited,
   }) = RegisterPageState._;
 
   factory RegisterPageState.initial() => RegisterPageState._(

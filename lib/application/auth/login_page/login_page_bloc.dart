@@ -17,11 +17,13 @@ class LoginPageBloc extends Bloc<LoginPageEvent, LoginPageState> {
       if (fail != null) {
         emit(SignInError(fail.failedValue));
       } else {
-        final user = authFacade.getSignedInUser()!;
-        emit(SignInSuccess(
-          displayName: user.displayName,
-          email: user.email,
-        ));
+        final user = await authFacade.getSignedInUser();
+        if (user != null) {
+          emit(SignInSuccess(
+            displayName: user.displayName,
+            email: user.email,
+          ));
+        }
       }
     });
     on<SignInWithApple>((event, emit) {

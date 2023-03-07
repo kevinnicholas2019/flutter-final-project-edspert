@@ -17,6 +17,24 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
       ));
     });
 
+    on<OnDaftarPressed>((event, emit) {
+      final isSafe = [
+        state.emailAddress,
+        state.jenisKelamin,
+        state.kelas,
+        state.namaLengkap,
+        state.namaSekolah,
+      ].fold(true, (previousValue, element) => element.failures().isEmpty);
+      emit(RegisterPageState(
+        emailAddress: state.emailAddress,
+        namaLengkap: state.namaLengkap,
+        jenisKelamin: state.jenisKelamin,
+        kelas: state.kelas,
+        namaSekolah: state.namaSekolah,
+        isSubmited: isSafe,
+      ));
+    });
+
     on<OnEmailChanged>((event, emit) {
       emit(RegisterPageState(
         emailAddress: EmailAddress(event.value),

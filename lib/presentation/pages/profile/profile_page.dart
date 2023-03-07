@@ -156,7 +156,7 @@ class ProfilePage extends UnsafeColorWidget {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: const [
                         Icon(Icons.logout_rounded),
                         SizedBox(width: 10),

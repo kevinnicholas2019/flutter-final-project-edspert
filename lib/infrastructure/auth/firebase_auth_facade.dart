@@ -1,6 +1,8 @@
 import 'package:final_project_edspert/domain/auth/auth_failures.dart';
 import 'package:final_project_edspert/domain/auth/i_auth_facade.dart';
+import 'package:final_project_edspert/domain/users/i_user_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
@@ -14,13 +16,26 @@ class FirebaseAuthFacade implements IAuthFacade {
       'https://www.googleapis.com/auth/contacts.readonly',
     ],
   );
+  final IUserRepository _userRepo = IUserRepository();
 
   FirebaseAuthFacade._();
 
   factory FirebaseAuthFacade() => FirebaseAuthFacade._();
 
   @override
-  auth.User? getSignedInUser() => _firebaseAuth.currentUser;
+  Future<auth.User?> getSignedInUser() async {
+    final googleAuthentication = await _userRepo.getFirebaseCredential();
+
+    if (googleAuthentication != null) {
+      final authCredential = auth.GoogleAuthProvider.credential(
+        accessToken: googleAuthentication["accessToken"] as String?,
+        idToken: googleAuthentication["idToken"] as String?,
+      );
+      await _firebaseAuth.signInWithCredential(authCredential);
+    }
+
+    return _firebaseAuth.currentUser;
+  }
 
   @override
   Future<AuthFail?> signInWithGoogle() async {
@@ -35,16 +50,26 @@ class FirebaseAuthFacade implements IAuthFacade {
       }
 
       final googleAuthentication = await googleUser.authentication;
+      await _userRepo.saveFirebaseCredential(
+        googleAuthentication.accessToken,
+        googleAuthentication.idToken,
+      );
       final authCredential = auth.GoogleAuthProvider.credential(
         accessToken: googleAuthentication.accessToken,
         idToken: googleAuthentication.idToken,
       );
-      return _firebaseAuth
-          .signInWithCredential(authCredential)
-          .then((r) => null);
+      await _firebaseAuth.signInWithCredential(authCredential);
+
+      return null;
     } on PlatformException catch (_) {
       return AuthFailServerError();
+    } on Exception catch (error) {
+      if (kDebugMode) {
+        print(error);
+      }
     }
+
+    return null;
   }
 
   @override

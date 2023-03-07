@@ -1,10 +1,13 @@
+import 'package:final_project_edspert/application/auth/login_page/login_page_bloc.dart';
 import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
 class SignInGoogleWidget extends StatelessWidget {
-  const SignInGoogleWidget({super.key});
+  final LoginPageBloc bloc;
+
+  const SignInGoogleWidget({super.key, required this.bloc});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class SignInGoogleWidget extends StatelessWidget {
         ],
       ),
       child: TextButton(
-        onPressed: () {},
+        onPressed: () => bloc.add(SignInWithGoogle()),
         style: ButtonStyle(
           padding: const MaterialStatePropertyAll(
             EdgeInsets.symmetric(

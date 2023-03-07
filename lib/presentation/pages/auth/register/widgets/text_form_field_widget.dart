@@ -3,14 +3,24 @@ import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
 class FormFieldWidget extends StatelessWidget {
+  final TextEditingController? controller;
   final String nameField;
   final String hintText;
   final TextInputType keyboardType;
+  final String? initValue;
+  final bool? enabled;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onChanged;
 
   const FormFieldWidget({
     super.key,
     required this.nameField,
     required this.hintText,
+    this.controller,
+    this.enabled,
+    this.initValue,
+    this.validator,
+    this.onChanged,
     this.keyboardType = TextInputType.text,
   });
 
@@ -30,6 +40,10 @@ class FormFieldWidget extends StatelessWidget {
           height: 10,
         ),
         TextFormField(
+          controller: controller,
+          onChanged: onChanged,
+          enabled: enabled ?? true,
+          initialValue: controller != null ? null : initValue,
           keyboardType: keyboardType,
           style: TextStyleApp.largeTextDefault.copyWith(
             fontSize: 16,

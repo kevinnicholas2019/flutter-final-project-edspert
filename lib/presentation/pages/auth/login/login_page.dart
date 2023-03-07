@@ -1,14 +1,21 @@
+import 'package:final_project_edspert/application/auth/login_page/login_page_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_apple_widget.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_google_widget.dart';
+import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
+
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final bloc = LoginPageBloc();
+
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -52,18 +59,46 @@ class LoginPage extends StatelessWidget {
                   )
                 ],
               ),
-              const SizedBox(
-                height: 100,
+              SizedBox(
+                height: math.max(MediaQuery.of(context).size.height - 525, 100),
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: const [
-                  SignInGoogleWidget(),
-                  SizedBox(
-                    height: 25,
-                  ),
-                  SignInAppleWidget(),
-                ],
+              BlocConsumer<LoginPageBloc, LoginPageState>(
+                bloc: bloc,
+                listener: (context, state) {
+                  if (state is SignInError) {
+                    print(state.errorMsg);
+                  } else if (state is SignInSuccess) {
+                    Navigator.pushNamed(
+                      context,
+                      RouterApp.registerPage,
+                      arguments: {
+                        "displayName": state.displayName,
+                        "email": state.email,
+                      },
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: state is SignInWithGoogleState ||
+                            state is SignInWithAppleState
+                        ? [
+                            const SizedBox(
+                              width: 30,
+                              height: 30,
+                              child: CircularProgressIndicator(),
+                            ),
+                          ]
+                        : [
+                            SignInGoogleWidget(bloc: bloc),
+                            // SizedBox(
+                            //   height: 25,
+                            // ),
+                            // SignInAppleWidget(),
+                          ],
+                  );
+                },
               ),
             ],
           ),

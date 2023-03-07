@@ -40,8 +40,12 @@ class RouterApp {
           settings: settings,
         );
       case RouterApp.registerPage:
+        final args = settings.arguments as Map<String, Object?>;
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const RegisterPage(),
+          builder: (_) => RegisterPage(
+            initValueEmail: args["email"] as String?,
+            initDisplayName: args["displayName"] as String?,
+          ),
           settings: settings,
         );
       case RouterApp.homePage:

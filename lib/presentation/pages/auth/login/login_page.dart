@@ -1,5 +1,4 @@
 import 'package:final_project_edspert/application/auth/login_page/login_page_bloc.dart';
-import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_apple_widget.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_google_widget.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
@@ -66,7 +65,7 @@ class LoginPage extends StatelessWidget {
                 bloc: bloc,
                 listener: (context, state) {
                   if (state is SignInError) {
-                    print(state.errorMsg);
+                    // TODO: sign in error pop up
                   } else if (state is SignInSuccess) {
                     Navigator.pushNamed(
                       context,

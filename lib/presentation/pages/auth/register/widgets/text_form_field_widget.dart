@@ -42,6 +42,7 @@ class FormFieldWidget extends StatelessWidget {
         TextFormField(
           controller: controller,
           onChanged: onChanged,
+          validator: validator,
           enabled: enabled ?? true,
           initialValue: controller != null ? null : initValue,
           keyboardType: keyboardType,

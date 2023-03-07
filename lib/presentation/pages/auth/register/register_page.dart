@@ -10,23 +10,38 @@ import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class RegisterPage extends StatelessWidget {
-  static final RegisterPageBloc _bloc = RegisterPageBloc();
-
+class RegisterPage extends StatefulWidget {
   final String? initValueEmail;
   final String? initDisplayName;
-
-  static final ToggleBloc _jenisKelaminToggleBloc = ToggleBloc(
-    {for (var gender in UtilsApp.genders) gender: false},
-  );
-  static String? kelasValue;
 
   const RegisterPage({super.key, this.initValueEmail, this.initDisplayName});
 
   @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final RegisterPageBloc _bloc = RegisterPageBloc();
+  final ToggleBloc _jenisKelaminToggleBloc = ToggleBloc(
+    {for (var gender in UtilsApp.genders) gender: false},
+  );
+
+  @override
+  void dispose() async {
+    await _bloc.close();
+    await _jenisKelaminToggleBloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     const double bottomCalc = 64 + 30 * 2;
-    print(_bloc);
+
+    _bloc.add(OnLoad());
+    if (widget.initValueEmail != null && widget.initDisplayName != null) {
+      _bloc.add(OnEmailChanged(widget.initValueEmail!));
+      _bloc.add(OnNamaLengkapChanged(widget.initDisplayName!));
+    }
 
     return Scaffold(
       appBar: PreferredSize(
@@ -68,43 +83,44 @@ class RegisterPage extends StatelessWidget {
                       ),
                       children: [
                         FormFieldWidget(
-                          initValue: initValueEmail,
-                          enabled: initValueEmail == null,
+                          initValue: widget.initValueEmail,
+                          enabled: widget.initValueEmail == null,
                           nameField:
-                              'Email${initValueEmail == null ? '' : ' (sudah terisi otomatis)'}',
+                              'Email${widget.initValueEmail == null ? '' : ' (sudah terisi otomatis)'}',
                           hintText: 'contoh: kevinnicholas2019@gmail.com',
                           keyboardType: TextInputType.emailAddress,
                           onChanged: (value) => value != null
                               ? _bloc.add(OnEmailChanged(value))
                               : () {},
                           validator: (_) {
-                            return "wqfhjqwfhjwqkfhjkqwhf";
-                            // final fails = _bloc.state.emailAddress.failures();
-                            // final msgFail = fails.fold(
-                            //   "",
-                            //   (previousValue, element) =>
-                            //       previousValue + element.failedValue,
-                            // );
-                            // return msgFail == "" ? null : msgFail;
+                            final fails = _bloc.state.emailAddress.failures();
+                            if (fails.isNotEmpty) {
+                              final msgFail =
+                                  fails.map((e) => e.failedValue).join("\n");
+                              return msgFail;
+                            }
+                            return null;
                           },
                         ),
                         const SizedBox(
                           height: 24,
                         ),
                         FormFieldWidget(
-                          initValue: initDisplayName,
+                          initValue: widget.initDisplayName,
                           nameField: 'Nama lengkap',
                           hintText: 'contoh: Kevin Nicholas',
                           keyboardType: TextInputType.name,
+                          onChanged: (value) => value != null
+                              ? _bloc.add(OnNamaLengkapChanged(value))
+                              : () {},
                           validator: (_) {
-                            return "wqfhjqwfhjwqkfhjkqwhf";
-                            // final fails = _bloc.state.emailAddress.failures();
-                            // final msgFail = fails.fold(
-                            //   "",
-                            //   (previousValue, element) =>
-                            //       previousValue + element.failedValue,
-                            // );
-                            // return msgFail == "" ? null : msgFail;
+                            final fails = _bloc.state.namaLengkap.failures();
+                            if (fails.isNotEmpty) {
+                              final msgFail =
+                                  fails.map((e) => e.failedValue).join("\n");
+                              return msgFail;
+                            }
+                            return null;
                           },
                         ),
                         const SizedBox(
@@ -120,11 +136,15 @@ class RegisterPage extends StatelessWidget {
                         const SizedBox(
                           height: 10,
                         ),
-                        SizedBox(
-                          height: 45,
-                          child: ToggleWidget(
-                            bloc: _jenisKelaminToggleBloc,
+                        ToggleWidget(
+                          bloc: _jenisKelaminToggleBloc,
+                          onPressedCallback: (value) => _bloc.add(
+                            OnJenisKelaminChanged(value),
                           ),
+                          validator: () {
+                            final fails = _bloc.state.jenisKelamin.failures();
+                            return fails.map((e) => e.failedValue).toList();
+                          },
                         ),
                         const SizedBox(
                           height: 24,
@@ -134,17 +154,38 @@ class RegisterPage extends StatelessWidget {
                           hintText: 'pilih kelas',
                           items: UtilsApp.classes,
                           value: '',
-                          onChanged: (String? value) {
-                            kelasValue = value;
+                          onChanged: (value) => value != null
+                              ? _bloc.add(OnKelasChanged(value))
+                              : () {},
+                          validator: (_) {
+                            final fails = _bloc.state.kelas.failures();
+                            if (fails.isNotEmpty) {
+                              final msgFail =
+                                  fails.map((e) => e.failedValue).join("\n");
+                              return msgFail;
+                            }
+                            return null;
                           },
                         ),
                         const SizedBox(
                           height: 24,
                         ),
-                        const FormFieldWidget(
+                        FormFieldWidget(
                           nameField: 'Nama sekolah',
                           hintText: 'nama sekolah',
                           keyboardType: TextInputType.name,
+                          onChanged: (value) => value != null
+                              ? _bloc.add(OnNamaSekolahChanged(value))
+                              : () {},
+                          validator: (_) {
+                            final fails = _bloc.state.namaSekolah.failures();
+                            if (fails.isNotEmpty) {
+                              final msgFail =
+                                  fails.map((e) => e.failedValue).join("\n");
+                              return msgFail;
+                            }
+                            return null;
+                          },
                         ),
                         const SizedBox(
                           height: bottomCalc - 30,
@@ -166,9 +207,7 @@ class RegisterPage extends StatelessWidget {
                       ),
                       child: TextButtonApp.textButtonCustom1(
                         'DAFTAR',
-                        onPressed: () {
-                          print("asd");
-                        },
+                        onPressed: () {},
                       ),
                     ),
                   ),

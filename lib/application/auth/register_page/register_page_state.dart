@@ -30,4 +30,13 @@ class RegisterPageState {
         kelas: Kelas(''),
         namaSekolah: NamaSekolah(''),
       );
+
+  factory RegisterPageState.initEmailAndName(String email, String name) =>
+      RegisterPageState._(
+        emailAddress: EmailAddress(email),
+        namaLengkap: NamaLengkap(name),
+        jenisKelamin: JenisKelamin(''),
+        kelas: Kelas(''),
+        namaSekolah: NamaSekolah(''),
+      );
 }

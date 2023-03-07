@@ -8,7 +8,8 @@ class DropdownFormFieldWidget extends StatelessWidget {
   final String hintText;
   final String value;
   final List<String> items;
-  final Function(String?) onChanged;
+  final Function(String?)? onChanged;
+  final String? Function(String?)? validator;
 
   const DropdownFormFieldWidget({
     super.key,
@@ -16,7 +17,8 @@ class DropdownFormFieldWidget extends StatelessWidget {
     required this.items,
     required this.nameField,
     required this.hintText,
-    required this.onChanged,
+    this.onChanged,
+    this.validator,
   });
 
   @override
@@ -62,6 +64,7 @@ class DropdownFormFieldWidget extends StatelessWidget {
             );
           }).toList(),
           onChanged: onChanged,
+          validator: validator,
         ),
       ],
     );

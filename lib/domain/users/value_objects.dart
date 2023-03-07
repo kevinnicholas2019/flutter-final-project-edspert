@@ -29,6 +29,7 @@ class NamaLengkap implements ValueObject<String> {
   @override
   List<ValueFailures<String>> failures() => <ValueValidators<String, String>>[
         IsNamaLengkapKosong(),
+        IsNamaLengkapHaveSymbols(),
       ].validate(value);
 }
 
@@ -71,5 +72,6 @@ class NamaSekolah implements ValueObject<String> {
   @override
   List<ValueFailures<String>> failures() => <ValueValidators<String, String>>[
         IsNamaSekolahKosong(),
+        IsNamaSekolahHadSymbol(),
       ].validate(value);
 }

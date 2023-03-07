@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
-import 'package:final_project_edspert/domain/auth/auth_failures.dart';
+// ignore: depend_on_referenced_packages
+import 'package:bloc/bloc.dart' show Bloc;
 import 'package:final_project_edspert/domain/auth/i_auth_facade.dart';
 import 'package:flutter/material.dart';
 

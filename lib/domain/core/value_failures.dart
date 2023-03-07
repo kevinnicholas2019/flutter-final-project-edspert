@@ -10,6 +10,15 @@ class UniqueIdParseFail implements ValueFailures<String> {
       "(UniqueIdParseFail) ID parse error fromString method";
 }
 
+class InvalidNameFail implements ValueFailures<String> {
+  final String namaField;
+
+  const InvalidNameFail(this.namaField);
+
+  @override
+  String get failedValue => "$namaField tidak boleh mengandung simbol";
+}
+
 class KosongFail implements ValueFailures<String> {
   final String namaField;
 

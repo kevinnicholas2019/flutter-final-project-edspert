@@ -2,6 +2,8 @@ part of 'register_page_bloc.dart';
 
 abstract class RegisterPageEvent {}
 
+class OnLoad implements RegisterPageEvent {}
+
 class OnEmailChanged implements RegisterPageEvent {
   final String value;
 

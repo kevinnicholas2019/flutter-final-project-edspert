@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:final_project_edspert/firebase_options.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/adapters.dart';
 
 Future<void> main() async {

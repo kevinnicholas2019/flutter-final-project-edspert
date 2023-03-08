@@ -19,3 +19,14 @@ class UniqueId implements ValueObject<int?> {
         ValidateUniqueIdIsNotNull(),
       ].validate(value);
 }
+
+extension ValueObjectX on ValueObject {
+  String? validators() {
+    final fails = failures();
+    if (fails.isNotEmpty) {
+      final msgFail = fails.map((e) => e.failedValue).join("\n");
+      return msgFail;
+    }
+    return null;
+  }
+}

@@ -1,3 +1,6 @@
+import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
+import 'package:final_project_edspert/presentation/router/router_app.dart';
+import 'package:final_project_edspert/presentation/utils/string_extension.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/unsafe_color_widget.dart';
 import 'package:final_project_edspert/presentation/pages/profile/widgets/profile_app_bar_widget.dart';
 import 'package:final_project_edspert/presentation/pages/profile/widgets/profile_value_widget.dart';
@@ -6,6 +9,7 @@ import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfilePage extends UnsafeColorWidget {
   const ProfilePage({super.key}) : super(unsafeColor: ColorsApp.primary);
@@ -52,21 +56,43 @@ class ProfilePage extends UnsafeColorWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      for (var entry in {
-                        'Nama Lengkap': 'Kevin Nicholas',
-                        'Email': 'kevinnicholas2019@gmail.com',
-                        'Jenis Kelamin': 'Laki-laki',
-                        'Kelas': 'XII-IPA',
-                        'Sekolah': 'SMAK 2 Penabur',
-                      }.entries) ...[
-                        ProfileValueWidget(
-                          label: entry.key,
-                          value: entry.value,
-                        ),
-                        const SizedBox(
-                          height: 15,
-                        ),
-                      ]
+                      BlocConsumer<ProfilePageBloc, ProfilePageState>(
+                        listener: (context, state) {
+                          if (state.isSubmitLogout) {
+                            Navigator.pushReplacementNamed(
+                                context, RouterApp.splashScreenPage);
+                          }
+                        },
+                        builder: (context, state) {
+                          if (state is ProfilePageInitial) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [
+                                for (var entry in {
+                                  'Nama Lengkap': state.user.namaLengkap.value
+                                      .toTitleCase(),
+                                  'Email': state.user.emailAddress.value,
+                                  'Jenis Kelamin': state.user.jenisKelamin.value
+                                      .toCapitalized(),
+                                  'Kelas': state.user.kelas.value,
+                                  'Sekolah': state.user.namaSekolah.value
+                                      .toUpperCase(),
+                                }.entries) ...[
+                                  ProfileValueWidget(
+                                    label: entry.key,
+                                    value: entry.value,
+                                  ),
+                                  const SizedBox(
+                                    height: 15,
+                                  ),
+                                ],
+                              ],
+                            );
+                          }
+                          return const Center(
+                              child: CircularProgressIndicator());
+                        },
+                      ),
                     ],
                   ),
                 ),
@@ -86,7 +112,8 @@ class ProfilePage extends UnsafeColorWidget {
                     ],
                   ),
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () => BlocProvider.of<ProfilePageBloc>(context)
+                        .add(ProfilePageOnLogout()),
                     style: ButtonStyle(
                       padding: const MaterialStatePropertyAll(
                         EdgeInsets.symmetric(

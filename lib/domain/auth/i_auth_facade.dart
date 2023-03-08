@@ -9,4 +9,5 @@ abstract class IAuthFacade {
   Future<AuthFail?> signInWithGoogle();
   Future<AuthFail?> signInWithApple();
   Future<auth.User?> getSignedInUser();
+  Future<List<void>> signOut();
 }

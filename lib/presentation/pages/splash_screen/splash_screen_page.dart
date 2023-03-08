@@ -18,24 +18,13 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(
-      const Duration(seconds: 1),
-      () => setState(() {
-        _color = ColorsApp.backgroundPage;
-      }),
-    );
-    Future.delayed(
-      const Duration(milliseconds: 2000),
-      () async {
-        _bloc.add(SplashEventOnLoad());
-      },
-    );
+    _bloc.add(SplashEventOnLoad());
   }
 
   @override
   void dispose() {
-    _bloc.close();
     super.dispose();
+    _bloc.close();
   }
 
   @override
@@ -45,13 +34,29 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
       body: BlocListener<SplashBloc, SplashState>(
         bloc: _bloc,
         listener: (context, state) {
-          switch (state.runtimeType) {
-            case SplashAuthenticate:
-              Navigator.pushReplacementNamed(context, RouterApp.homePage);
-              break;
-            case SplashUnauthenticate:
-              Navigator.pushReplacementNamed(context, RouterApp.loginPage);
-              break;
+          if (state is! SplashInitial) {
+            setState(() {
+              _color = ColorsApp.backgroundPage;
+            });
+            Future.delayed(const Duration(seconds: 1), () {
+              switch (state.runtimeType) {
+                case SplashAuthenticate:
+                  Navigator.pushReplacementNamed(context, RouterApp.homePage);
+                  break;
+                case SplashAuthenticateNoRegister:
+                  final thisState = (state as SplashAuthenticateNoRegister);
+                  Navigator.pushReplacementNamed(
+                      context, RouterApp.registerPage,
+                      arguments: {
+                        "email": thisState.userCredential.email,
+                        "displayName": thisState.userCredential.displayName,
+                      });
+                  break;
+                case SplashUnauthenticate:
+                  Navigator.pushReplacementNamed(context, RouterApp.loginPage);
+                  break;
+              }
+            });
           }
         },
         child: AnimatedContainer(

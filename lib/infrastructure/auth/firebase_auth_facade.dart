@@ -24,14 +24,21 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<auth.User?> getSignedInUser() async {
-    final googleAuthentication = await _userRepo.getFirebaseCredential();
-
-    if (googleAuthentication != null) {
-      final authCredential = auth.GoogleAuthProvider.credential(
-        accessToken: googleAuthentication["accessToken"] as String?,
-        idToken: googleAuthentication["idToken"] as String?,
-      );
-      await _firebaseAuth.signInWithCredential(authCredential);
+    try {
+      final googleUser =
+          await _googleSignIn.signInSilently(suppressErrors: false);
+      if (googleUser != null) {
+        final googleAuthentication = await googleUser.authentication;
+        final authCredential = auth.GoogleAuthProvider.credential(
+          accessToken: googleAuthentication.accessToken,
+          idToken: googleAuthentication.idToken,
+        );
+        await _firebaseAuth.signInWithCredential(authCredential);
+      }
+    } on PlatformException catch (err) {
+      if (err.code == "sign_in_required") {
+        return null;
+      }
     }
 
     return _firebaseAuth.currentUser;
@@ -50,10 +57,6 @@ class FirebaseAuthFacade implements IAuthFacade {
       }
 
       final googleAuthentication = await googleUser.authentication;
-      await _userRepo.saveFirebaseCredential(
-        googleAuthentication.accessToken,
-        googleAuthentication.idToken,
-      );
       final authCredential = auth.GoogleAuthProvider.credential(
         accessToken: googleAuthentication.accessToken,
         idToken: googleAuthentication.idToken,
@@ -76,5 +79,14 @@ class FirebaseAuthFacade implements IAuthFacade {
   Future<AuthFail?> signInWithApple() {
     // TODO: implement signInWithApple
     throw UnimplementedError();
+  }
+
+  @override
+  Future<List<void>> signOut() async {
+    return await Future.wait([
+      _googleSignIn.signOut(),
+      _firebaseAuth.signOut(),
+      _userRepo.clear(),
+    ]);
   }
 }

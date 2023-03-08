@@ -6,6 +6,6 @@ abstract class IUserRepository {
   factory IUserRepository() => _instance;
 
   Future<void> saveUser(domain.User user);
-  Future<void> saveFirebaseCredential(String? accessToken, String? idToken);
-  Future<Map<dynamic, dynamic>?> getFirebaseCredential();
+  Future<domain.User?> getUser();
+  Future<void> clear();
 }

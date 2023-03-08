@@ -7,13 +7,19 @@ class EditFormFieldWidget extends StatelessWidget {
   final String hintText;
   final String initValue;
   final TextInputType keyboardType;
+  final bool? enabled;
+  final String? Function(String?)? validator;
+  final void Function(String?)? onChanged;
 
   const EditFormFieldWidget({
     super.key,
     required this.nameField,
     required this.hintText,
     required this.initValue,
+    this.enabled,
     this.keyboardType = TextInputType.text,
+    this.validator,
+    this.onChanged,
   });
 
   @override
@@ -34,6 +40,9 @@ class EditFormFieldWidget extends StatelessWidget {
         ),
         TextFormField(
           initialValue: initValue,
+          enabled: enabled ?? true,
+          onChanged: onChanged,
+          validator: validator,
           keyboardType: keyboardType,
           style: TextStyleApp.largeTextDefault.copyWith(
             fontSize: 16,

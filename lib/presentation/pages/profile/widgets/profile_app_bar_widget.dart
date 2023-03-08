@@ -1,10 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
+import 'package:final_project_edspert/presentation/utils/string_extension.dart';
 import 'package:flutter/material.dart';
 
 import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileAppBarWidget extends StatelessWidget {
   const ProfileAppBarWidget({super.key});
@@ -76,53 +79,67 @@ class ProfileAppBarWidget extends StatelessWidget {
             height: 28.86,
           ),
           Expanded(
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Kevin Nicholas',
-                      style: TextStyleApp.largeTextDefault.copyWith(
-                        fontSize: 20,
-                        color: ColorsApp.offWhite,
-                        fontWeight: FontWeight.w400,
+            child: BlocBuilder<ProfilePageBloc, ProfilePageState>(
+              builder: (context, state) {
+                if (state is ProfilePageInitial) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            state.user.namaLengkap.value.toTitleCase(),
+                            style: TextStyleApp.largeTextDefault.copyWith(
+                              fontSize: 20,
+                              color: ColorsApp.offWhite,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 10.11,
+                          ),
+                          Text(
+                            state.user.namaSekolah.value.toUpperCase(),
+                            style: TextStyleApp.largeTextDefault.copyWith(
+                              fontSize: 12,
+                              color: ColorsApp.offWhite,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(
-                      height: 10.11,
-                    ),
-                    Text(
-                      'SMAK 2 Penabur',
-                      style: TextStyleApp.largeTextDefault.copyWith(
-                        fontSize: 12,
-                        color: ColorsApp.offWhite,
-                        fontWeight: FontWeight.w400,
+                      const Spacer(
+                        flex: 1,
                       ),
-                    ),
-                  ],
-                ),
-                const Spacer(
-                  flex: 1,
-                ),
-                Align(
-                  alignment: const Alignment(0, -0.5),
-                  child: ClipOval(
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "https://pps.whatsapp.net/v/t61.24694-24/321243037_1518504015337246_465266283058870689_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdR1Xz4VZiPJzWU56RttXR94AbGfl26yo8q-CQVorc2Xng&oe=640DCC7C",
-                      width: 52,
-                      height: 52,
-                      placeholder: (_, __) => Container(
-                        width: 52,
-                        height: 52,
-                        color: ColorsApp.placeholder,
+                      Align(
+                        alignment: const Alignment(0, -0.5),
+                        child: ClipOval(
+                          child: state.firebaseCredential.photoURL != null
+                              ? CachedNetworkImage(
+                                  imageUrl: state.firebaseCredential.photoURL!,
+                                  width: 52,
+                                  height: 52,
+                                  placeholder: (_, __) => Container(
+                                    width: 52,
+                                    height: 52,
+                                    color: ColorsApp.placeholder,
+                                  ),
+                                )
+                              : Image.asset(
+                                  state.user.jenisKelamin.value == "Pria"
+                                      ? "assets/icons/male_profile.png"
+                                      : "assets/icons/female_profile.png",
+                                  width: 52,
+                                  height: 52,
+                                ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              ],
+                    ],
+                  );
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
             ),
           )
         ],

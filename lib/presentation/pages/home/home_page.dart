@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/home/widget/bottom_navigation_bar_app.dart';
 import 'package:final_project_edspert/presentation/pages/home/widget/home_widget.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/unsafe_color_widget.dart';
@@ -5,27 +6,9 @@ import 'package:final_project_edspert/presentation/pages/profile/profile_page.da
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatefulWidget {
-  static const _homePage = HomeWidget();
-  static const _profilePage = ProfilePage();
-
-  static bool _isCurrentPage(Widget path) {
-    return _pageNow == path;
-  }
-
-  static String _iconNavTogglePath(Widget path) {
-    return "assets/icons/nav_toggle_${_isCurrentPage(path) ? "on" : "off"}";
-  }
-
-  static Color _titleColoring(Widget path) {
-    return _isCurrentPage(path)
-        ? ColorsApp.titleActive
-        : ColorsApp.titleDisable;
-  }
-
-  static UnsafeColorWidget _pageNow = _homePage;
-
   const HomePage({super.key});
 
   @override
@@ -33,17 +16,43 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _homePage = const HomeWidget();
+  final _profilePage = const ProfilePage();
+
+  bool _isCurrentPage(Widget path) {
+    return _pageNow == path;
+  }
+
+  String _iconNavTogglePath(Widget path) {
+    return "assets/icons/nav_toggle_${_isCurrentPage(path) ? "on" : "off"}";
+  }
+
+  Color _titleColoring(Widget path) {
+    return _isCurrentPage(path)
+        ? ColorsApp.titleActive
+        : ColorsApp.titleDisable;
+  }
+
+  late UnsafeColorWidget _pageNow;
+
+  @override
+  void initState() {
+    _pageNow = _homePage;
+    BlocProvider.of<ProfilePageBloc>(context).add(ProfilePageEventOnRefresh());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: null,
-      backgroundColor: HomePage._pageNow.unsafeColor,
+      backgroundColor: _pageNow.unsafeColor,
       body: SafeArea(
         child: Stack(
           children: [
             Positioned.fill(
               bottom: 53,
-              child: HomePage._pageNow,
+              child: _pageNow,
             ),
             Align(
               alignment: Alignment.bottomCenter,
@@ -71,13 +80,12 @@ class _HomePageState extends State<HomePage> {
                 listBottomNavigationBarItemApp: [
                   BottomNavigationBarItemApp(
                     title: "Home",
-                    icon:
-                        "${HomePage._iconNavTogglePath(HomePage._homePage)}/home.png",
+                    icon: "${_iconNavTogglePath(_homePage)}/home.png",
                     navigationTo: () {
-                      HomePage._pageNow = HomePage._homePage;
+                      _pageNow = _homePage;
                       setState(() {});
                     },
-                    titleColor: HomePage._titleColoring(HomePage._homePage),
+                    titleColor: _titleColoring(_homePage),
                   ),
                   BottomNavigationBarItemApp(
                     title: "Diskusi Soal",
@@ -89,13 +97,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                   BottomNavigationBarItemApp(
                     title: "Profile",
-                    icon:
-                        "${HomePage._iconNavTogglePath(HomePage._profilePage)}/profile.png",
+                    icon: "${_iconNavTogglePath(_profilePage)}/profile.png",
                     navigationTo: () {
-                      HomePage._pageNow = HomePage._profilePage;
+                      _pageNow = _profilePage;
                       setState(() {});
                     },
-                    titleColor: HomePage._titleColoring(HomePage._profilePage),
+                    titleColor: _titleColoring(_profilePage),
                   ),
                 ],
               ),

@@ -1,28 +1,18 @@
-// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:final_project_edspert/domain/users/i_user_repository.dart';
 import 'package:final_project_edspert/domain/users/user.dart';
 import 'package:final_project_edspert/domain/users/value_objects.dart';
+import 'package:meta/meta.dart';
 
-part 'register_page_event.dart';
-part 'register_page_state.dart';
+part 'edit_profile_event.dart';
+part 'edit_profile_state.dart';
 
-class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
+class EditProfileBloc extends Bloc<EditProfileEvent, EditProfileState> {
   final IUserRepository _userRepo = IUserRepository();
 
-  RegisterPageBloc() : super(RegisterPageState.initial()) {
-    on<OnLoad>((event, emit) {
-      emit(RegisterPageState(
-        emailAddress: state.emailAddress,
-        namaLengkap: state.namaLengkap,
-        jenisKelamin: state.jenisKelamin,
-        kelas: state.kelas,
-        namaSekolah: state.namaSekolah,
-      ));
-    });
-
-    on<OnDaftarPressed>((event, emit) async {
-      var isSafe = [
+  EditProfileBloc() : super(EditProfileState.initial()) {
+    on<OnUpdatePressed>((event, emit) async {
+      final isSafe = [
         state.emailAddress,
         state.jenisKelamin,
         state.kelas,
@@ -32,35 +22,28 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
         true,
         (previousValue, element) => previousValue && element.failures().isEmpty,
       );
-      if (isSafe) {
-        await _userRepo.saveUser(
-          User(
-            emailAddress: state.emailAddress,
-            namaLengkap: state.namaLengkap,
-            jenisKelamin: state.jenisKelamin,
-            kelas: state.kelas,
-            namaSekolah: state.namaSekolah,
-          ),
-        );
-        final userRepo = await _userRepo.getUser();
-        if (userRepo != null) {
-          User.currUser = userRepo;
-        } else {
-          isSafe = false;
-        }
-        emit(RegisterPageState(
+      emit(EditProfileState(
+        emailAddress: state.emailAddress,
+        namaLengkap: state.namaLengkap,
+        jenisKelamin: state.jenisKelamin,
+        kelas: state.kelas,
+        namaSekolah: state.namaSekolah,
+        isSubmited: isSafe,
+      ));
+      if (state.isSubmited) {
+        User.currUser = User(
           emailAddress: state.emailAddress,
           namaLengkap: state.namaLengkap,
           jenisKelamin: state.jenisKelamin,
           kelas: state.kelas,
           namaSekolah: state.namaSekolah,
-          isSubmited: isSafe,
-        ));
+        );
+        await _userRepo.saveUser(User.currentUser());
       }
     });
 
     on<OnEmailChanged>((event, emit) {
-      emit(RegisterPageState(
+      emit(EditProfileState(
         emailAddress: EmailAddress(event.value),
         namaLengkap: state.namaLengkap,
         jenisKelamin: state.jenisKelamin,
@@ -70,7 +53,7 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
     });
 
     on<OnNamaLengkapChanged>((event, emit) {
-      emit(RegisterPageState(
+      emit(EditProfileState(
         emailAddress: state.emailAddress,
         namaLengkap: NamaLengkap(event.value),
         jenisKelamin: state.jenisKelamin,
@@ -80,7 +63,7 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
     });
 
     on<OnJenisKelaminChanged>((event, emit) {
-      emit(RegisterPageState(
+      emit(EditProfileState(
         emailAddress: state.emailAddress,
         namaLengkap: state.namaLengkap,
         jenisKelamin: JenisKelamin(event.value),
@@ -90,7 +73,7 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
     });
 
     on<OnKelasChanged>((event, emit) {
-      emit(RegisterPageState(
+      emit(EditProfileState(
         emailAddress: state.emailAddress,
         namaLengkap: state.namaLengkap,
         jenisKelamin: state.jenisKelamin,
@@ -100,7 +83,7 @@ class RegisterPageBloc extends Bloc<RegisterPageEvent, RegisterPageState> {
     });
 
     on<OnNamaSekolahChanged>((event, emit) {
-      emit(RegisterPageState(
+      emit(EditProfileState(
         emailAddress: state.emailAddress,
         namaLengkap: state.namaLengkap,
         jenisKelamin: state.jenisKelamin,

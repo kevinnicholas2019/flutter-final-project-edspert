@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/login_page.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/register_page.dart';
 import 'package:final_project_edspert/presentation/pages/diskusi/diskusi_soal_page.dart';
@@ -10,12 +11,13 @@ import 'package:final_project_edspert/presentation/pages/profile/edit_profile/ed
 import 'package:final_project_edspert/presentation/pages/profile/profile_page.dart';
 import 'package:final_project_edspert/presentation/pages/splash_screen/splash_screen_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RouterApp {
-  static const String splashScreenPage = '/splash';
+  static const String splashScreenPage = '/';
   static const String loginPage = '/login';
   static const String registerPage = '/register';
-  static const String homePage = '/';
+  static const String homePage = '/home';
   static const String diskusiSoalPage = '/diskusi-soal';
   static const String profilePage = '/akun';
   static const String editProfilePage = '/edit-akun';
@@ -40,11 +42,11 @@ class RouterApp {
           settings: settings,
         );
       case RouterApp.registerPage:
-        final args = settings.arguments as Map<String, Object?>;
+        final args = settings.arguments as Map<String, Object?>?;
         return MaterialPageRoute<dynamic>(
           builder: (_) => RegisterPage(
-            initValueEmail: args["email"] as String?,
-            initDisplayName: args["displayName"] as String?,
+            initValueEmail: args?["email"] as String?,
+            initDisplayName: args?["displayName"] as String?,
           ),
           settings: settings,
         );
@@ -65,7 +67,10 @@ class RouterApp {
         );
       case RouterApp.editProfilePage:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const EditProfilePage(),
+          builder: (context) => BlocProvider.value(
+            value: BlocProvider.of<ProfilePageBloc>(context),
+            child: const EditProfilePage(),
+          ),
           settings: settings,
         );
       case RouterApp.chooseSubjectsPage:

@@ -8,7 +8,8 @@ class EditDropdownFormFieldWidget extends StatelessWidget {
   final String hintText;
   final String initValue;
   final List<String> items;
-  final Function(String?) onChanged;
+  final Function(String?)? onChanged;
+  final String? Function(String?)? validator;
 
   const EditDropdownFormFieldWidget({
     super.key,
@@ -17,6 +18,7 @@ class EditDropdownFormFieldWidget extends StatelessWidget {
     required this.nameField,
     required this.hintText,
     required this.onChanged,
+    this.validator,
   });
 
   @override
@@ -37,6 +39,7 @@ class EditDropdownFormFieldWidget extends StatelessWidget {
         ),
         DropdownButtonFormField(
           value: initValue,
+          validator: validator,
           style: TextStyleApp.largeTextDefault.copyWith(
             fontSize: 16,
             fontWeight: FontWeight.w400,

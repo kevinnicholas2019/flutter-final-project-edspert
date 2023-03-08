@@ -1,21 +1,30 @@
 import 'dart:ui';
 
+import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/theme_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      scrollBehavior: _MyCustomScrollBehavior(),
-      title: 'Edspert E-Learning',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeApp.light,
-      initialRoute: RouterApp.splashScreenPage,
-      onGenerateRoute: RouterApp.onGenerateRoute,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => ProfilePageBloc()),
+      ],
+      child: MaterialApp(
+        scrollBehavior: _MyCustomScrollBehavior(),
+        title: 'Edspert E-Learning',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeApp.light,
+        initialRoute: RouterApp.splashScreenPage,
+        onGenerateRoute: RouterApp.onGenerateRoute,
+        builder: EasyLoading.init(),
+      ),
     );
   }
 }

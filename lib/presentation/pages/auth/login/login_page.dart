@@ -59,7 +59,7 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: math.max(MediaQuery.of(context).size.height - 525, 100),
+                height: math.max(MediaQuery.of(context).size.height - 550, 100),
               ),
               BlocConsumer<LoginPageBloc, LoginPageState>(
                 bloc: bloc,

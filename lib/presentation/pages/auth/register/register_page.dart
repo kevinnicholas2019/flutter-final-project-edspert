@@ -70,9 +70,6 @@ class _RegisterPageState extends State<RegisterPage> {
         bloc: _bloc,
         listener: (context, state) {
           if (state.isSubmited) {
-            while (Navigator.canPop(context)) {
-              Navigator.pop(context);
-            }
             Navigator.pushReplacementNamed(context, RouterApp.homePage);
           }
         },

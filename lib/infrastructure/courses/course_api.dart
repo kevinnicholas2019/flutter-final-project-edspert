@@ -15,7 +15,7 @@ class CourseApi extends Api implements ICourseRepository {
     // final Response<Map> response2 = await dio
     //     .get("$apiUrl?major_name=IPS&user_email=testerngbayu@gmail.com");
     final Response<Map> response2 = await dio
-        .get("$apiUrl?major_name=IPA&user_email=testerngbayu@gmail.com");
+        .get("$apiUrl?major_name=IPS&user_email=testerngbayu@gmail.com");
 
     // final dataIpa = response.data;
     final dataIps = response2.data;
@@ -27,11 +27,13 @@ class CourseApi extends Api implements ICourseRepository {
     }
     final courses = <Course>[];
 
-    for (var courseJson in [
-      // ...dataIpa["data"],
-      ...dataIps["data"],
-    ]) {
-      courses.add(CourseDto.fromJson(courseJson).toDomain());
+    if (dataIps["status"] == 1 && dataIps["message"] == "ok") {
+      for (var courseJson in [
+        // ...dataIpa["data"],
+        ...dataIps["data"],
+      ]) {
+        courses.add(CourseDto.fromJson(courseJson).toDomain());
+      }
     }
 
     return courses;

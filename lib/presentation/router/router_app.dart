@@ -1,5 +1,3 @@
-import 'package:final_project_edspert/application/courses/course_bloc.dart';
-import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/login_page.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/register_page.dart';
 import 'package:final_project_edspert/presentation/pages/diskusi/diskusi_soal_page.dart';
@@ -12,7 +10,6 @@ import 'package:final_project_edspert/presentation/pages/profile/edit_profile/ed
 import 'package:final_project_edspert/presentation/pages/profile/profile_page.dart';
 import 'package:final_project_edspert/presentation/pages/splash_screen/splash_screen_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RouterApp {
   static const String splashScreenPage = '/';

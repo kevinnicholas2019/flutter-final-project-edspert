@@ -1,7 +1,6 @@
 import 'package:final_project_edspert/application/users/edit_profile_page/edit_profile_bloc.dart';
 import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/domain/core/value_objects.dart';
-import 'package:final_project_edspert/domain/users/user.dart';
 import 'package:final_project_edspert/presentation/pages/profile/edit_profile/widgets/dropdown_form_field_widget.dart';
 import 'package:final_project_edspert/presentation/pages/profile/edit_profile/widgets/text_form_field_widget.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';

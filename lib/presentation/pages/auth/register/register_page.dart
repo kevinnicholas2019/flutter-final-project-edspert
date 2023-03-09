@@ -1,5 +1,4 @@
 import 'package:final_project_edspert/application/auth/register_page/register_page_bloc.dart';
-import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/application/utils/toggle/toggle_bloc.dart';
 import 'package:final_project_edspert/domain/core/value_objects.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/widgets/dropdown_form_field_widget.dart';

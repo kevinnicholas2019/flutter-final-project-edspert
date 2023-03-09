@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_project_edspert/infrastructure/questions/question_api.dart';
+import 'package:final_project_edspert/presentation/pages/mapel/kerjakan_soal/kerjakan_soal_page.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
@@ -6,16 +8,30 @@ import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
 
 class PaketSoalButton extends StatelessWidget {
+  static bool isOnPressed = false;
+
   static Function() _defaultOnPressed(
-          BuildContext context, String namaPaketSoal) =>
-      () {
-        Navigator.pushNamed(
-          context,
-          RouterApp.kerjakanSoalPage,
-          arguments: namaPaketSoal,
-        );
+          BuildContext context, String exerciseId) =>
+      () async {
+        if (!isOnPressed) {
+          isOnPressed = true;
+          KerjakanSoalPage.exercises =
+              await QuestionApi().getQuestions(exerciseId);
+          // ignore: use_build_context_synchronously
+          Navigator.pushNamed(
+            context,
+            RouterApp.kerjakanSoalPage,
+            arguments: exerciseId,
+            // arguments: {
+            //   "namaPaketSoal": namaPaketSoal,
+            //   "exerciseId": exerciseId,
+            // },
+          );
+          isOnPressed = false;
+        }
       };
 
+  final String exerciseId;
   final String namaPaketSoal;
   final int totalSoal;
   final Function()? onPressed;
@@ -27,6 +43,7 @@ class PaketSoalButton extends StatelessWidget {
     this.totalSoal = 0,
     this.onPressed,
     required this.icon,
+    required this.exerciseId,
   });
 
   @override
@@ -47,7 +64,7 @@ class PaketSoalButton extends StatelessWidget {
       ),
       child: TextButton(
         onPressed: totalSoal > 0
-            ? onPressed ?? _defaultOnPressed(context, namaPaketSoal)
+            ? onPressed ?? _defaultOnPressed(context, exerciseId)
             : null,
         style: ButtonStyle(
           padding: const MaterialStatePropertyAll(EdgeInsets.all(12.0)),

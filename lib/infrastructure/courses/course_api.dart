@@ -27,7 +27,7 @@ class CourseApi extends Api implements ICourseRepository {
     }
     final courses = <Course>[];
 
-    if (dataIps["status"] == 1 && dataIps["message"] == "ok") {
+    if (dataIps["status"] == 1) {
       for (var courseJson in [
         // ...dataIpa["data"],
         ...dataIps["data"],

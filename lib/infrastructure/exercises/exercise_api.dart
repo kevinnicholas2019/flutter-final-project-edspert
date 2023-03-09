@@ -19,7 +19,7 @@ class ExerciseApi extends Api implements IExerciseRepository {
     }
     final exercises = <Exercise>[];
 
-    if (data["status"] == 1 && data["message"] == "ok") {
+    if (data["status"] == 1) {
       for (var exerciseJson in data["data"]) {
         exercises.add(ExerciseDto.fromJson(exerciseJson).toDomain());
       }

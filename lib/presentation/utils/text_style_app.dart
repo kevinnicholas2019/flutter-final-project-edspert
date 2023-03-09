@@ -1,12 +1,11 @@
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TextStyleApp {
   const TextStyleApp._();
-
   //Large text
-  static TextStyle get largeTextDefault => const TextStyle(
-        fontFamily: 'Poppins',
+  static TextStyle get largeTextDefault => GoogleFonts.poppins().copyWith(
         fontSize: 30,
         fontWeight: FontWeight.w700,
         letterSpacing: 0,
@@ -17,8 +16,7 @@ class TextStyleApp {
   static TextStyle get largeText20 => largeTextDefault.copyWith(fontSize: 20);
 
   //Title
-  static TextStyle get titleDefault => const TextStyle(
-        fontFamily: 'SF Pro Display',
+  static TextStyle get titleDefault => GoogleFonts.sourceSansPro().copyWith(
         fontSize: 20,
         fontWeight: FontWeight.w600,
         letterSpacing: 0,

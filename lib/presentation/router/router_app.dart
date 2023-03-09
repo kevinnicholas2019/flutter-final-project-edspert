@@ -88,12 +88,12 @@ class RouterApp {
         // final List<String> args = settings.arguments as List<String>;
         // final String namaPelajaran = args[0];
         // final String namaPaketSoal = args[1];
+        // final String exerciseId = args[2];
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const KerjakanSoalPage(
-            // namaPelajaran: namaPelajaran,
-            // namaPaketSoal: namaPaketSoal,
-            namaPelajaran: "Matematika",
-            namaPaketSoal: "Trigonometri",
+          builder: (_) => KerjakanSoalPage(
+            namaPelajaran: "",
+            namaPaketSoal: "",
+            exerciseId: settings.arguments as String,
           ),
           settings: settings,
         );

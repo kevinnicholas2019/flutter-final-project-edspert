@@ -5,5 +5,5 @@ abstract class IQuestionRepository {
   static final IQuestionRepository _instance = QuestionsDataSource();
   factory IQuestionRepository() => _instance;
 
-  Future<List<Question>> getQuestions(String exerciseId);
+  Future<List<dynamic>> getQuestions(String exerciseId);
 }

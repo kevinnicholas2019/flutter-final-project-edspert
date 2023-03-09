@@ -3,21 +3,21 @@ import 'package:final_project_edspert/domain/questions/value_object.dart';
 import 'package:final_project_edspert/domain/questions/question.dart';
 
 class QuestionDto {
-  final String exerciseIdFk;
-  final String bankQuestionId;
-  final String questionTitle;
-  final String questionTitleImg;
-  final String optionA;
-  final String optionAImg;
-  final String optionB;
-  final String optionBImg;
-  final String optionC;
-  final String optionCImg;
-  final String optionD;
-  final String optionDImg;
-  final String optionE;
-  final String optionEImg;
-  final String studentAnswer;
+  final String? exerciseIdFk;
+  final String? bankQuestionId;
+  final String? questionTitle;
+  final String? questionTitleImg;
+  final String? optionA;
+  final String? optionAImg;
+  final String? optionB;
+  final String? optionBImg;
+  final String? optionC;
+  final String? optionCImg;
+  final String? optionD;
+  final String? optionDImg;
+  final String? optionE;
+  final String? optionEImg;
+  final String? studentAnswer;
 
   const QuestionDto._({
     required this.exerciseIdFk,
@@ -38,21 +38,21 @@ class QuestionDto {
   });
 
   factory QuestionDto.fromJson(Map<String, dynamic> json) => QuestionDto._(
-        exerciseIdFk: json['question_id_fk'] as String,
-        bankQuestionId: json['bank_question_id'] as String,
-        questionTitle: json['question_title'] as String,
-        questionTitleImg: json['question_title_img'] as String,
-        optionA: json['option_a'] as String,
-        optionAImg: json['option_a_img'] as String,
-        optionB: json['option_b'] as String,
-        optionBImg: json['option_b_img'] as String,
-        optionC: json['option_c'] as String,
-        optionCImg: json['option_c_img'] as String,
-        optionD: json['option_d'] as String,
-        optionDImg: json['option_d_img'] as String,
-        optionE: json['option_e'] as String,
-        optionEImg: json['option_e_img'] as String,
-        studentAnswer: json['student_answer'] as String,
+        exerciseIdFk: json['exercise_id_fk'] as String?,
+        bankQuestionId: json['bank_question_id'] as String?,
+        questionTitle: json['question_title'] as String?,
+        questionTitleImg: json['question_title_img'] as String?,
+        optionA: json['option_a'] as String?,
+        optionAImg: json['option_a_img'] as String?,
+        optionB: json['option_b'] as String?,
+        optionBImg: json['option_b_img'] as String?,
+        optionC: json['option_c'] as String?,
+        optionCImg: json['option_c_img'] as String?,
+        optionD: json['option_d'] as String?,
+        optionDImg: json['option_d_img'] as String?,
+        optionE: json['option_e'] as String?,
+        optionEImg: json['option_e_img'] as String?,
+        studentAnswer: json['student_answer'] as String?,
       );
 
   factory QuestionDto.fromDomain(Question question) {
@@ -77,25 +77,25 @@ class QuestionDto {
 
   Question toDomain() {
     return Question(
-      id: UniqueId(bankQuestionId),
-      exerciseIdFk: ExerciseIdFk(exerciseIdFk),
-      questionTitle: QuestionTitle(questionTitle),
-      questionTitleImg: QuestionTitleImg(questionTitleImg),
+      id: UniqueId(bankQuestionId ?? ""),
+      exerciseIdFk: ExerciseIdFk(exerciseIdFk ?? ""),
+      questionTitle: QuestionTitle(questionTitle ?? ""),
+      questionTitleImg: QuestionTitleImg(questionTitleImg ?? ""),
       options: [
-        Option(optionA),
-        Option(optionB),
-        Option(optionC),
-        Option(optionD),
-        Option(optionE),
+        Option(optionA ?? ""),
+        Option(optionB ?? ""),
+        Option(optionC ?? ""),
+        Option(optionD ?? ""),
+        Option(optionE ?? ""),
       ],
       optionImgs: [
-        OptionImg(optionAImg),
-        OptionImg(optionBImg),
-        OptionImg(optionCImg),
-        OptionImg(optionDImg),
-        OptionImg(optionEImg),
+        OptionImg(optionAImg ?? ""),
+        OptionImg(optionBImg ?? ""),
+        OptionImg(optionCImg ?? ""),
+        OptionImg(optionDImg ?? ""),
+        OptionImg(optionEImg ?? ""),
       ],
-      studentAnswer: StudentAnswer(studentAnswer),
+      studentAnswer: StudentAnswer(studentAnswer ?? ""),
     );
   }
 

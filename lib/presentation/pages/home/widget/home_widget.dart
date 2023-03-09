@@ -23,7 +23,7 @@ class HomeWidget extends UnsafeColorWidget {
         padding: const EdgeInsets.all(20.0),
         children: [
           SizedBox(
-            height: 35,
+            height: 37,
             child: BlocBuilder<ProfilePageBloc, ProfilePageState>(
               builder: (context, state) {
                 return Row(
@@ -124,7 +124,7 @@ class HomeWidget extends UnsafeColorWidget {
             height: 25,
           ),
           SizedBox(
-            height: 25,
+            height: 25 + 7,
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

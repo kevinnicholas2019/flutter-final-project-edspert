@@ -16,7 +16,7 @@ class BannerApi extends Api implements IBannerRepository {
       throw Error();
     }
     final banners = <Banner>[];
-    if (data["status"] == 1 && data["message"] == "ok") {
+    if (data["status"] == 1) {
       final listBanner = data["data"];
       for (var bannerJson in listBanner) {
         banners.add(BannerDto.fromJson(bannerJson).toDomain());

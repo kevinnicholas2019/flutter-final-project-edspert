@@ -8,7 +8,7 @@ import 'package:final_project_edspert/firebase_options.dart';
 import 'package:hive_flutter/adapters.dart';
 
 Future<void> main() async {
-  // HttpOverrides.global = MyHttpOverrides();
+  HttpOverrides.global = MyHttpOverrides();
   Hive.initFlutter();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);

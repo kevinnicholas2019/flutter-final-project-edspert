@@ -6,25 +6,32 @@ import 'package:final_project_edspert/infrastructure/questions/question_dto.dart
 
 class QuestionApi extends Api implements IQuestionRepository {
   @override
-  String get apiUrl => "${super.apiUrl}exercise/data_exercise";
+  String get apiUrl => "${super.apiUrl}exercise/kerjakan";
 
   @override
-  Future<List<Question>> getQuestions(String courseId) async {
-    final Response<Map> response = await dio
-        .get("$apiUrl?course_id=$courseId&user_email=testerngbayu@gmail.com");
+  Future<List<dynamic>> getQuestions(String exerciseId) async {
+    FormData formData = FormData.fromMap({
+      "exercise_id": exerciseId,
+      "user_email": "testerngbayu@gmail.com",
+    });
+    final Response<Map> response = await dio.post(
+      apiUrl,
+      data: formData,
+    );
     final data = response.data;
 
     if (data == null) {
       throw Error();
     }
-    final exercises = <Question>[];
+    // final questions = <Question>[];
 
-    if (data["status"] == 1 && data["message"] == "ok") {
-      for (var exerciseJson in data["data"]) {
-        exercises.add(QuestionDto.fromJson(exerciseJson).toDomain());
-      }
+    if (data["status"] == 1) {
+      // for (var questionJson in data["data"]) {
+      //   questions.add(QuestionDto.fromJson(questionJson).toDomain());
+      // }
+      return data["data"];
     }
 
-    return exercises;
+    return [];
   }
 }

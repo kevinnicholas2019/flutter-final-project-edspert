@@ -9,7 +9,7 @@ class QuestionsDataSource implements IQuestionRepository {
   final _repo = HiveQuestionRepo();
 
   @override
-  Future<List<Question>> getQuestions(String exerciseId) async {
+  Future<List<dynamic>> getQuestions(String exerciseId) async {
     try {
       final courses = await _api.getQuestions(exerciseId);
       if (courses.isNotEmpty) {

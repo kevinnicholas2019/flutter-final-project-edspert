@@ -72,6 +72,7 @@ class PilihPaketSoalPage extends StatelessWidget {
                                     namaPaketSoal: exercise.exerciseTitle.value,
                                     totalSoal: exercise.jumlahSoal.value,
                                     icon: exercise.icon.value,
+                                    exerciseId: exercise.id.value.toString(),
                                   ),
                               ],
                             )

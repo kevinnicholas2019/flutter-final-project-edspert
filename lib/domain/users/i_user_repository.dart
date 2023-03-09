@@ -8,4 +8,5 @@ abstract class IUserRepository {
   Future<void> saveUser(domain.User user);
   Future<domain.User?> getUser();
   Future<void> clear();
+  Future<void> update();
 }

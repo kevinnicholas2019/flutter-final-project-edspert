@@ -19,6 +19,7 @@ class MapelButton extends StatelessWidget {
   final String namaMapel;
   final int totalPaketLatihanSoal;
   final double progressIndicatorValue;
+  final String imageUrl;
   final Function()? onPressed;
 
   const MapelButton({
@@ -27,6 +28,7 @@ class MapelButton extends StatelessWidget {
     this.totalPaketLatihanSoal = 0,
     this.progressIndicatorValue = 0.0,
     this.onPressed,
+    required this.imageUrl,
   });
 
   @override
@@ -69,8 +71,7 @@ class MapelButton extends StatelessWidget {
                 borderRadius: BorderApp.radius1,
               ),
               child: CachedNetworkImage(
-                imageUrl:
-                    "https://api.widyaedu.com/assets/uploads/icon/5a6d6c735a56396a62335a6c636a45324e4441794d6a677a4e44633d_file_cover1640228347.png",
+                imageUrl: imageUrl,
                 fit: BoxFit.fitHeight,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     CircularProgressIndicator(value: downloadProgress.progress),
@@ -106,8 +107,8 @@ class MapelButton extends StatelessWidget {
                   ),
                   ClipRRect(
                     borderRadius: BorderApp.radius0,
-                    child: const LinearProgressIndicator(
-                      value: 0.25,
+                    child: LinearProgressIndicator(
+                      value: progressIndicatorValue,
                       color: ColorsApp.primary,
                     ),
                   ),

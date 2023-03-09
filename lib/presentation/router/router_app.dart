@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/application/courses/course_bloc.dart';
 import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/login_page.dart';
 import 'package:final_project_edspert/presentation/pages/auth/register/register_page.dart';
@@ -75,7 +76,10 @@ class RouterApp {
         );
       case RouterApp.chooseSubjectsPage:
         return MaterialPageRoute<dynamic>(
-          builder: (_) => const PilihMapelPage(),
+          builder: (context) => BlocProvider.value(
+            value: BlocProvider.of<CourseBloc>(context),
+            child: const PilihMapelPage(),
+          ),
           settings: settings,
         );
       case RouterApp.chooseQuestionPackagePage:

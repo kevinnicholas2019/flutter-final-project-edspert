@@ -61,7 +61,7 @@ class LoginPage extends StatelessWidget {
               ),
               SizedBox(
                 height: math.max(
-                    (MediaQuery.of(context).size.height - 550) - 50, 50),
+                    (MediaQuery.of(context).size.height - 550) - 100, 85),
               ),
               BlocConsumer<LoginPageBloc, LoginPageState>(
                 bloc: bloc,
@@ -82,7 +82,8 @@ class LoginPage extends StatelessWidget {
                 builder: (context, state) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    children: state is SignInWithGoogleState ||
+                    children: state is SignInSuccess ||
+                            state is SignInWithGoogleState ||
                             state is SignInWithAppleState
                         ? [
                             const SizedBox(

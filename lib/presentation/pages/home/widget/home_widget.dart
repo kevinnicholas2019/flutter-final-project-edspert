@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_project_edspert/application/banners/banner_bloc.dart';
+import 'package:final_project_edspert/application/courses/course_bloc.dart';
 import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/unsafe_color_widget.dart';
 import 'package:final_project_edspert/presentation/pages/mapel/widgets/mapel_button.dart';
@@ -154,20 +155,29 @@ class HomeWidget extends UnsafeColorWidget {
           const SizedBox(
             height: 20,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              for (var i = 0; i < 3; i++) ...[
-                const MapelButton(
-                  namaMapel: 'Matematika',
-                  totalPaketLatihanSoal: 50,
-                ),
-                if (i < 2)
-                  const SizedBox(
-                    height: 15,
-                  ),
-              ],
-            ],
+          BlocBuilder<CourseBloc, CourseState>(
+            builder: (context, state) {
+              if (state is CourseOnSuccess) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    for (var course in state.courses.take(3)) ...[
+                      MapelButton(
+                        namaMapel: course.courseName.value,
+                        totalPaketLatihanSoal: course.jumlahMateri.value,
+                        imageUrl: course.urlCover.value,
+                      ),
+                      if (state.courses.last != course)
+                        const SizedBox(
+                          height: 15,
+                        ),
+                    ],
+                  ],
+                );
+              } else if (state is CourseOnFail) {}
+
+              return const Center(child: CircularProgressIndicator());
+            },
           ),
           const SizedBox(
             height: 27,

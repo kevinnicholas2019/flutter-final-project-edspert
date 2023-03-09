@@ -31,4 +31,10 @@ class HiveUserRepo implements IUserRepository {
     await userBox.clear();
     await userBox.close();
   }
+
+  @override
+  Future<void> update() {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
 }

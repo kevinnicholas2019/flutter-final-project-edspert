@@ -36,3 +36,8 @@ class BelumDipilihFail implements ValueFailures<String> {
   @override
   String get failedValue => "$namaField harus dipilih";
 }
+
+class InvalidUrlFail implements ValueFailures<String> {
+  @override
+  String get failedValue => "URL tidak valid";
+}

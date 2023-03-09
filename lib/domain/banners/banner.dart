@@ -17,4 +17,15 @@ class Banner implements IEntity {
   final Description description;
   final Image image;
   final Url url;
+
+  @override
+  String toString() {
+    return [
+      id.value,
+      title.value,
+      description.value,
+      image.value,
+      url.value,
+    ].join(", ");
+  }
 }

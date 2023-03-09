@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/domain/banners/value_validators.dart';
 import 'package:final_project_edspert/domain/core/value_failures.dart';
 import 'package:final_project_edspert/domain/core/value_objects.dart';
 import 'package:final_project_edspert/domain/core/value_validators.dart';
@@ -50,6 +51,8 @@ class Url implements ValueObject<String> {
   factory Url(String value) => Url._(value: value);
 
   @override
-  List<ValueFailures<String>> failures() =>
-      <ValueValidators<String, String>>[].validate(value);
+  List<ValueFailures<String>> failures() => <ValueValidators<String, String>>[
+        IsUrlKosong(),
+        IsUrlValid(),
+      ].validate(value);
 }

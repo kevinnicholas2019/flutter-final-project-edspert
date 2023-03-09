@@ -1,5 +1,6 @@
 import 'package:final_project_edspert/application/auth/login_page/login_page_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_google_widget.dart';
+import 'package:final_project_edspert/presentation/pages/auth/login/widgets/sign_in_apple_widget.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
@@ -59,7 +60,8 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: math.max(MediaQuery.of(context).size.height - 550, 100),
+                height: math.max(
+                    (MediaQuery.of(context).size.height - 550) - 50, 50),
               ),
               BlocConsumer<LoginPageBloc, LoginPageState>(
                 bloc: bloc,
@@ -91,10 +93,10 @@ class LoginPage extends StatelessWidget {
                           ]
                         : [
                             SignInGoogleWidget(bloc: bloc),
-                            // SizedBox(
-                            //   height: 25,
-                            // ),
-                            // SignInAppleWidget(),
+                            const SizedBox(
+                              height: 25,
+                            ),
+                            const SignInAppleWidget(),
                           ],
                   );
                 },

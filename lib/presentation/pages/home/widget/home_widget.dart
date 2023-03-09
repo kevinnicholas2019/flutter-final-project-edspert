@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/unsafe_color_widget.dart';
 import 'package:final_project_edspert/presentation/pages/mapel/widgets/mapel_button.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
@@ -6,6 +7,7 @@ import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeWidget extends UnsafeColorWidget {
   const HomeWidget({super.key}) : super(unsafeColor: ColorsApp.backgroundPage);
@@ -19,44 +21,47 @@ class HomeWidget extends UnsafeColorWidget {
         children: [
           SizedBox(
             height: 35,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        'Hai, Altop',
-                        style: TextStyleApp.largeTextDefault.copyWith(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 12,
-                        ),
+            child: BlocBuilder<ProfilePageBloc, ProfilePageState>(
+              builder: (context, state) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(
+                            'Hai, ${state.user.namaLengkap.value}',
+                            style: TextStyleApp.largeTextDefault.copyWith(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 12,
+                            ),
+                          ),
+                          Text(
+                            'Selamat Datang',
+                            style: TextStyleApp.largeTextDefault.copyWith(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
                       ),
-                      Text(
-                        'Selamat Datang',
-                        style: TextStyleApp.largeTextDefault.copyWith(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                ClipOval(
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        "https://pps.whatsapp.net/v/t61.24694-24/321243037_1518504015337246_465266283058870689_n.jpg?stp=dst-jpg_s96x96&ccb=11-4&oh=01_AdR1Xz4VZiPJzWU56RttXR94AbGfl26yo8q-CQVorc2Xng&oe=640DCC7C",
-                    width: 35,
-                    height: 35,
-                    placeholder: (_, __) => Container(
-                      width: 35,
-                      height: 35,
-                      color: ColorsApp.placeholder,
                     ),
-                  ),
-                ),
-              ],
+                    ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl: "${state.firebaseCredential.photoURL}",
+                        width: 35,
+                        height: 35,
+                        placeholder: (_, __) => Container(
+                          width: 35,
+                          height: 35,
+                          color: ColorsApp.placeholder,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ),
           const SizedBox(

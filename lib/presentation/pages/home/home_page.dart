@@ -1,3 +1,4 @@
+import 'package:final_project_edspert/application/banners/banner_bloc.dart';
 import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/pages/home/widget/bottom_navigation_bar_app.dart';
 import 'package:final_project_edspert/presentation/pages/home/widget/home_widget.dart';
@@ -39,6 +40,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     _pageNow = _homePage;
     BlocProvider.of<ProfilePageBloc>(context).add(ProfilePageEventOnRefresh());
+    BlocProvider.of<BannerBloc>(context).add(OnGetBanners());
     super.initState();
   }
 

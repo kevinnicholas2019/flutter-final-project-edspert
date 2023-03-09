@@ -188,6 +188,15 @@ class HomeWidget extends UnsafeColorWidget {
                 height: 150,
                 child: BlocBuilder<BannerBloc, BannerState>(
                   builder: (context, state) {
+                    if (state is BannerOnFail) {
+                      return Center(
+                        child: TextButton(
+                          onPressed: () => BlocProvider.of<BannerBloc>(context)
+                              .add(OnGetBanners()),
+                          child: const Text('Refresh'),
+                        ),
+                      );
+                    }
                     if (state is BannerOnSuccess) {
                       return ListView(
                         shrinkWrap: true,

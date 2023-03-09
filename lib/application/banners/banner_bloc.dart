@@ -13,8 +13,9 @@ class BannerBloc extends Bloc<BannerEvent, BannerState> {
     on<OnGetBanners>((event, emit) async {
       emit(BannerOnLoad());
       try {
-        emit(BannerOnSuccess(banners: await _repo.getBanners()));
-      } on Error catch (err) {
+        final banners = await _repo.getBanners();
+        emit(BannerOnSuccess(banners: banners));
+      } catch (err) {
         emit(BannerOnFail(err.toString()));
       }
     });

@@ -163,6 +163,7 @@ class HomeWidget extends UnsafeColorWidget {
                   children: [
                     for (var course in state.courses.take(3)) ...[
                       MapelButton(
+                        courseId: course.id.value,
                         namaMapel: course.courseName.value,
                         totalPaketLatihanSoal: course.jumlahMateri.value,
                         imageUrl: course.urlCover.value,

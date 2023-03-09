@@ -19,12 +19,14 @@ class PaketSoalButton extends StatelessWidget {
   final String namaPaketSoal;
   final int totalSoal;
   final Function()? onPressed;
+  final String icon;
 
   const PaketSoalButton({
     super.key,
     required this.namaPaketSoal,
     this.totalSoal = 0,
     this.onPressed,
+    required this.icon,
   });
 
   @override
@@ -69,11 +71,16 @@ class PaketSoalButton extends StatelessWidget {
                 borderRadius: BorderApp.radius1,
               ),
               child: CachedNetworkImage(
-                imageUrl:
-                    "https://api.widyaedu.com/assets/uploads/icon/5a6d6c735a56396a62335a6c636a45324e4441794d6a677a4e44633d_file_cover1640228347.png",
+                imageUrl: icon,
                 fit: BoxFit.fitHeight,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    CircularProgressIndicator(value: downloadProgress.progress),
+                    SizedBox(
+                  width: 36,
+                  height: 36,
+                  child: CircularProgressIndicator(
+                    value: downloadProgress.progress,
+                  ),
+                ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),

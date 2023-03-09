@@ -36,6 +36,7 @@ class PilihMapelPage extends StatelessWidget {
                   children: [
                     for (var course in state.courses)
                       MapelButton(
+                        courseId: course.id.value,
                         namaMapel: course.courseName.value,
                         totalPaketLatihanSoal: course.jumlahMateri.value,
                         imageUrl: course.urlCover.value,

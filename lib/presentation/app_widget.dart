@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:final_project_edspert/application/banners/banner_bloc.dart';
 import 'package:final_project_edspert/application/courses/course_bloc.dart';
+import 'package:final_project_edspert/application/exercises/exercise_bloc.dart';
 import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/theme_app.dart';
@@ -17,6 +18,7 @@ class AppWidget extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => CourseBloc()),
+        BlocProvider(create: (context) => ExerciseBloc()),
         BlocProvider(create: (context) => BannerBloc()),
         BlocProvider(create: (context) => ProfilePageBloc()),
       ],

@@ -27,9 +27,11 @@ class HiveUserRepo implements IUserRepository {
 
   @override
   Future<void> clear() async {
-    final userBox = await Hive.openBox<Map<String, dynamic>>('user');
-    await userBox.clear();
-    await userBox.close();
+    for (var boxPath in ['user', 'banner', 'course', 'exercise']) {
+      final box = await Hive.openBox<Map<String, dynamic>>(boxPath);
+      await box.clear();
+      await box.close();
+    }
   }
 
   @override

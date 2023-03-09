@@ -68,24 +68,21 @@ class RouterApp {
         );
       case RouterApp.editProfilePage:
         return MaterialPageRoute<dynamic>(
-          builder: (context) => BlocProvider.value(
-            value: BlocProvider.of<ProfilePageBloc>(context),
-            child: const EditProfilePage(),
-          ),
+          builder: (context) => const EditProfilePage(),
           settings: settings,
         );
       case RouterApp.chooseSubjectsPage:
         return MaterialPageRoute<dynamic>(
-          builder: (context) => BlocProvider.value(
-            value: BlocProvider.of<CourseBloc>(context),
-            child: const PilihMapelPage(),
-          ),
+          builder: (context) => const PilihMapelPage(),
           settings: settings,
         );
       case RouterApp.chooseQuestionPackagePage:
-        final String namaPelajaran = settings.arguments as String;
+        final args = settings.arguments as Map<String, dynamic>;
+        final String courseId = args["courseId"] as String;
+        final String namaPelajaran = args["namaPelajaran"] as String;
         return MaterialPageRoute<dynamic>(
           builder: (_) => PilihPaketSoalPage(
+            courseId: courseId,
             namaPelajaran: namaPelajaran,
           ),
           settings: settings,

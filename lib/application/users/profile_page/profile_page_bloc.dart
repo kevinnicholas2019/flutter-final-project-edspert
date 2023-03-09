@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:final_project_edspert/domain/auth/i_auth_facade.dart';
 import 'package:final_project_edspert/domain/users/user.dart';
-import 'package:final_project_edspert/domain/users/value_objects.dart';
 import 'package:meta/meta.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 

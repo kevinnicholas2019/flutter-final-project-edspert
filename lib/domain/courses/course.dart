@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:final_project_edspert/domain/core/entity.dart';
 import 'package:final_project_edspert/domain/core/value_objects.dart';
 import 'package:final_project_edspert/domain/courses/value_object.dart';
 
-class Course implements IEntity {
+class Course extends Equatable implements IEntity {
   @override
   final UniqueId id;
   final MajorName majorName;
@@ -23,4 +24,16 @@ class Course implements IEntity {
     required this.jumlahDone,
     required this.progress,
   });
+
+  @override
+  List<Object?> get props => [
+        id,
+        majorName,
+        courseCategory,
+        courseName,
+        urlCover,
+        jumlahMateri,
+        jumlahDone,
+        progress,
+      ];
 }

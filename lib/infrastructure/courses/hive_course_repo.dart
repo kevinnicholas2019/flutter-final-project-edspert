@@ -9,9 +9,12 @@ class HiveCourseRepo implements ICourseRepository {
     final courseBox = await Hive.openBox<Map>('course');
 
     var courses = <Course>[];
-    for (var course in courseBox.values) {
-      courses
-          .add(CourseDto.fromJson(course.cast<String, dynamic>()).toDomain());
+    for (var courseKey in courseBox.keys) {
+      final course = courseBox.get(courseKey);
+      if (course != null) {
+        courses
+            .add(CourseDto.fromJson(course.cast<String, dynamic>()).toDomain());
+      }
     }
 
     await courseBox.close();
@@ -25,11 +28,14 @@ class HiveCourseRepo implements ICourseRepository {
 
     var courses = <Course>[];
     var index = 0;
-    for (var course in courseBox.values) {
-      courses
-          .add(CourseDto.fromJson(course.cast<String, dynamic>()).toDomain());
-      index++;
-      if (index == limit) break;
+    for (var courseKey in courseBox.keys) {
+      final course = courseBox.get(courseKey);
+      if (course != null) {
+        courses
+            .add(CourseDto.fromJson(course.cast<String, dynamic>()).toDomain());
+        index++;
+        if (index == limit) break;
+      }
     }
 
     await courseBox.close();
@@ -38,12 +44,20 @@ class HiveCourseRepo implements ICourseRepository {
   }
 
   Future<void> saveCourses(List<Course> courses) async {
-    final courseBox = await Hive.openBox<Map<String, dynamic>>('course');
-    if (courseBox.isNotEmpty) {
-      await courseBox.clear();
-    }
+    final courseBox = await Hive.openBox<Map>('course');
     for (var course in courses) {
-      await courseBox.add(CourseDto.fromDomain(course).toJson());
+      final id = course.id.value.toString();
+      final courseFromBox = courseBox.get(id);
+      if (courseFromBox == null) {
+        await courseBox.put(id, CourseDto.fromDomain(course).toJson());
+      } else {
+        var oldCourse =
+            CourseDto.fromJson(courseFromBox.cast<String, dynamic>())
+                .toDomain();
+        if (course != oldCourse) {
+          await courseBox.put(id, CourseDto.fromDomain(course).toJson());
+        }
+      }
     }
     await courseBox.close();
   }

@@ -7,15 +7,22 @@ import 'package:flutter/material.dart';
 
 class MapelButton extends StatelessWidget {
   static Function() _defaultOnPressed(
-          BuildContext context, String namaPelajaran) =>
+          BuildContext context, int? courseId, String namaPelajaran) =>
       () {
+        if (courseId == null) {
+          return;
+        }
         Navigator.pushNamed(
           context,
           RouterApp.chooseQuestionPackagePage,
-          arguments: namaPelajaran,
+          arguments: {
+            "courseId": courseId.toString(),
+            "namaPelajaran": namaPelajaran,
+          },
         );
       };
 
+  final int? courseId;
   final String namaMapel;
   final int totalPaketLatihanSoal;
   final double progressIndicatorValue;
@@ -24,11 +31,12 @@ class MapelButton extends StatelessWidget {
 
   const MapelButton({
     super.key,
+    this.courseId,
     required this.namaMapel,
     this.totalPaketLatihanSoal = 0,
     this.progressIndicatorValue = 0.0,
-    this.onPressed,
     required this.imageUrl,
+    this.onPressed,
   });
 
   @override
@@ -48,9 +56,10 @@ class MapelButton extends StatelessWidget {
       ),
       height: 96,
       child: TextButton(
-        onPressed: totalPaketLatihanSoal > 0
-            ? onPressed ?? _defaultOnPressed(context, namaMapel)
-            : null,
+        // onPressed: totalPaketLatihanSoal > 0
+        //     ? onPressed ?? _defaultOnPressed(context, namaMapel)
+        //     : null,
+        onPressed: onPressed ?? _defaultOnPressed(context, courseId, namaMapel),
         style: ButtonStyle(
           padding: const MaterialStatePropertyAll(EdgeInsets.all(12.0)),
           shape: MaterialStatePropertyAll(

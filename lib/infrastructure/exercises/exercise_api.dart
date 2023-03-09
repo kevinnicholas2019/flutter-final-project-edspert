@@ -1,0 +1,28 @@
+import 'package:dio/dio.dart';
+import 'package:final_project_edspert/domain/exercises/course.dart';
+import 'package:final_project_edspert/domain/exercises/i_exercise_repository.dart';
+import 'package:final_project_edspert/infrastructure/core/api.dart';
+import 'package:final_project_edspert/infrastructure/exercises/exercise_dto.dart';
+
+class ExerciseApi extends Api implements IExerciseRepository {
+  @override
+  String get apiUrl => "${super.apiUrl}exercise/data_exercise";
+
+  @override
+  Future<List<Exercise>> getExercises(String courseId) async {
+    final Response<Map> response = await dio
+        .get("$apiUrl?course_id=$courseId&user_email=testerngbayu@gmail.com");
+    final data = response.data;
+
+    if (data == null) {
+      throw Error();
+    }
+    final exercises = <Exercise>[];
+
+    for (var exerciseJson in data["data"]) {
+      exercises.add(ExerciseDto.fromJson(exerciseJson).toDomain());
+    }
+
+    return exercises;
+  }
+}

@@ -23,6 +23,11 @@ class PilihPaketSoalPage extends StatelessWidget {
   Widget build(BuildContext context) {
     BlocProvider.of<ExerciseBloc>(context).add(OnGetExercises(courseId));
 
+    final size = MediaQuery.of(context).size;
+    final width = size.width;
+    final height = size.width;
+    final isPotrait = height > width;
+
     return Scaffold(
       appBar: AppBarDefault.make(
         title: namaPelajaran,
@@ -53,17 +58,20 @@ class PilihPaketSoalPage extends StatelessWidget {
                       child: state.exercises.isNotEmpty
                           ? GridView.count(
                               childAspectRatio: math.max(
-                                (153 - 12 * 2) / (96 + 12 * 2),
+                                isPotrait
+                                    ? ((153 - 12 * 2) / (96 + 12 * 2))
+                                    : ((96 - 12 * 2) / (153 + 12 * 2)),
                                 1.0,
                               ),
                               shrinkWrap: true,
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                              padding: const EdgeInsets.only(
+                                top: 0,
+                                left: 20,
+                                right: 20,
+                                bottom: 20,
+                              ),
                               crossAxisCount: math.max(
-                                  (MediaQuery.of(context).size.width ~/
-                                          (153 - 12 * 2))
-                                      .toInt(),
-                                  1),
+                                  (size.width ~/ (153 - 12 * 2)).toInt(), 1),
                               crossAxisSpacing: 14.0,
                               mainAxisSpacing: 12.0,
                               children: [
@@ -82,9 +90,7 @@ class PilihPaketSoalPage extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   height: math.max(
-                                    MediaQuery.of(context).size.height -
-                                        80 -
-                                        30,
+                                    size.height - 80 - 30,
                                     320,
                                   ),
                                   child: Column(

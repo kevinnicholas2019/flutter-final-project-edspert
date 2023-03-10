@@ -156,14 +156,6 @@ class _KerjakanSoalPageState extends State<KerjakanSoalPage> {
                           ),
                         ),
                         const SizedBox(height: 7),
-                        if (_exercises[_currentSoal - 1]
-                                ["question_title_img"] !=
-                            null) ...[
-                          CachedNetworkImage(
-                              imageUrl: _exercises[_currentSoal - 1]
-                                  ["question_title_img"]),
-                          const SizedBox(height: 10),
-                        ],
                         if (_exercises[_currentSoal - 1]["question_title"] !=
                             "") ...[
                           Html(
@@ -177,6 +169,14 @@ class _KerjakanSoalPageState extends State<KerjakanSoalPage> {
                                 as String,
                             style: HtmlStyleApp.soalStyle,
                           ),
+                        ],
+                        if (_exercises[_currentSoal - 1]
+                                ["question_title_img"] !=
+                            null) ...[
+                          const SizedBox(height: 10),
+                          CachedNetworkImage(
+                              imageUrl: _exercises[_currentSoal - 1]
+                                  ["question_title_img"]),
                         ],
                         const SizedBox(height: 25.5),
                         for (var i = 65,
@@ -255,9 +255,8 @@ class _KerjakanSoalPageState extends State<KerjakanSoalPage> {
                                 const SizedBox(width: 7),
                                 Flexible(
                                   child: Html(
-                                    data: _exercises[_currentSoal - 1][
-                                            "option_${String.fromCharCode(i).toLowerCase()}"]
-                                        as String,
+                                    data:
+                                        "${_exercises[_currentSoal - 1]["option_${String.fromCharCode(i).toLowerCase()}"] as String}${_exercises[_currentSoal - 1]["option_${String.fromCharCode(i).toLowerCase()}_img"] != null ? "<img src='${_exercises[_currentSoal - 1]["option_${String.fromCharCode(i).toLowerCase()}_img"]}' />" : ""}",
                                     style: String.fromCharCode(i) == choosed
                                         ? HtmlStyleApp.jawabanChoosedStyle
                                         : HtmlStyleApp.jawabanStyle,

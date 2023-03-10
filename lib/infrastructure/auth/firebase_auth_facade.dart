@@ -9,8 +9,6 @@ import 'package:google_sign_in/google_sign_in.dart';
 class FirebaseAuthFacade implements IAuthFacade {
   final auth.FirebaseAuth _firebaseAuth = auth.FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn(
-    clientId:
-        '516417498596-vg98v3t0v1n71i239j0nrqhhbjqurgb9.apps.googleusercontent.com',
     scopes: <String>[
       'email',
       'https://www.googleapis.com/auth/contacts.readonly',

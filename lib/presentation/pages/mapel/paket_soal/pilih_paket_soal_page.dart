@@ -58,10 +58,8 @@ class PilihPaketSoalPage extends StatelessWidget {
                       child: state.exercises.isNotEmpty
                           ? GridView.count(
                               childAspectRatio: math.max(
-                                isPotrait
-                                    ? ((153 - 12 * 2) / (96 + 12 * 2))
-                                    : ((96 - 12 * 2) / (153 + 12 * 2)),
-                                1.0,
+                                isPotrait ? 153 / 96 : 96 / 153,
+                                0.75,
                               ),
                               shrinkWrap: true,
                               padding: const EdgeInsets.only(
@@ -71,7 +69,7 @@ class PilihPaketSoalPage extends StatelessWidget {
                                 bottom: 20,
                               ),
                               crossAxisCount: math.max(
-                                  (size.width ~/ (153 - 12 * 2)).toInt(), 1),
+                                  (size.width ~/ (153 + 12 * 2)).toInt(), 1),
                               crossAxisSpacing: 14.0,
                               mainAxisSpacing: 12.0,
                               children: [

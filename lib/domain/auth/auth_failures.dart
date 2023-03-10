@@ -7,6 +7,13 @@ class AuthFailCancelled implements AuthFail {
   String get failedValue => "Cancelled by user";
 }
 
+class AuthFailCustom implements AuthFail {
+  @override
+  final String failedValue;
+
+  AuthFailCustom(this.failedValue);
+}
+
 class AuthFailServerError implements AuthFail {
   @override
   String get failedValue => "Server Error";

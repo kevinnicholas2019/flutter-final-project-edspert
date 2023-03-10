@@ -47,11 +47,16 @@ class FirebaseAuthFacade implements IAuthFacade {
   @override
   Future<AuthFail?> signInWithGoogle() async {
     try {
+      Object? err;
       final googleUser =
           await _googleSignIn.signIn().onError((error, stackTrace) {
+        err = error;
         return null;
       });
 
+      if (err != null) {
+        return AuthFailCustom(err.toString());
+      }
       if (googleUser == null) {
         return AuthFailCancelled();
       }

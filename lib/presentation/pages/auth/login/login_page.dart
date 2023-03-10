@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -67,7 +68,7 @@ class LoginPage extends StatelessWidget {
                 bloc: bloc,
                 listener: (context, state) {
                   if (state is SignInError) {
-                    // TODO: sign in error pop up
+                    EasyLoading.showError(state.errorMsg);
                   } else if (state is SignInSuccess) {
                     Navigator.pushNamed(
                       context,

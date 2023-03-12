@@ -27,7 +27,6 @@ class RouterApp {
   static const navigator = Navigator();
 
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    // final args = settings.arguments;
     switch (settings.name) {
       case RouterApp.splashScreenPage:
         return MaterialPageRoute<dynamic>(
@@ -85,14 +84,8 @@ class RouterApp {
           settings: settings,
         );
       case RouterApp.kerjakanSoalPage:
-        // final List<String> args = settings.arguments as List<String>;
-        // final String namaPelajaran = args[0];
-        // final String namaPaketSoal = args[1];
-        // final String exerciseId = args[2];
         return MaterialPageRoute<dynamic>(
           builder: (_) => KerjakanSoalPage(
-            namaPelajaran: "",
-            namaPaketSoal: "",
             exerciseId: settings.arguments as String,
           ),
           settings: settings,

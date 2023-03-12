@@ -115,9 +115,9 @@ class ProfileAppBarWidget extends StatelessWidget {
                       Align(
                         alignment: const Alignment(0, -0.5),
                         child: ClipOval(
-                          child: state.firebaseCredential.photoURL != null
+                          child: state.firebaseCredential?.photoURL != null
                               ? CachedNetworkImage(
-                                  imageUrl: state.firebaseCredential.photoURL!,
+                                  imageUrl: state.firebaseCredential!.photoURL!,
                                   width: 52,
                                   height: 52,
                                   placeholder: (_, __) => Container(

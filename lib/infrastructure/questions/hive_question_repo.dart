@@ -1,6 +1,4 @@
 import 'package:final_project_edspert/domain/questions/i_question_repository.dart';
-import 'package:final_project_edspert/domain/questions/question.dart';
-import 'package:final_project_edspert/infrastructure/questions/question_dto.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class HiveQuestionRepo implements IQuestionRepository {

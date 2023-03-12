@@ -51,16 +51,24 @@ class HomeWidget extends UnsafeColorWidget {
                       ),
                     ),
                     ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl: "${state.firebaseCredential.photoURL}",
-                        width: 35,
-                        height: 35,
-                        placeholder: (_, __) => Container(
-                          width: 35,
-                          height: 35,
-                          color: ColorsApp.placeholder,
-                        ),
-                      ),
+                      child: state.firebaseCredential?.photoURL != null
+                          ? CachedNetworkImage(
+                              imageUrl: state.firebaseCredential!.photoURL!,
+                              width: 35,
+                              height: 35,
+                              placeholder: (_, __) => Container(
+                                width: 35,
+                                height: 35,
+                                color: ColorsApp.placeholder,
+                              ),
+                            )
+                          : Image.asset(
+                              state.user.jenisKelamin.value == "Pria"
+                                  ? "assets/icons/male_profile.png"
+                                  : "assets/icons/female_profile.png",
+                              width: 35,
+                              height: 35,
+                            ),
                     ),
                   ],
                 );

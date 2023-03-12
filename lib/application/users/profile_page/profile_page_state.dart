@@ -3,7 +3,7 @@ part of 'profile_page_bloc.dart';
 @immutable
 abstract class ProfilePageState {
   final User user;
-  final auth.User firebaseCredential;
+  final auth.User? firebaseCredential;
   final bool isSubmitLogout;
 
   const ProfilePageState({

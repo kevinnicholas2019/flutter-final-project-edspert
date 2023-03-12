@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:final_project_edspert/domain/questions/i_question_repository.dart';
-import 'package:final_project_edspert/domain/questions/question.dart';
 import 'package:meta/meta.dart';
 
 part 'question_event.dart';

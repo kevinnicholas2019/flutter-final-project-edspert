@@ -13,14 +13,10 @@ import 'package:url_launcher/url_launcher.dart';
 class KerjakanSoalPage extends StatefulWidget {
   static List<dynamic> exercises = [];
 
-  final String namaPelajaran;
-  final String namaPaketSoal;
   final String exerciseId;
 
   const KerjakanSoalPage({
     super.key,
-    required this.namaPelajaran,
-    required this.namaPaketSoal,
     required this.exerciseId,
   });
 

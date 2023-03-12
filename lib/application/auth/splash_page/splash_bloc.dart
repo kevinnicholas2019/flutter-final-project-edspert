@@ -1,10 +1,9 @@
-// ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:final_project_edspert/domain/auth/i_auth_facade.dart';
 import 'package:final_project_edspert/domain/users/i_user_repository.dart';
 import 'package:final_project_edspert/domain/users/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
-// ignore: depend_on_referenced_packages
+
 import 'package:meta/meta.dart';
 
 part 'splash_event.dart';

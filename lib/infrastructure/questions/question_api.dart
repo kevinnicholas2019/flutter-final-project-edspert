@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:final_project_edspert/domain/questions/i_question_repository.dart';
-import 'package:final_project_edspert/domain/questions/question.dart';
 import 'package:final_project_edspert/infrastructure/core/api.dart';
-import 'package:final_project_edspert/infrastructure/questions/question_dto.dart';
 
 class QuestionApi extends Api implements IQuestionRepository {
   @override

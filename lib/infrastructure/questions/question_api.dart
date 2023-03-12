@@ -12,21 +12,19 @@ class QuestionApi extends Api implements IQuestionRepository {
       "exercise_id": exerciseId,
       "user_email": "testerngbayu@gmail.com",
     });
+
     final Response<Map> response = await dio.post(
       apiUrl,
       data: formData,
     );
+
     final data = response.data;
 
     if (data == null) {
       throw Error();
     }
-    // final questions = <Question>[];
 
     if (data["status"] == 1) {
-      // for (var questionJson in data["data"]) {
-      //   questions.add(QuestionDto.fromJson(questionJson).toDomain());
-      // }
       return data["data"];
     }
 

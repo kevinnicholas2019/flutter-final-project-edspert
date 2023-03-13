@@ -50,6 +50,7 @@ dependencies:
   google_fonts: ^4.0.3
   bloc: ^8.1.1
   meta: ^1.8.0
+  dio_http2_adapter: ^2.1.0
 
 dev_dependencies:
   flutter_test:

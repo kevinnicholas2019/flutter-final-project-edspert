@@ -4,7 +4,7 @@ import 'package:final_project_edspert/infrastructure/core/api.dart';
 
 class QuestionApi extends Api implements IQuestionRepository {
   @override
-  String get apiUrl => "${super.apiUrl}exercise/kerjakan";
+  String get apiForwardUrl => "/exercise/kerjakan";
 
   @override
   Future<List<dynamic>> getQuestions(String exerciseId) async {
@@ -14,7 +14,7 @@ class QuestionApi extends Api implements IQuestionRepository {
     });
 
     final Response<Map> response = await dio.post(
-      apiUrl,
+      apiForwardUrl,
       data: formData,
     );
 

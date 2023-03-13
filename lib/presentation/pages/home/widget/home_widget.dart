@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_project_edspert/application/banners/banner_bloc.dart';
 import 'package:final_project_edspert/application/courses/course_bloc.dart';
 import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
+import 'package:final_project_edspert/presentation/utils/utils_app.dart';
 import 'package:final_project_edspert/presentation/utils/widgets/unsafe_color_widget.dart';
 import 'package:final_project_edspert/presentation/pages/mapel/widgets/mapel_button.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
@@ -63,9 +64,9 @@ class HomeWidget extends UnsafeColorWidget {
                               ),
                             )
                           : Image.asset(
-                              state.user.jenisKelamin.value == "Pria"
-                                  ? "assets/icons/male_profile.png"
-                                  : "assets/icons/female_profile.png",
+                              UtilsApp.gendersAsset[
+                                      state.user.jenisKelamin.value] ??
+                                  "assets/icons/kevin_nicholas_profile.jpg",
                               width: 35,
                               height: 35,
                             ),

@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:final_project_edspert/application/users/profile_page/profile_page_bloc.dart';
 import 'package:final_project_edspert/presentation/router/router_app.dart';
 import 'package:final_project_edspert/presentation/utils/string_extension.dart';
+import 'package:final_project_edspert/presentation/utils/utils_app.dart';
 import 'package:flutter/material.dart';
 
 import 'package:final_project_edspert/presentation/utils/border_app.dart';
@@ -127,11 +128,12 @@ class ProfileAppBarWidget extends StatelessWidget {
                                   ),
                                 )
                               : Image.asset(
-                                  state.user.jenisKelamin.value == "Pria"
-                                      ? "assets/icons/male_profile.png"
-                                      : "assets/icons/female_profile.png",
+                                  UtilsApp.gendersAsset[
+                                          state.user.jenisKelamin.value] ??
+                                      "assets/icons/kevin_nicholas_profile.jpg",
                                   width: 52,
                                   height: 52,
+                                  fit: BoxFit.cover,
                                 ),
                         ),
                       ),

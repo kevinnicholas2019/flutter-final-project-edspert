@@ -21,4 +21,8 @@ class UtilsApp {
     'Laki-laki',
     'Perempuan',
   ];
+  static const Map gendersAsset = {
+    'Laki-laki': "assets/icons/male_profile.png",
+    'Perempuan': "assets/icons/male_profile.png",
+  };
 }

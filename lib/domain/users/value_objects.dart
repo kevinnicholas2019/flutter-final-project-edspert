@@ -3,11 +3,11 @@ import 'package:final_project_edspert/domain/core/value_objects.dart';
 import 'package:final_project_edspert/domain/core/value_validators.dart';
 import 'package:final_project_edspert/domain/users/value_validators.dart';
 
-class EmailAddress implements ValueObject<String> {
+class EmailAddress extends ValueObject<String> {
   @override
   final String value;
 
-  const EmailAddress._(this.value);
+  EmailAddress._(this.value);
 
   factory EmailAddress(String value) => EmailAddress._(value);
 
@@ -18,11 +18,11 @@ class EmailAddress implements ValueObject<String> {
       ].validate(value);
 }
 
-class NamaLengkap implements ValueObject<String> {
+class NamaLengkap extends ValueObject<String> {
   @override
   final String value;
 
-  const NamaLengkap._(this.value);
+  NamaLengkap._(this.value);
 
   factory NamaLengkap(String value) => NamaLengkap._(value);
 
@@ -33,11 +33,11 @@ class NamaLengkap implements ValueObject<String> {
       ].validate(value);
 }
 
-class JenisKelamin implements ValueObject<String> {
+class JenisKelamin extends ValueObject<String> {
   @override
   final String value;
 
-  const JenisKelamin._({required this.value});
+  JenisKelamin._({required this.value});
 
   factory JenisKelamin(String value) => JenisKelamin._(value: value);
 
@@ -47,11 +47,11 @@ class JenisKelamin implements ValueObject<String> {
       ].validate(value);
 }
 
-class Kelas implements ValueObject<String> {
+class Kelas extends ValueObject<String> {
   @override
   final String value;
 
-  const Kelas._({required this.value});
+  Kelas._({required this.value});
 
   factory Kelas(String value) => Kelas._(value: value);
 
@@ -61,11 +61,11 @@ class Kelas implements ValueObject<String> {
       ].validate(value);
 }
 
-class NamaSekolah implements ValueObject<String> {
+class NamaSekolah extends ValueObject<String> {
   @override
   final String value;
 
-  const NamaSekolah._({required this.value});
+  NamaSekolah._({required this.value});
 
   factory NamaSekolah(String value) => NamaSekolah._(value: value);
 

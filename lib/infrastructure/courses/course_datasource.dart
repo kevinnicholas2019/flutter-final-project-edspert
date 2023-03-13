@@ -26,7 +26,7 @@ class CourseDataSource implements ICourseRepository {
   @override
   Future<List<Course>> getCoursesByLimit(int limit) async {
     try {
-      final courses = await _api.getCourses();
+      final courses = await _api.getCoursesByLimit(limit);
       if (courses.isNotEmpty) {
         await _repo.saveCourses(courses);
       }

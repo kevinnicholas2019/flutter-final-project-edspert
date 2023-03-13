@@ -1,12 +1,16 @@
+import 'package:equatable/equatable.dart';
 import 'package:final_project_edspert/domain/core/value_failures.dart';
 import 'package:final_project_edspert/domain/core/value_validators.dart';
 
-abstract class ValueObject<T> {
+abstract class ValueObject<T> extends Equatable {
   T get value;
   List<ValueFailures<String>> failures();
+
+  @override
+  List<Object?> get props => [value];
 }
 
-class UniqueId implements ValueObject<int?> {
+class UniqueId extends ValueObject<int?> {
   @override
   final int? value;
 

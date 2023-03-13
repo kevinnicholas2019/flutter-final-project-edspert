@@ -1,0 +1,5 @@
+-pilih pelajaran ada ipa dan ips
+-bisa favorite mapel
+-user api diselaraskan
+-banner lazy loading, kalo user scroll mentok
+-mementingkan caching daripada online

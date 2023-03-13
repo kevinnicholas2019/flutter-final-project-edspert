@@ -6,11 +6,11 @@ import 'package:final_project_edspert/infrastructure/core/api.dart';
 
 class BannerApi extends Api implements IBannerRepository {
   @override
-  String get apiUrl => "${super.apiUrl}event/list";
+  String get apiForwardUrl => "/event/list";
 
   @override
   Future<List<Banner>> getBanners() async {
-    final Response<Map> response = await dio.get("$apiUrl?limit5");
+    final Response<Map> response = await dio.get("$apiForwardUrl?limit5");
     final data = response.data;
     if (data == null) {
       throw Error();

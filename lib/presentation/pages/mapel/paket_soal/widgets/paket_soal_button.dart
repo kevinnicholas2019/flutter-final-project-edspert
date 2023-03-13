@@ -6,17 +6,30 @@ import 'package:final_project_edspert/presentation/utils/border_app.dart';
 import 'package:final_project_edspert/presentation/utils/colors_app.dart';
 import 'package:final_project_edspert/presentation/utils/text_style_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PaketSoalButton extends StatelessWidget {
-  static bool isOnPressed = false;
+  static bool _isOnPressed = false;
 
   static Function() _defaultOnPressed(
           BuildContext context, String exerciseId) =>
       () async {
-        if (!isOnPressed) {
-          isOnPressed = true;
-          KerjakanSoalPage.exercises =
-              await QuestionApi().getQuestions(exerciseId);
+        if (!_isOnPressed) {
+          _isOnPressed = true;
+          try {
+            EasyLoading.show(status: "Tunggu sebentar...");
+            KerjakanSoalPage.exercises =
+                await QuestionApi().getQuestions(exerciseId);
+            if (KerjakanSoalPage.exercises.isEmpty) {
+              EasyLoading.showError('Soal Latihan Kosong !');
+              throw Error();
+            }
+          } catch (_) {
+            _isOnPressed = false;
+            EasyLoading.dismiss();
+            return;
+          }
+          EasyLoading.dismiss();
           // ignore: use_build_context_synchronously
           Navigator.pushNamed(
             context,
@@ -27,7 +40,7 @@ class PaketSoalButton extends StatelessWidget {
             //   "exerciseId": exerciseId,
             // },
           );
-          isOnPressed = false;
+          _isOnPressed = false;
         }
       };
 

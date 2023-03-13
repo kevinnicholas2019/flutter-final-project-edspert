@@ -2,11 +2,11 @@ import 'package:final_project_edspert/domain/core/value_failures.dart';
 import 'package:final_project_edspert/domain/core/value_objects.dart';
 import 'package:final_project_edspert/domain/core/value_validators.dart';
 
-class ExerciseTitle implements ValueObject<String> {
+class ExerciseTitle extends ValueObject<String> {
   @override
   final String value;
 
-  const ExerciseTitle._(this.value);
+  ExerciseTitle._(this.value);
 
   factory ExerciseTitle(String value) => ExerciseTitle._(value);
 
@@ -15,11 +15,11 @@ class ExerciseTitle implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class AccessType implements ValueObject<String> {
+class AccessType extends ValueObject<String> {
   @override
   final String value;
 
-  const AccessType._(this.value);
+  AccessType._(this.value);
 
   factory AccessType(String value) => AccessType._(value);
 
@@ -28,11 +28,11 @@ class AccessType implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class Icon implements ValueObject<String> {
+class Icon extends ValueObject<String> {
   @override
   final String value;
 
-  const Icon._(this.value);
+  Icon._(this.value);
 
   factory Icon(String value) => Icon._(value);
 
@@ -41,11 +41,11 @@ class Icon implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class ExerciseUserStatus implements ValueObject<String> {
+class ExerciseUserStatus extends ValueObject<String> {
   @override
   final String value;
 
-  const ExerciseUserStatus._(this.value);
+  ExerciseUserStatus._(this.value);
 
   factory ExerciseUserStatus(String value) => ExerciseUserStatus._(value);
 
@@ -54,11 +54,11 @@ class ExerciseUserStatus implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class JumlahSoal implements ValueObject<int> {
+class JumlahSoal extends ValueObject<int> {
   @override
   final int value;
 
-  const JumlahSoal._({required this.value});
+  JumlahSoal._({required this.value});
 
   factory JumlahSoal(int value) => JumlahSoal._(value: value);
 
@@ -67,11 +67,11 @@ class JumlahSoal implements ValueObject<int> {
       <ValueValidators<String, int>>[].validate(value);
 }
 
-class JumlahDone implements ValueObject<int> {
+class JumlahDone extends ValueObject<int> {
   @override
   final int value;
 
-  const JumlahDone._({required this.value});
+  JumlahDone._({required this.value});
 
   factory JumlahDone(int value) => JumlahDone._(value: value);
 

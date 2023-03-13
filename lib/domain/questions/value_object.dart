@@ -2,11 +2,11 @@ import 'package:final_project_edspert/domain/core/value_failures.dart';
 import 'package:final_project_edspert/domain/core/value_objects.dart';
 import 'package:final_project_edspert/domain/core/value_validators.dart';
 
-class StudentAnswer implements ValueObject<String> {
+class StudentAnswer extends ValueObject<String> {
   @override
   final String value;
 
-  const StudentAnswer._(this.value);
+  StudentAnswer._(this.value);
 
   factory StudentAnswer(String value) => StudentAnswer._(value);
 
@@ -15,11 +15,11 @@ class StudentAnswer implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class OptionImg implements ValueObject<String> {
+class OptionImg extends ValueObject<String> {
   @override
   final String value;
 
-  const OptionImg._(this.value);
+  OptionImg._(this.value);
 
   factory OptionImg(String value) => OptionImg._(value);
 
@@ -28,11 +28,11 @@ class OptionImg implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class Option implements ValueObject<String> {
+class Option extends ValueObject<String> {
   @override
   final String value;
 
-  const Option._(this.value);
+  Option._(this.value);
 
   factory Option(String value) => Option._(value);
 
@@ -41,11 +41,11 @@ class Option implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class QuestionTitleImg implements ValueObject<String> {
+class QuestionTitleImg extends ValueObject<String> {
   @override
   final String value;
 
-  const QuestionTitleImg._(this.value);
+  QuestionTitleImg._(this.value);
 
   factory QuestionTitleImg(String value) => QuestionTitleImg._(value);
 
@@ -54,11 +54,11 @@ class QuestionTitleImg implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class QuestionTitle implements ValueObject<String> {
+class QuestionTitle extends ValueObject<String> {
   @override
   final String value;
 
-  const QuestionTitle._(this.value);
+  QuestionTitle._(this.value);
 
   factory QuestionTitle(String value) => QuestionTitle._(value);
 
@@ -67,11 +67,11 @@ class QuestionTitle implements ValueObject<String> {
       <ValueValidators<String, String>>[].validate(value);
 }
 
-class ExerciseIdFk implements ValueObject<String> {
+class ExerciseIdFk extends ValueObject<String> {
   @override
   final String value;
 
-  const ExerciseIdFk._(this.value);
+  ExerciseIdFk._(this.value);
 
   factory ExerciseIdFk(String value) => ExerciseIdFk._(value);
 

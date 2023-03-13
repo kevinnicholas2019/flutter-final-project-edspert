@@ -6,51 +6,37 @@ import 'package:hive_flutter/adapters.dart';
 class HiveExerciseRepo implements IExerciseRepository {
   @override
   Future<List<Exercise>> getExercises(String courseId) async {
-    final exerciseBox = await Hive.openBox<Map>('exercise');
+    final exerciseBox = await Hive.openBox<List>('exercise');
     final exercisesHive = exerciseBox.get(courseId);
 
     if (exercisesHive == null) {
       return [];
     }
 
-    var exercises = <Exercise>[];
-    for (var exercise in exercisesHive.entries) {
-      exercises.add(ExerciseDto.fromJson(exercise.value.cast<String, dynamic>())
-          .toDomain());
-    }
+    final results = exercisesHive
+        .map((e) => ExerciseDto.fromJson(e.cast<String, dynamic>()).toDomain())
+        .toList();
 
     await exerciseBox.close();
 
-    return exercises;
+    return results;
   }
 
   Future<void> saveExercises(String courseId, List<Exercise> exercises) async {
-    final exerciseBox = await Hive.openBox<Map>('exercise');
+    final exerciseBox = await Hive.openBox<List>('exercise');
     final exerciseFromBox = exerciseBox.get(courseId);
+    final List<Exercise> exerciseFromHive = exerciseFromBox != null
+        ? exerciseFromBox
+            .map((e) =>
+                ExerciseDto.fromJson(e.cast<String, dynamic>()).toDomain())
+            .toList()
+        : [];
 
-    if (exerciseFromBox == null) {
+    if (exerciseFromBox == null || exerciseFromHive == exercises) {
       await exerciseBox.put(
-          courseId,
-          exercises.asMap().map((key, value) => MapEntry(
-              value.id.value.toString(),
-              ExerciseDto.fromDomain(value).toJson())));
-    } else {
-      for (var exercise in exercises) {
-        final id = exercise.id.value.toString();
-        if (exerciseFromBox[id] != null) {
-          var oldExercise =
-              ExerciseDto.fromJson(exerciseFromBox[id].cast<String, dynamic>())
-                  .toDomain();
-          if (exercise != oldExercise) {
-            await exerciseBox.put(
-                courseId,
-                exercises.asMap().map((key, value) => MapEntry(
-                    value.id.value.toString(),
-                    ExerciseDto.fromDomain(value).toJson())));
-            break;
-          }
-        }
-      }
+        courseId,
+        exercises.map((e) => ExerciseDto.fromDomain(e).toJson()).toList(),
+      );
     }
 
     await exerciseBox.close();

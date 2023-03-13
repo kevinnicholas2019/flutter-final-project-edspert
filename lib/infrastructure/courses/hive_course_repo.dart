@@ -23,25 +23,8 @@ class HiveCourseRepo implements ICourseRepository {
   }
 
   @override
-  Future<List<Course>> getCoursesByLimit(int limit) async {
-    final courseBox = await Hive.openBox<Map>('course');
-
-    var courses = <Course>[];
-    var index = 0;
-    for (var courseKey in courseBox.keys) {
-      final course = courseBox.get(courseKey);
-      if (course != null) {
-        courses
-            .add(CourseDto.fromJson(course.cast<String, dynamic>()).toDomain());
-        index++;
-        if (index == limit) break;
-      }
-    }
-
-    await courseBox.close();
-
-    return courses;
-  }
+  Future<List<Course>> getCoursesByLimit(int limit) async =>
+      await getCourses().then((value) => value.take(3).toList());
 
   Future<void> saveCourses(List<Course> courses) async {
     final courseBox = await Hive.openBox<Map>('course');

@@ -1,6 +1,7 @@
 import 'package:final_project_edspert/domain/banners/banner.dart';
 import 'package:final_project_edspert/domain/banners/i_banner_repository.dart';
 import 'package:final_project_edspert/infrastructure/banners/banner_dto.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class HiveBannerRepo implements IBannerRepository {
@@ -8,11 +9,9 @@ class HiveBannerRepo implements IBannerRepository {
   Future<List<Banner>> getBanners() async {
     final bannerBox = await Hive.openBox<Map>('banner');
 
-    var banners = <Banner>[];
-    for (var banner in bannerBox.values) {
-      banners
-          .add(BannerDto.fromJson(banner.cast<String, dynamic>()).toDomain());
-    }
+    final List<Banner> banners = bannerBox.values
+        .map((e) => BannerDto.fromJson(e.cast<String, dynamic>()).toDomain())
+        .toList();
 
     await bannerBox.close();
 
@@ -20,13 +19,23 @@ class HiveBannerRepo implements IBannerRepository {
   }
 
   Future<void> saveBanners(List<Banner> banners) async {
-    final bannerBox = await Hive.openBox<Map<String, dynamic>>('banner');
-    if (bannerBox.isNotEmpty) {
+    final bannerBox = await Hive.openBox<Map>('banner');
+    final bannerFromBox = bannerBox.values;
+    final List<Banner> bannerFromHive = bannerFromBox.isNotEmpty
+        ? bannerFromBox
+            .map(
+                (e) => BannerDto.fromJson(e.cast<String, dynamic>()).toDomain())
+            .toList()
+        : [];
+
+    if (bannerFromBox.isNotEmpty ||
+        listEquals(bannerFromHive, banners) == false) {
       await bannerBox.clear();
+      await bannerBox.addAll(
+        banners.map((e) => BannerDto.fromDomain(e).toJson()).toList(),
+      );
     }
-    for (var banner in banners) {
-      await bannerBox.add(BannerDto.fromDomain(banner).toJson());
-    }
+
     await bannerBox.close();
   }
 }

@@ -44,6 +44,7 @@ class PilihMapelPage extends StatelessWidget {
                       ),
                       GridView.count(
                         shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
                         childAspectRatio: math.max(316 / 96, 1.0),
                         crossAxisCount: math.max(
                             (MediaQuery.of(context).size.width ~/ 316).toInt(),

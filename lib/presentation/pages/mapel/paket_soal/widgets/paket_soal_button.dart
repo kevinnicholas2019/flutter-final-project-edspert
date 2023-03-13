@@ -91,30 +91,26 @@ class PaketSoalButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
+            CachedNetworkImage(
+              imageUrl: icon,
+              fit: BoxFit.fitHeight,
+              width: 32,
+              height: 32,
               alignment: Alignment.centerLeft,
-              width: 36,
-              height: 36,
-              padding: const EdgeInsets.all(6.0),
-              decoration: BoxDecoration(
-                // color: ColorsApp.placeholder.withOpacity(0.175),
-                borderRadius: BorderApp.radius1,
-              ),
-              child: CachedNetworkImage(
-                imageUrl: icon,
-                fit: BoxFit.fitHeight,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    SizedBox(
-                  width: 36,
-                  height: 36,
+              progressIndicatorBuilder: (context, url, downloadProgress) =>
+                  Align(
+                alignment: Alignment.centerLeft,
+                child: SizedBox(
+                  width: 18,
+                  height: 18,
                   child: CircularProgressIndicator(
                     value: downloadProgress.progress,
                   ),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
-            const SizedBox(height: 7),
+            const SizedBox(height: 10),
             Text(
               namaPaketSoal,
               style: TextStyleApp.largeTextDefault.copyWith(

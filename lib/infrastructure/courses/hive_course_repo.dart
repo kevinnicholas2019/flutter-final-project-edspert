@@ -1,6 +1,7 @@
 import 'package:final_project_edspert/domain/courses/course.dart';
 import 'package:final_project_edspert/domain/courses/i_course_repository.dart';
 import 'package:final_project_edspert/infrastructure/courses/course_dto.dart';
+import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class HiveCourseRepo implements ICourseRepository {
@@ -8,14 +9,9 @@ class HiveCourseRepo implements ICourseRepository {
   Future<List<Course>> getCourses() async {
     final courseBox = await Hive.openBox<Map>('course');
 
-    var courses = <Course>[];
-    for (var courseKey in courseBox.keys) {
-      final course = courseBox.get(courseKey);
-      if (course != null) {
-        courses
-            .add(CourseDto.fromJson(course.cast<String, dynamic>()).toDomain());
-      }
-    }
+    final List<Course> courses = courseBox.values
+        .map((e) => CourseDto.fromJson(e.cast<String, dynamic>()).toDomain())
+        .toList();
 
     await courseBox.close();
 
@@ -28,20 +24,22 @@ class HiveCourseRepo implements ICourseRepository {
 
   Future<void> saveCourses(List<Course> courses) async {
     final courseBox = await Hive.openBox<Map>('course');
-    for (var course in courses) {
-      final id = course.id.value.toString();
-      final courseFromBox = courseBox.get(id);
-      if (courseFromBox == null) {
-        await courseBox.put(id, CourseDto.fromDomain(course).toJson());
-      } else {
-        var oldCourse =
-            CourseDto.fromJson(courseFromBox.cast<String, dynamic>())
-                .toDomain();
-        if (course != oldCourse) {
-          await courseBox.put(id, CourseDto.fromDomain(course).toJson());
-        }
-      }
+    final courseFromBox = courseBox.values;
+    final List<Course> courseFromHive = courseFromBox.isNotEmpty
+        ? courseFromBox
+            .map(
+                (e) => CourseDto.fromJson(e.cast<String, dynamic>()).toDomain())
+            .toList()
+        : [];
+
+    if (courseFromBox.isNotEmpty ||
+        listEquals(courseFromHive, courses) == false) {
+      await courseBox.clear();
+      await courseBox.addAll(
+        courses.map((e) => CourseDto.fromDomain(e).toJson()).toList(),
+      );
     }
+
     await courseBox.close();
   }
 }

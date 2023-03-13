@@ -56,9 +56,6 @@ class MapelButton extends StatelessWidget {
       ),
       height: 96,
       child: TextButton(
-        // onPressed: totalPaketLatihanSoal > 0
-        //     ? onPressed ?? _defaultOnPressed(context, namaMapel)
-        //     : null,
         onPressed: onPressed ?? _defaultOnPressed(context, courseId, namaMapel),
         style: ButtonStyle(
           padding: const MaterialStatePropertyAll(EdgeInsets.all(12.0)),

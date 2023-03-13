@@ -1,7 +1,8 @@
-import 'package:final_project_edspert/domain/exercises/course.dart';
+import 'package:final_project_edspert/domain/exercises/exercise.dart';
 import 'package:final_project_edspert/domain/exercises/i_exercise_repository.dart';
 import 'package:final_project_edspert/infrastructure/exercises/exercise_dto.dart';
 import 'package:hive_flutter/adapters.dart';
+import 'package:flutter/foundation.dart';
 
 class HiveExerciseRepo implements IExerciseRepository {
   @override
@@ -32,7 +33,8 @@ class HiveExerciseRepo implements IExerciseRepository {
             .toList()
         : [];
 
-    if (exerciseFromBox == null || exerciseFromHive == exercises) {
+    if (exerciseFromBox == null ||
+        listEquals(exerciseFromHive, exercises) == false) {
       await exerciseBox.put(
         courseId,
         exercises.map((e) => ExerciseDto.fromDomain(e).toJson()).toList(),

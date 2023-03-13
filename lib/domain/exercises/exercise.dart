@@ -25,6 +25,12 @@ class Exercise extends Equatable implements IEntity {
 
   @override
   List<Object?> get props => [
-        id.value,
+        id,
+        exerciseTitle,
+        accessType,
+        icon,
+        exerciseUserStatus,
+        jumlahSoal,
+        jumlahDone,
       ];
 }

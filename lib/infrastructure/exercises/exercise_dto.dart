@@ -1,5 +1,5 @@
 import 'package:final_project_edspert/domain/core/value_objects.dart';
-import 'package:final_project_edspert/domain/exercises/course.dart';
+import 'package:final_project_edspert/domain/exercises/exercise.dart';
 import 'package:final_project_edspert/domain/exercises/value_object.dart';
 
 class ExerciseDto {

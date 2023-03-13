@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:final_project_edspert/domain/exercises/course.dart';
+import 'package:final_project_edspert/domain/exercises/exercise.dart';
 import 'package:final_project_edspert/domain/exercises/i_exercise_repository.dart';
 import 'package:meta/meta.dart';
 

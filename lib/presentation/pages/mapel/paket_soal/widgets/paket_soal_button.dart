@@ -101,8 +101,8 @@ class PaketSoalButton extends StatelessWidget {
                   Align(
                 alignment: Alignment.centerLeft,
                 child: SizedBox(
-                  width: 18,
-                  height: 18,
+                  width: 32,
+                  height: 32,
                   child: CircularProgressIndicator(
                     value: downloadProgress.progress,
                   ),

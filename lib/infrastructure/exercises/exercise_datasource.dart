@@ -11,9 +11,9 @@ class ExerciseDataSource implements IExerciseRepository {
   @override
   Future<List<Exercise>> getExercises(String courseId) async {
     try {
-      final courses = await _api.getExercises(courseId);
-      if (courses.isNotEmpty) {
-        await _repo.saveExercises(courseId, courses);
+      final exercises = await _api.getExercises(courseId);
+      if (exercises.isNotEmpty) {
+        await _repo.saveExercises(courseId, exercises);
       }
     } catch (err) {
       if (kDebugMode) {

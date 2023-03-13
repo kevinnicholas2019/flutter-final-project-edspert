@@ -27,7 +27,7 @@ class HtmlStyleApp {
     ),
     "p": Style(
       padding: EdgeInsets.zero,
-      margin: EdgeInsets.zero,
+      margin: const EdgeInsets.only(top: 2.525),
       fontSize: const FontSize(13),
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
@@ -42,7 +42,7 @@ class HtmlStyleApp {
     ),
     "p": Style(
       padding: EdgeInsets.zero,
-      margin: EdgeInsets.zero,
+      margin: const EdgeInsets.only(top: 2.525),
       fontSize: const FontSize(13),
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,

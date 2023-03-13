@@ -240,7 +240,7 @@ class _KerjakanSoalPageState extends State<KerjakanSoalPage> {
                               textStyle: MaterialStatePropertyAll(
                                 TextStyleApp.largeTextDefault.copyWith(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 12,
+                                  fontSize: 13,
                                 ),
                               ),
                             ),
@@ -249,8 +249,9 @@ class _KerjakanSoalPageState extends State<KerjakanSoalPage> {
                               children: [
                                 Text('${String.fromCharCode(i)}.'),
                                 const SizedBox(width: 7),
-                                Flexible(
+                                Expanded(
                                   child: Html(
+                                    shrinkWrap: true,
                                     data:
                                         "${_exercises[_currentSoal - 1]["option_${String.fromCharCode(i).toLowerCase()}"] as String}${_exercises[_currentSoal - 1]["option_${String.fromCharCode(i).toLowerCase()}_img"] != null ? "<img src='${_exercises[_currentSoal - 1]["option_${String.fromCharCode(i).toLowerCase()}_img"]}' />" : ""}",
                                     style: String.fromCharCode(i) == choosed

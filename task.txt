@@ -3,3 +3,4 @@
 -user api diselaraskan
 -banner lazy loading, kalo user scroll mentok
 -mementingkan caching daripada online
+-tambah diskusi soal realtime firebase

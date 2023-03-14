@@ -10,16 +10,18 @@ class ExerciseDataSource implements IExerciseRepository {
 
   @override
   Future<List<Exercise>> getExercises(String courseId) async {
-    try {
-      final exercises = await _api.getExercises(courseId);
-      if (exercises.isNotEmpty) {
-        await _repo.saveExercises(courseId, exercises);
-      }
-    } catch (err) {
-      if (kDebugMode) {
-        print(err);
+    var exercises = await _repo.getExercises(courseId);
+    if (exercises.isEmpty) {
+      try {
+        final apiExercises = await _api.getExercises(courseId);
+        await _repo.saveExercises(courseId, apiExercises);
+        exercises = await _repo.getExercises(courseId);
+      } catch (err) {
+        if (kDebugMode) {
+          print(err);
+        }
       }
     }
-    return await _repo.getExercises(courseId);
+    return exercises;
   }
 }

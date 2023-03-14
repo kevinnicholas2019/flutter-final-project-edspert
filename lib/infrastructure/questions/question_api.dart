@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:final_project_edspert/domain/questions/i_question_repository.dart';
+import 'package:final_project_edspert/domain/questions/question.dart';
 import 'package:final_project_edspert/infrastructure/core/api.dart';
 
 class QuestionApi extends Api implements IQuestionRepository {
@@ -7,7 +8,7 @@ class QuestionApi extends Api implements IQuestionRepository {
   String get apiForwardUrl => "/exercise/kerjakan";
 
   @override
-  Future<List<dynamic>> getQuestions(String exerciseId) async {
+  Future<List<Question>> getQuestions(String exerciseId) async {
     FormData formData = FormData.fromMap({
       "exercise_id": exerciseId,
       "user_email": "testerngbayu@gmail.com",

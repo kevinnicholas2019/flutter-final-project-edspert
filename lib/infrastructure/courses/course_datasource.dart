@@ -10,31 +10,23 @@ class CourseDataSource implements ICourseRepository {
 
   @override
   Future<List<Course>> getCourses() async {
-    try {
-      final courses = await _api.getCourses();
-      if (courses.isNotEmpty) {
-        await _repo.saveCourses(courses);
-      }
-    } catch (err) {
-      if (kDebugMode) {
-        print(err);
+    var courses = await _repo.getCourses();
+    if (courses.isEmpty) {
+      try {
+        final apiCourses = await _api.getCourses();
+        await _repo.saveCourses(apiCourses);
+        courses = await _repo.getCourses();
+      } catch (err) {
+        if (kDebugMode) {
+          print(err);
+        }
       }
     }
-    return await _repo.getCourses();
+    return courses;
   }
 
   @override
   Future<List<Course>> getCoursesByLimit(int limit) async {
-    try {
-      final courses = await _api.getCoursesByLimit(limit);
-      if (courses.isNotEmpty) {
-        await _repo.saveCourses(courses);
-      }
-    } catch (err) {
-      if (kDebugMode) {
-        print(err);
-      }
-    }
-    return await _repo.getCoursesByLimit(limit);
+    return await getCourses().then((value) => value.take(3).toList());
   }
 }

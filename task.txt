@@ -1,4 +1,4 @@
--pilih pelajaran ada ipa dan ips
+-pilih pelajaran ada ipa dan ips done
 -bisa favorite mapel
 -user api diselaraskan
 -banner lazy loading, kalo user scroll mentok

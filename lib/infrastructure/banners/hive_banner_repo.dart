@@ -1,7 +1,6 @@
 import 'package:final_project_edspert/domain/banners/banner.dart';
 import 'package:final_project_edspert/domain/banners/i_banner_repository.dart';
 import 'package:final_project_edspert/infrastructure/banners/banner_dto.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class HiveBannerRepo implements IBannerRepository {
@@ -20,22 +19,10 @@ class HiveBannerRepo implements IBannerRepository {
 
   Future<void> saveBanners(List<Banner> banners) async {
     final bannerBox = await Hive.openBox<Map>('banner');
-    final bannerFromBox = bannerBox.values;
-    final List<Banner> bannerFromHive = bannerFromBox.isNotEmpty
-        ? bannerFromBox
-            .map(
-                (e) => BannerDto.fromJson(e.cast<String, dynamic>()).toDomain())
-            .toList()
-        : [];
-
-    if (bannerFromBox.isNotEmpty ||
-        listEquals(bannerFromHive, banners) == false) {
-      await bannerBox.clear();
-      await bannerBox.addAll(
-        banners.map((e) => BannerDto.fromDomain(e).toJson()).toList(),
-      );
-    }
-
+    await bannerBox.clear();
+    await bannerBox.addAll(
+      banners.map((e) => BannerDto.fromDomain(e).toJson()).toList(),
+    );
     await bannerBox.close();
   }
 }

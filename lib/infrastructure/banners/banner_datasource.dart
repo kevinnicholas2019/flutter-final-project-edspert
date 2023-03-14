@@ -10,16 +10,18 @@ class BannerDataSource implements IBannerRepository {
 
   @override
   Future<List<Banner>> getBanners() async {
-    try {
-      final banners = await _api.getBanners();
-      if (banners.isNotEmpty) {
-        await _repo.saveBanners(banners);
-      }
-    } catch (err) {
-      if (kDebugMode) {
-        print(err);
+    var banners = await _repo.getBanners();
+    if (banners.isEmpty) {
+      try {
+        final apiBanners = await _api.getBanners();
+        await _repo.saveBanners(apiBanners);
+        banners = await _repo.getBanners();
+      } catch (err) {
+        if (kDebugMode) {
+          print(err);
+        }
       }
     }
-    return await _repo.getBanners();
+    return banners;
   }
 }

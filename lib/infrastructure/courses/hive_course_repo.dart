@@ -1,7 +1,6 @@
 import 'package:final_project_edspert/domain/courses/course.dart';
 import 'package:final_project_edspert/domain/courses/i_course_repository.dart';
 import 'package:final_project_edspert/infrastructure/courses/course_dto.dart';
-import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/adapters.dart';
 
 class HiveCourseRepo implements ICourseRepository {
@@ -24,22 +23,10 @@ class HiveCourseRepo implements ICourseRepository {
 
   Future<void> saveCourses(List<Course> courses) async {
     final courseBox = await Hive.openBox<Map>('course');
-    final courseFromBox = courseBox.values;
-    final List<Course> courseFromHive = courseFromBox.isNotEmpty
-        ? courseFromBox
-            .map(
-                (e) => CourseDto.fromJson(e.cast<String, dynamic>()).toDomain())
-            .toList()
-        : [];
-
-    if (courseFromBox.isNotEmpty ||
-        listEquals(courseFromHive, courses) == false) {
-      await courseBox.clear();
-      await courseBox.addAll(
-        courses.map((e) => CourseDto.fromDomain(e).toJson()).toList(),
-      );
-    }
-
+    await courseBox.clear();
+    await courseBox.addAll(
+      courses.map((e) => CourseDto.fromDomain(e).toJson()).toList(),
+    );
     await courseBox.close();
   }
 }

@@ -26,55 +26,61 @@ class PilihMapelPage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           color: ColorsApp.backgroundPage,
-          child: BlocBuilder<CourseBloc, CourseState>(
-            builder: (context, state) {
-              if (state is CourseOnSuccess) {
-                return ListView(
-                  padding: const EdgeInsets.all(20),
-                  children: [
-                    for (var major in majors) ...[
-                      Text(
-                        major,
-                        style: TextStyleApp.largeTextDefault.copyWith(
-                          fontSize: 16,
+          child: RefreshIndicator(
+            onRefresh: () async =>
+                BlocProvider.of<CourseBloc>(context).add(OnGetCourses()),
+            child: BlocBuilder<CourseBloc, CourseState>(
+              builder: (context, state) {
+                if (state is CourseOnSuccess) {
+                  return ListView(
+                    padding: const EdgeInsets.all(20),
+                    children: [
+                      for (var major in majors) ...[
+                        Text(
+                          major,
+                          style: TextStyleApp.largeTextDefault.copyWith(
+                            fontSize: 16,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      GridView.count(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        childAspectRatio: math.max(316 / 96, 1.0),
-                        crossAxisCount: math.max(
-                            (MediaQuery.of(context).size.width ~/ 316).toInt(),
-                            1),
-                        crossAxisSpacing: 15,
-                        mainAxisSpacing: 15,
-                        children: [
-                          for (var course in state.courses.where(
-                              (element) => element.majorName.value == major))
-                            MapelButton(
-                              courseId: course.id.value,
-                              namaMapel: course.courseName.value,
-                              totalPaketLatihanSoal: course.jumlahMateri.value,
-                              imageUrl: course.urlCover.value,
-                            ),
-                        ],
-                      ),
-                      if (major != majors.last)
                         const SizedBox(
                           height: 12,
                         ),
+                        GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
+                          childAspectRatio: math.max(316 / 96, 1.0),
+                          crossAxisCount: math.max(
+                              (MediaQuery.of(context).size.width ~/ 316)
+                                  .toInt(),
+                              1),
+                          crossAxisSpacing: 15,
+                          mainAxisSpacing: 15,
+                          children: [
+                            for (var course in state.courses.where(
+                                (element) => element.majorName.value == major))
+                              MapelButton(
+                                courseId: course.id.value,
+                                namaMapel: course.courseName.value,
+                                totalPaketLatihanSoal:
+                                    course.jumlahMateri.value,
+                                imageUrl: course.urlCover.value,
+                              ),
+                          ],
+                        ),
+                        if (major != majors.last)
+                          const SizedBox(
+                            height: 12,
+                          ),
+                      ],
                     ],
-                  ],
-                );
-              } else if (state is CourseOnFail) {
-                EasyLoading.showError(state.failedMsg);
-              }
+                  );
+                } else if (state is CourseOnFail) {
+                  EasyLoading.showError(state.failedMsg);
+                }
 
-              return const Center(child: CircularProgressIndicator());
-            },
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
           ),
         ),
       ),

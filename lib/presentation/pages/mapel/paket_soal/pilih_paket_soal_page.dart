@@ -36,100 +36,106 @@ class PilihPaketSoalPage extends StatelessWidget {
       body: SafeArea(
         child: Container(
           color: ColorsApp.backgroundPage,
-          child: BlocBuilder<ExerciseBloc, ExerciseState>(
-            builder: (context, state) {
-              if (state is ExerciseOnSuccess) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20.0,
-                        vertical: 12.0,
-                      ),
-                      child: Text(
-                        'Pilih Paket Soal',
-                        style: TextStyleApp.largeTextDefault.copyWith(
-                          fontSize: 12,
+          child: RefreshIndicator(
+            onRefresh: () async => BlocProvider.of<ExerciseBloc>(context)
+                .add(OnGetExercises(courseId)),
+            child: BlocBuilder<ExerciseBloc, ExerciseState>(
+              builder: (context, state) {
+                if (state is ExerciseOnSuccess) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 20.0,
+                          vertical: 12.0,
+                        ),
+                        child: Text(
+                          'Pilih Paket Soal',
+                          style: TextStyleApp.largeTextDefault.copyWith(
+                            fontSize: 12,
+                          ),
                         ),
                       ),
-                    ),
-                    Expanded(
-                      child: state.exercises.isNotEmpty
-                          ? GridView.count(
-                              childAspectRatio: math.max(
-                                isPotrait ? 153 / 96 : 96 / 153,
-                                0.75,
-                              ),
-                              shrinkWrap: true,
-                              padding: const EdgeInsets.only(
-                                top: 0,
-                                left: 20,
-                                right: 20,
-                                bottom: 20,
-                              ),
-                              crossAxisCount: math.max(
-                                  (size.width ~/ (153 + 12 * 2)).toInt(), 1),
-                              crossAxisSpacing: 14.0,
-                              mainAxisSpacing: 12.0,
-                              children: [
-                                for (var exercise in state.exercises)
-                                  PaketSoalButton(
-                                    namaPaketSoal: exercise.exerciseTitle.value,
-                                    totalSoal: exercise.jumlahSoal.value,
-                                    icon: exercise.icon.value,
-                                    exerciseId: exercise.id.value.toString(),
-                                  ),
-                              ],
-                            )
-                          : ListView(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 20),
-                              children: [
-                                SizedBox(
-                                  height: math.max(
-                                    size.height - 80 - 30,
-                                    320,
-                                  ),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      Image.asset(
-                                        "assets/illustrations/not_found.png",
-                                        height: 150,
-                                      ),
-                                      const SizedBox(height: 60),
-                                      Text(
-                                        'Yah, Paket tidak tersedia',
-                                        style: TextStyleApp.largeTextDefault
-                                            .copyWith(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 24,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        'Tenang, masih banyak yang bisa kamu pelajari. cari lagi yuk!',
-                                        style: TextStyleApp.subtitle12
-                                            .copyWith(fontSize: 13),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                      const SizedBox(height: 20),
-                                    ],
-                                  ),
+                      Expanded(
+                        child: state.exercises.isNotEmpty
+                            ? GridView.count(
+                                childAspectRatio: math.max(
+                                  isPotrait ? 153 / 96 : 96 / 153,
+                                  0.75,
                                 ),
-                              ],
-                            ),
-                    ),
-                  ],
-                );
-              } else if (state is ExerciseOnFail) {}
+                                shrinkWrap: true,
+                                padding: const EdgeInsets.only(
+                                  top: 0,
+                                  left: 20,
+                                  right: 20,
+                                  bottom: 20,
+                                ),
+                                crossAxisCount: math.max(
+                                    (size.width ~/ (153 + 12 * 2)).toInt(), 1),
+                                crossAxisSpacing: 14.0,
+                                mainAxisSpacing: 12.0,
+                                children: [
+                                  for (var exercise in state.exercises)
+                                    PaketSoalButton(
+                                      namaPaketSoal:
+                                          exercise.exerciseTitle.value,
+                                      totalSoal: exercise.jumlahSoal.value,
+                                      icon: exercise.icon.value,
+                                      exerciseId: exercise.id.value.toString(),
+                                    ),
+                                ],
+                              )
+                            : ListView(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 20),
+                                children: [
+                                  SizedBox(
+                                    height: math.max(
+                                      size.height - 80 - 30,
+                                      320,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        Image.asset(
+                                          "assets/illustrations/not_found.png",
+                                          height: 150,
+                                        ),
+                                        const SizedBox(height: 60),
+                                        Text(
+                                          'Yah, Paket tidak tersedia',
+                                          style: TextStyleApp.largeTextDefault
+                                              .copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 24,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Text(
+                                          'Tenang, masih banyak yang bisa kamu pelajari. cari lagi yuk!',
+                                          style: TextStyleApp.subtitle12
+                                              .copyWith(fontSize: 13),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        const SizedBox(height: 20),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                      ),
+                    ],
+                  );
+                } else if (state is ExerciseOnFail) {}
 
-              return const Center(child: CircularProgressIndicator());
-            },
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
           ),
         ),
       ),

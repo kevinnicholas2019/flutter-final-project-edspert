@@ -20,275 +20,285 @@ class HomeWidget extends UnsafeColorWidget {
   Widget build(BuildContext context) {
     return Container(
       color: ColorsApp.backgroundPage,
-      child: ListView(
-        padding: const EdgeInsets.all(20.0),
-        children: [
-          SizedBox(
-            height: 37,
-            child: BlocBuilder<ProfilePageBloc, ProfilePageState>(
-              builder: (context, state) {
-                return Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Text(
-                            'Hai, ${state.user.namaLengkap.value}',
-                            style: TextStyleApp.largeTextDefault.copyWith(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                            ),
-                          ),
-                          Text(
-                            'Selamat Datang',
-                            style: TextStyleApp.largeTextDefault.copyWith(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    ClipOval(
-                      child: state.firebaseCredential?.photoURL != null
-                          ? CachedNetworkImage(
-                              imageUrl: state.firebaseCredential!.photoURL!,
-                              width: 35,
-                              height: 35,
-                              placeholder: (_, __) => Container(
-                                width: 35,
-                                height: 35,
-                                color: ColorsApp.placeholder,
-                              ),
-                            )
-                          : Image.asset(
-                              UtilsApp.gendersAsset[
-                                      state.user.jenisKelamin.value] ??
-                                  "assets/icons/kevin_nicholas_profile.jpg",
-                              width: 35,
-                              height: 35,
-                            ),
-                    ),
-                  ],
-                );
-              },
-            ),
-          ),
-          const SizedBox(
-            height: 11,
-          ),
-          Container(
-            height: 147,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: ColorsApp.primary,
-              borderRadius: BorderApp.radius2,
-            ),
-            child: Stack(
-              children: [
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Image.asset(
-                    "assets/illustrations/home.png",
-                    height: 100,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 26),
-                  child: Column(
+      child: RefreshIndicator(
+        onRefresh: () async {
+          BlocProvider.of<CourseBloc>(context).add(OnGetLimitCourses());
+          BlocProvider.of<BannerBloc>(context).add(OnGetBanners());
+          BlocProvider.of<ProfilePageBloc>(context)
+              .add(ProfilePageEventOnRefresh());
+        },
+        child: ListView(
+          padding: const EdgeInsets.all(20.0),
+          children: [
+            SizedBox(
+              height: 37,
+              child: BlocBuilder<ProfilePageBloc, ProfilePageState>(
+                builder: (context, state) {
+                  return Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        'Mau Kerjain',
-                        style: TextStyleApp.largeTextDefault.copyWith(
-                          fontSize: 16,
-                          color: ColorsApp.offWhite,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              'Hai, ${state.user.namaLengkap.value}',
+                              style: TextStyleApp.largeTextDefault.copyWith(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 12,
+                              ),
+                            ),
+                            Text(
+                              'Selamat Datang',
+                              style: TextStyleApp.largeTextDefault.copyWith(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 12,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                      Text(
-                        'latihan soal',
-                        style: TextStyleApp.largeTextDefault.copyWith(
-                          fontSize: 16,
-                          color: ColorsApp.offWhite,
-                        ),
-                      ),
-                      Text(
-                        'apa hari ini?',
-                        style: TextStyleApp.largeTextDefault.copyWith(
-                          fontSize: 16,
-                          color: ColorsApp.offWhite,
-                        ),
+                      ClipOval(
+                        child: state.firebaseCredential?.photoURL != null
+                            ? CachedNetworkImage(
+                                imageUrl: state.firebaseCredential!.photoURL!,
+                                width: 35,
+                                height: 35,
+                                placeholder: (_, __) => Container(
+                                  width: 35,
+                                  height: 35,
+                                  color: ColorsApp.placeholder,
+                                ),
+                              )
+                            : Image.asset(
+                                UtilsApp.gendersAsset[
+                                        state.user.jenisKelamin.value] ??
+                                    "assets/icons/kevin_nicholas_profile.jpg",
+                                width: 35,
+                                height: 35,
+                              ),
                       ),
                     ],
-                  ),
-                ),
-              ],
+                  );
+                },
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          SizedBox(
-            height: 25 + 7,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            const SizedBox(
+              height: 11,
+            ),
+            Container(
+              height: 147,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: ColorsApp.primary,
+                borderRadius: BorderApp.radius2,
+              ),
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Image.asset(
+                      "assets/illustrations/home.png",
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 26),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          'Mau Kerjain',
+                          style: TextStyleApp.largeTextDefault.copyWith(
+                            fontSize: 16,
+                            color: ColorsApp.offWhite,
+                          ),
+                        ),
+                        Text(
+                          'latihan soal',
+                          style: TextStyleApp.largeTextDefault.copyWith(
+                            fontSize: 16,
+                            color: ColorsApp.offWhite,
+                          ),
+                        ),
+                        Text(
+                          'apa hari ini?',
+                          style: TextStyleApp.largeTextDefault.copyWith(
+                            fontSize: 16,
+                            color: ColorsApp.offWhite,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 25,
+            ),
+            SizedBox(
+              height: 25 + 7,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Pilih Pelajaran',
+                    style: TextStyleApp.largeText20.copyWith(
+                      fontSize: 16,
+                    ),
+                  ),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: () => Navigator.pushNamed(
+                      context,
+                      RouterApp.chooseSubjectsPage,
+                    ),
+                    child: Text(
+                      'Lihat Semua',
+                      style: TextStyleApp.largeText20.copyWith(
+                        fontSize: 10,
+                        fontWeight: FontWeight.w500,
+                        color: ColorsApp.primary,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            BlocBuilder<CourseBloc, CourseState>(
+              builder: (context, state) {
+                if (state is CourseOnSuccess) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      for (var course in state.courses.take(3)) ...[
+                        MapelButton(
+                          courseId: course.id.value,
+                          namaMapel: course.courseName.value,
+                          totalPaketLatihanSoal: course.jumlahMateri.value,
+                          imageUrl: course.urlCover.value,
+                        ),
+                        if (state.courses.last != course)
+                          const SizedBox(
+                            height: 15,
+                          ),
+                      ],
+                    ],
+                  );
+                } else if (state is CourseOnFail) {}
+
+                return const Center(child: CircularProgressIndicator());
+              },
+            ),
+            const SizedBox(
+              height: 27,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  'Pilih Pelajaran',
-                  style: TextStyleApp.largeText20.copyWith(
+                  'Terbaru',
+                  style: TextStyleApp.largeTextDefault.copyWith(
                     fontSize: 16,
                   ),
                 ),
-                const Spacer(),
-                TextButton(
-                  onPressed: () => Navigator.pushNamed(
-                    context,
-                    RouterApp.chooseSubjectsPage,
-                  ),
-                  child: Text(
-                    'Lihat Semua',
-                    style: TextStyleApp.largeText20.copyWith(
-                      fontSize: 10,
-                      fontWeight: FontWeight.w500,
-                      color: ColorsApp.primary,
-                    ),
-                  ),
+                const SizedBox(
+                  height: 11,
                 ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          BlocBuilder<CourseBloc, CourseState>(
-            builder: (context, state) {
-              if (state is CourseOnSuccess) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    for (var course in state.courses.take(3)) ...[
-                      MapelButton(
-                        courseId: course.id.value,
-                        namaMapel: course.courseName.value,
-                        totalPaketLatihanSoal: course.jumlahMateri.value,
-                        imageUrl: course.urlCover.value,
-                      ),
-                      if (state.courses.last != course)
-                        const SizedBox(
-                          height: 15,
-                        ),
-                    ],
-                  ],
-                );
-              } else if (state is CourseOnFail) {}
-
-              return const Center(child: CircularProgressIndicator());
-            },
-          ),
-          const SizedBox(
-            height: 27,
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                'Terbaru',
-                style: TextStyleApp.largeTextDefault.copyWith(
-                  fontSize: 16,
-                ),
-              ),
-              const SizedBox(
-                height: 11,
-              ),
-              SizedBox(
-                height: 150,
-                child: BlocBuilder<BannerBloc, BannerState>(
-                  builder: (context, state) {
-                    if (state is BannerOnFail) {
-                      return Center(
-                        child: TextButton(
-                          onPressed: () => BlocProvider.of<BannerBloc>(context)
-                              .add(OnGetBanners()),
-                          child: const Text('Refresh'),
-                        ),
-                      );
-                    }
-                    if (state is BannerOnSuccess) {
-                      return ListView(
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(
-                          parent: ClampingScrollPhysics(),
-                        ),
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (var banner in state.banners) ...[
-                            ClipRRect(
-                              borderRadius: BorderApp.radius0,
-                              child: TextButton(
-                                onPressed: () async => banner.url
-                                        .failures()
-                                        .isEmpty
-                                    ? await launchUrl(
-                                        Uri.parse(banner.url.value),
-                                        mode: LaunchMode.externalApplication,
-                                      )
-                                    : () {},
-                                style: const ButtonStyle(
-                                  padding: MaterialStatePropertyAll(
-                                    EdgeInsets.zero,
+                SizedBox(
+                  height: 150,
+                  child: BlocBuilder<BannerBloc, BannerState>(
+                    builder: (context, state) {
+                      if (state is BannerOnFail) {
+                        return Center(
+                          child: TextButton(
+                            onPressed: () =>
+                                BlocProvider.of<BannerBloc>(context)
+                                    .add(OnGetBanners()),
+                            child: const Text('Refresh'),
+                          ),
+                        );
+                      }
+                      if (state is BannerOnSuccess) {
+                        return ListView(
+                          shrinkWrap: true,
+                          physics: const ClampingScrollPhysics(
+                            parent: ClampingScrollPhysics(),
+                          ),
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            for (var banner in state.banners) ...[
+                              ClipRRect(
+                                borderRadius: BorderApp.radius0,
+                                child: TextButton(
+                                  onPressed: () async => banner.url
+                                          .failures()
+                                          .isEmpty
+                                      ? await launchUrl(
+                                          Uri.parse(banner.url.value),
+                                          mode: LaunchMode.externalApplication,
+                                        )
+                                      : () {},
+                                  style: const ButtonStyle(
+                                    padding: MaterialStatePropertyAll(
+                                      EdgeInsets.zero,
+                                    ),
                                   ),
-                                ),
-                                child: SizedBox(
-                                  width: 284,
-                                  height: 146,
-                                  child: Opacity(
-                                    opacity: 1.0,
-                                    child: CachedNetworkImage(
-                                      imageUrl: banner.image.value,
-                                      fit: BoxFit.fitHeight,
-                                      progressIndicatorBuilder:
-                                          (context, url, downloadProgress) =>
-                                              Center(
-                                        child: Center(
-                                          child: SizedBox(
-                                            width: 50,
-                                            height: 50,
-                                            child: CircularProgressIndicator(
-                                              value: downloadProgress.progress,
+                                  child: SizedBox(
+                                    width: 284,
+                                    height: 146,
+                                    child: Opacity(
+                                      opacity: 1.0,
+                                      child: CachedNetworkImage(
+                                        imageUrl: banner.image.value,
+                                        fit: BoxFit.fitHeight,
+                                        progressIndicatorBuilder:
+                                            (context, url, downloadProgress) =>
+                                                Center(
+                                          child: Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                value:
+                                                    downloadProgress.progress,
+                                              ),
                                             ),
                                           ),
                                         ),
+                                        errorWidget: (context, url, error) =>
+                                            const Icon(Icons.error),
                                       ),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(Icons.error),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            if (state.banners.last != banner)
-                              const SizedBox(
-                                width: 29,
-                              ),
+                              if (state.banners.last != banner)
+                                const SizedBox(
+                                  width: 29,
+                                ),
+                            ],
                           ],
-                        ],
-                      );
-                    } else if (state is BannerOnFail) {}
+                        );
+                      } else if (state is BannerOnFail) {}
 
-                    return const Center(child: CircularProgressIndicator());
-                  },
+                      return const Center(child: CircularProgressIndicator());
+                    },
+                  ),
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 27,
-          ),
-        ],
+              ],
+            ),
+            const SizedBox(
+              height: 27,
+            ),
+          ],
+        ),
       ),
     );
   }
